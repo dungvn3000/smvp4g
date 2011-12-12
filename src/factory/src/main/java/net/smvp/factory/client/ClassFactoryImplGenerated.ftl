@@ -1,5 +1,5 @@
 [#ftl]
-[#-- @ftlvariable name="data" type="com.smvp.reflection.generator.factory.ClassFactoryTemplateData" --]
+[#-- @ftlvariable name="data" type="net.smvp.factory.generator.ClassFactoryTemplateData" --]
 /*
  * Copyright (C) 2009 - 2012 SMVP.NET
  *
@@ -22,9 +22,9 @@
 package ${data.generatePackageName};
 
 import com.google.gwt.core.client.GWT;
-import com.smvp.reflection.client.marker.Reflectable;
-import com.smvp.reflection.client.marker.ReflectionTarget;
-import com.smvp.reflection.client.clazz.ClassType;
+import net.smvp.reflection.client.marker.Reflectable;
+import net.smvp.reflection.client.marker.ReflectionTarget;
+import net.smvp.reflection.client.clazz.ClassType;
 
 /**
 * The Class ClassFactoryImpl.

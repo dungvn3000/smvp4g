@@ -1,0 +1,65 @@
+/*
+ * Copyright (C) 2009 - 2012 SMVP.NET
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 3 of
+ * the License, or (at your option) any later version.
+ *  
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *  
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+ */
+
+package net.smvp.reflection.scan.reader;
+
+import net.smvp.generator.scan.model.MethodScanModel;
+import net.smvp.generator.scan.reader.Reader;
+import net.smvp.generator.scan.utils.ScanUtils;
+import com.google.gwt.core.ext.GeneratorContext;
+import com.google.gwt.core.ext.typeinfo.JClassType;
+import com.google.gwt.core.ext.typeinfo.JMethod;
+
+import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * The Class MethodReader.
+ *
+ * @author Nguyen Duc Dung
+ * @since 12/4/11, 4:06 PM
+ */
+public class MethodReader implements Reader<MethodScanModel> {
+
+    private List<MethodScanModel> models = new ArrayList<MethodScanModel>();
+
+    @Override
+    public void read(JClassType classType, GeneratorContext context) {
+        for (JMethod method : classType.getMethods()) {
+            if (method.isPublic() && method.getParameters().length == 0) {
+                MethodScanModel model = new MethodScanModel();
+                model.setName(method.getName());
+                model.setReturnType(method.getReturnType().getParameterizedQualifiedSourceName());
+                model.setAnnotationScanModels(ScanUtils.getAnnotations(method));
+                models.add(model);
+            }
+        }
+    }
+
+    @Override
+    public boolean isMath(Annotation checkAnnotation) {
+        return true;
+    }
+
+    @Override
+    public List<MethodScanModel> getData() {
+        return models;
+    }
+}

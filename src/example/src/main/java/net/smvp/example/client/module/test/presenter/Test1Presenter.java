@@ -21,7 +21,7 @@ package net.smvp.example.client.module.test.presenter;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.smvp.aop.client.marker.Aspectable;
+import net.smvp.aop.client.marker.Aspectable;
 import net.smvp.example.client.module.test.place.Test1Place;
 import net.smvp.example.client.module.test.place.Test2Place;
 import net.smvp.example.client.module.test.view.Test1View;

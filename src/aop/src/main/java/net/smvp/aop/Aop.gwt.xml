@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='Aop'>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+
+    <inherits name="net.smvp.generator.Generator" />
+
+    <generate-with class="net.smvp.aop.generator.wrapper.ClassWrapperGenerator">
+        <when-type-assignable class="net.smvp.aop.client.marker.Aspectable"/>
+    </generate-with>
+
+    <generate-with class="net.smvp.aop.generator.utils.AopUtilsGenerator">
+        <when-type-assignable class="net.smvp.aop.client.utils.AopUtils"/>
+    </generate-with>
+
+
+</module>

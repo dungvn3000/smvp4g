@@ -20,7 +20,7 @@
 package net.smvp.mvp.client.core.place;
 
 import com.google.gwt.place.shared.Place;
-import com.smvp.reflection.client.marker.Reflection;
+import net.smvp.reflection.client.marker.Reflection;
 
 /**
  * The Class AbstractPlace.

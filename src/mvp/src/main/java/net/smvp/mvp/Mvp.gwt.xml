@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='Mvp'>
 
-    <inherits name="com.smvp.reflection.Reflection"/>
-    <inherits name="com.smvp.aop.Aop"/>
-    <inherits name="com.smvp.generator.Generator"/>
+    <inherits name="net.smvp.generator.Generator"/>
+    <inherits name="net.smvp.reflection.Reflection"/>
+    <inherits name="net.smvp.aop.Aop"/>
     <inherits name="net.smvp.factory.Factory"/>
 
     <!-- Inherit the core Web Toolkit stuff.                        -->

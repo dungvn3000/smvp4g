@@ -20,8 +20,8 @@
 package net.smvp.example.client.module.test.interceptor;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.smvp.aop.client.interceptor.MethodInterceptor;
-import com.smvp.aop.client.marker.Aspect;
+import net.smvp.aop.client.interceptor.MethodInterceptor;
+import net.smvp.aop.client.marker.Aspect;
 
 /**
  * The Class TestInterceptor.

@@ -20,15 +20,15 @@
 package net.smvp.factory.client.utils;
 
 import com.google.gwt.core.client.GWT;
-import com.smvp.aop.client.utils.AopUtils;
-import com.smvp.aop.client.utils.AopUtilsImpl;
-import com.smvp.aop.client.wrapper.ClassWrapper;
-import com.smvp.reflection.client.annotation.HasAnnotations;
-import com.smvp.reflection.client.clazz.ClassType;
-import com.smvp.reflection.client.field.FieldType;
-import com.smvp.reflection.client.field.HasFields;
-import com.smvp.reflection.client.method.HasMethods;
-import com.smvp.reflection.client.method.MethodType;
+import net.smvp.aop.client.utils.AopUtils;
+import net.smvp.aop.client.utils.AopUtilsImpl;
+import net.smvp.aop.client.wrapper.ClassWrapper;
+import net.smvp.reflection.client.annotation.HasAnnotations;
+import net.smvp.reflection.client.clazz.ClassType;
+import net.smvp.reflection.client.field.FieldType;
+import net.smvp.reflection.client.field.HasFields;
+import net.smvp.reflection.client.method.HasMethods;
+import net.smvp.reflection.client.method.MethodType;
 import net.smvp.factory.client.ClassFactory;
 import net.smvp.factory.client.ClassFactoryImpl;
 

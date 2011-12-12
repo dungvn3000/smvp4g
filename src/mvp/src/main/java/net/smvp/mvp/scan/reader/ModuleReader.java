@@ -21,7 +21,7 @@ package net.smvp.mvp.scan.reader;
 
 import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.typeinfo.JClassType;
-import com.smvp.generator.scan.reader.Reader;
+import net.smvp.generator.scan.reader.Reader;
 import net.smvp.mvp.client.core.module.annotation.Module;
 import net.smvp.mvp.client.core.utils.StringUtils;
 import net.smvp.mvp.scan.model.ModuleScanModel;

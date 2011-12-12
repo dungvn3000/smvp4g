@@ -19,12 +19,12 @@
 
 package net.smvp.factory.generator;
 
+import net.smvp.factory.scan.reader.ClassFactoryReader;
+import net.smvp.generator.scan.ClassScanner;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JPackage;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
-import com.smvp.generator.generator.AbstractGenerator;
-import com.smvp.generator.scan.ClassScanner;
-import com.smvp.reflection.scan.reader.ClassFactoryReader;
+import net.smvp.generator.generator.AbstractGenerator;
 import net.smvp.factory.client.ClassFactory;
 
 import java.util.HashMap;

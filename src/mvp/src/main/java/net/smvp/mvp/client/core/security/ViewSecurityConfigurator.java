@@ -19,7 +19,7 @@
 
 package net.smvp.mvp.client.core.security;
 
-import com.smvp.reflection.client.marker.Reflection;
+import net.smvp.reflection.client.marker.Reflection;
 
 /**
  * The Class ViewSecurityConfigurator.

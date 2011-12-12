@@ -1,5 +1,5 @@
 [#ftl]
-[#-- @ftlvariable name="data" type="com.smvp.aop.generator.factory.AopFactoryTemplateData" --]
+[#-- @ftlvariable name="data" type="net.smvp.factory.generator.AopFactoryTemplateData" --]
 /*
  * Copyright (C) 2009 - 2012 SMVP.NET
  *
@@ -22,7 +22,7 @@
 package ${data.generatePackageName};
 
 import com.google.gwt.core.client.GWT;
-import com.smvp.aop.client.interceptor.*;
+import net.smvp.aop.client.interceptor.*;
 
 /**
  * The Class AopFactoryGeneratedImpl.

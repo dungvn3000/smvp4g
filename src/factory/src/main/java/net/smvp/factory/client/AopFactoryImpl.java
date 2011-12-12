@@ -19,8 +19,8 @@
 
 package net.smvp.factory.client;
 
-import com.smvp.aop.client.interceptor.HasInterceptor;
-import com.smvp.aop.client.interceptor.MethodInterceptor;
+import net.smvp.aop.client.interceptor.HasInterceptor;
+import net.smvp.aop.client.interceptor.MethodInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;

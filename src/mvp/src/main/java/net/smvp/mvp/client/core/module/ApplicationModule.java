@@ -20,7 +20,7 @@
 package net.smvp.mvp.client.core.module;
 
 import com.google.gwt.core.client.GWT;
-import com.smvp.reflection.client.marker.Reflection;
+import net.smvp.reflection.client.marker.Reflection;
 import net.smvp.mvp.client.core.factory.ClientFactoryImpl;
 import net.smvp.mvp.client.core.factory.IClientFactory;
 

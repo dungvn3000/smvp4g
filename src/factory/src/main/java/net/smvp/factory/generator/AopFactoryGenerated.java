@@ -19,10 +19,10 @@
 
 package net.smvp.factory.generator;
 
-import com.smvp.aop.scan.reader.AspectableClassReader;
-import com.smvp.aop.scan.reader.InterceptorReader;
-import com.smvp.generator.generator.AbstractGenerator;
-import com.smvp.generator.scan.ClassScanner;
+import net.smvp.generator.scan.ClassScanner;
+import net.smvp.aop.scan.reader.AspectableClassReader;
+import net.smvp.aop.scan.reader.InterceptorReader;
+import net.smvp.generator.generator.AbstractGenerator;
 import net.smvp.factory.client.AopFactory;
 
 import java.util.HashMap;

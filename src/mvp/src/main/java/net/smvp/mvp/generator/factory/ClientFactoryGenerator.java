@@ -19,11 +19,11 @@
 
 package net.smvp.mvp.generator.factory;
 
+import net.smvp.generator.generator.AbstractGenerator;
+import net.smvp.generator.scan.ClassScanner;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JPackage;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
-import com.smvp.generator.generator.AbstractGenerator;
-import com.smvp.generator.scan.ClassScanner;
 import net.smvp.mvp.client.core.factory.ClientFactoryImpl;
 import net.smvp.mvp.scan.analyzer.TokenAnalyzer;
 import net.smvp.mvp.scan.analyzer.ViewAnalyzer;

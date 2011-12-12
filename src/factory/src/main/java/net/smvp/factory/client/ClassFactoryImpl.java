@@ -20,7 +20,7 @@
 package net.smvp.factory.client;
 
 import com.google.gwt.core.client.GWT;
-import com.smvp.reflection.client.clazz.ClassType;
+import net.smvp.reflection.client.clazz.ClassType;
 
 /**
  * The Class ClassFactoryImpl.

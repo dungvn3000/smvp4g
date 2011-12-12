@@ -19,9 +19,9 @@
 
 package net.smvp.mvp.scan.analyzer;
 
+import net.smvp.generator.scan.analyzer.Analyzer;
+import net.smvp.generator.utils.ClassUtils;
 import com.google.gwt.core.ext.GeneratorContext;
-import com.smvp.generator.scan.analyzer.Analyzer;
-import com.smvp.generator.utils.ClassUtils;
 import net.smvp.mvp.client.core.place.DefaultPlace;
 import net.smvp.mvp.client.core.place.Place;
 import net.smvp.mvp.client.core.utils.StringUtils;

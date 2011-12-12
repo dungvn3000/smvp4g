@@ -19,8 +19,8 @@
 
 package net.smvp.factory.generator;
 
-import com.smvp.generator.generator.AbstractTemplateData;
-import com.smvp.generator.scan.model.ClassScanModel;
+import net.smvp.generator.generator.AbstractTemplateData;
+import net.smvp.generator.scan.model.ClassScanModel;
 
 import java.util.List;
 

@@ -19,7 +19,7 @@
 
 package net.smvp.mvp.generator.factory;
 
-import com.smvp.generator.generator.AbstractTemplateData;
+import net.smvp.generator.generator.AbstractTemplateData;
 import net.smvp.mvp.scan.model.PresenterScanModel;
 
 import java.util.List;

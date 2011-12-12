@@ -3,7 +3,7 @@
     <!-- Inherit the core Web Toolkit stuff.                        -->
     <inherits name='com.google.gwt.user.User'/>
 
-    <inherits name="com.smvp.generator.Generator" />
+    <inherits name="net.smvp.generator.Generator" />
     
     <generate-with class="net.smvp.factory.generator.AopFactoryGenerated">
             <when-type-assignable class="net.smvp.factory.client.AopFactory"/>

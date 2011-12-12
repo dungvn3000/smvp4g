@@ -22,7 +22,7 @@ package net.smvp.mvp.client.core.presenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
-import com.smvp.reflection.client.marker.Reflection;
+import net.smvp.reflection.client.marker.Reflection;
 import net.smvp.mvp.client.core.place.AbstractPlace;
 import net.smvp.mvp.client.core.view.View;
 
