@@ -17,13 +17,13 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.aop.generator.factory;
+package net.smvp.factory.generator;
 
-import com.smvp.aop.client.factory.AopFactory;
 import com.smvp.aop.scan.reader.AspectableClassReader;
 import com.smvp.aop.scan.reader.InterceptorReader;
 import com.smvp.generator.generator.AbstractGenerator;
 import com.smvp.generator.scan.ClassScanner;
+import net.smvp.factory.client.AopFactory;
 
 import java.util.HashMap;
 import java.util.Map;

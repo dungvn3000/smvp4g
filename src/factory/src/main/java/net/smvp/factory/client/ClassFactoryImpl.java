@@ -17,14 +17,30 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.aop.client.factory;
+package net.smvp.factory.client;
+
+import com.google.gwt.core.client.GWT;
+import com.smvp.reflection.client.clazz.ClassType;
 
 /**
- * The Class AopFactory.
+ * The Class ClassFactoryImpl.
  *
  * @author Nguyen Duc Dung
- * @since 12/9/11, 11:39 AM
+ * @since 11/24/11, 5:55 PM
  */
-public interface AopFactory {
-    <T> T instantiate(Class<T> clazz);
+public class ClassFactoryImpl implements ClassFactory {
+
+    public static final AopFactory AOP_FACTORY = GWT.create(AopFactoryImpl.class);
+
+    @Override
+    public <T> T instantiate(Class<T> clazz) {
+        //Don't do any thing, GWT Generator will do it.
+        return null;
+    }
+
+    @Override
+    public ClassType getClassType(Class<?> clazz) {
+        //Don't do any thing, GWT Generator will do it.
+        return null;
+    }
 }

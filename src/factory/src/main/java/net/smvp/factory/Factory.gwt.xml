@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='Factory'>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+
+    <inherits name="com.smvp.generator.Generator" />
+    
+    <generate-with class="net.smvp.factory.generator.AopFactoryGenerated">
+            <when-type-assignable class="net.smvp.factory.client.AopFactory"/>
+    </generate-with>
+
+    <generate-with class="net.smvp.factory.generator.ClassFactoryGenerator">
+        <when-type-assignable class="net.smvp.factory.client.ClassFactory"/>
+    </generate-with>
+
+</module>

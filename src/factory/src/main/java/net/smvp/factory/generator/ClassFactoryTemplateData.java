@@ -17,32 +17,32 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.reflection.client.factory;
+package net.smvp.factory.generator;
 
-import com.google.gwt.core.client.GWT;
-import com.smvp.aop.client.factory.AopFactory;
-import com.smvp.aop.client.factory.AopFactoryImpl;
-import com.smvp.reflection.client.clazz.ClassType;
+import com.smvp.generator.generator.AbstractTemplateData;
+import com.smvp.generator.scan.model.ClassScanModel;
+
+import java.util.List;
 
 /**
- * The Class ClassFactoryImpl.
+ * The Class ClassFactoryTemplateData.
  *
  * @author Nguyen Duc Dung
- * @since 11/24/11, 5:55 PM
+ * @since 12/3/11, 12:32 PM
  */
-public class ClassFactoryImpl implements ClassFactory {
+public class ClassFactoryTemplateData extends AbstractTemplateData {
 
-    public static final AopFactory AOP_FACTORY = GWT.create(AopFactoryImpl.class);
+    private List<ClassScanModel> classScanModels;
 
-    @Override
-    public <T> T instantiate(Class<T> clazz) {
-        //Don't do any thing, GWT Generator will do it.
-        return null;
+    public ClassFactoryTemplateData(String generateClassName, String packageClassName) {
+        super(generateClassName, packageClassName);
     }
 
-    @Override
-    public ClassType getClassType(Class<?> clazz) {
-        //Don't do any thing, GWT Generator will do it.
-        return null;
+    public List<ClassScanModel> getClassScanModels() {
+        return classScanModels;
+    }
+
+    public void setClassScanModels(List<ClassScanModel> classScanModels) {
+        this.classScanModels = classScanModels;
     }
 }

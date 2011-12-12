@@ -17,15 +17,15 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.reflection.generator.factory;
+package net.smvp.factory.generator;
 
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JPackage;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
 import com.smvp.generator.generator.AbstractGenerator;
 import com.smvp.generator.scan.ClassScanner;
-import com.smvp.reflection.client.factory.ClassFactory;
 import com.smvp.reflection.scan.reader.ClassFactoryReader;
+import net.smvp.factory.client.ClassFactory;
 
 import java.util.HashMap;
 import java.util.Map;

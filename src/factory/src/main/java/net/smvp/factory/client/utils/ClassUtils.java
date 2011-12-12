@@ -17,7 +17,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.reflection.client.utils;
+package net.smvp.factory.client.utils;
 
 import com.google.gwt.core.client.GWT;
 import com.smvp.aop.client.utils.AopUtils;
@@ -25,12 +25,12 @@ import com.smvp.aop.client.utils.AopUtilsImpl;
 import com.smvp.aop.client.wrapper.ClassWrapper;
 import com.smvp.reflection.client.annotation.HasAnnotations;
 import com.smvp.reflection.client.clazz.ClassType;
-import com.smvp.reflection.client.factory.ClassFactory;
-import com.smvp.reflection.client.factory.ClassFactoryImpl;
 import com.smvp.reflection.client.field.FieldType;
 import com.smvp.reflection.client.field.HasFields;
 import com.smvp.reflection.client.method.HasMethods;
 import com.smvp.reflection.client.method.MethodType;
+import net.smvp.factory.client.ClassFactory;
+import net.smvp.factory.client.ClassFactoryImpl;
 
 import java.lang.annotation.Annotation;
 import java.util.List;

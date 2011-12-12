@@ -34,6 +34,12 @@
         </dependency>
 
         <dependency>
+            <groupId>net.smvp</groupId>
+            <artifactId>factory</artifactId>
+            <version>0.1-BETA</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.extjs</groupId>
             <artifactId>gxt</artifactId>
             <version>${gxtVersion}</version>

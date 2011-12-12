@@ -17,7 +17,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.aop.generator.factory;
+package net.smvp.factory.generator;
 
 import com.smvp.generator.generator.AbstractTemplateData;
 import com.smvp.generator.scan.model.ClassScanModel;

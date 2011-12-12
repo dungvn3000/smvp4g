@@ -7,10 +7,6 @@
     <inherits name="com.smvp.aop.Aop"/>
 
     <!-- Generator -->
-    <generate-with class="com.smvp.reflection.generator.factory.ClassFactoryGenerator">
-        <when-type-assignable class="com.smvp.reflection.client.factory.ClassFactory"/>
-    </generate-with>
-
     <generate-with class="com.smvp.reflection.generator.reflection.ClassTypeGenerator">
         <when-type-assignable class="com.smvp.reflection.client.marker.Reflectable"/>
     </generate-with>

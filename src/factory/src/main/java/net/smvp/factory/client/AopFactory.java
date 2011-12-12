@@ -17,33 +17,14 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.aop.client.factory;
-
-import com.smvp.aop.client.interceptor.HasInterceptor;
-import com.smvp.aop.client.interceptor.MethodInterceptor;
-
-import java.util.ArrayList;
-import java.util.List;
+package net.smvp.factory.client;
 
 /**
- * The Class AopFactoryImpl.
+ * The Class AopFactory.
  *
  * @author Nguyen Duc Dung
  * @since 12/9/11, 11:39 AM
  */
-public class AopFactoryImpl implements AopFactory {
-
-    protected List<MethodInterceptor> interceptors = new ArrayList<MethodInterceptor>();
-
-    @Override
-    public <T> T instantiate(Class<T> clazz) {
-        //Don't do anything GWT generator will do it.
-        return null;
-    }
-
-    protected void injectInterceptor(HasInterceptor hasInterceptor) {
-        for (MethodInterceptor interceptor : interceptors) {
-            hasInterceptor.addInterceptor(interceptor);
-        }
-    }
+public interface AopFactory {
+    <T> T instantiate(Class<T> clazz);
 }

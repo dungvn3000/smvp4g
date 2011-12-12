@@ -29,7 +29,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.smvp.aop.client.marker.Aspectable;
 import com.smvp.reflection.client.field.FieldType;
 import com.smvp.reflection.client.method.MethodType;
-import com.smvp.reflection.client.utils.ClassUtils;
+import net.smvp.factory.client.utils.ClassUtils;
 import net.smvp.example.client.constant.DomIdConstant;
 import net.smvp.example.client.module.test.view.security.Test2ViewSecurity;
 import net.smvp.mvp.client.core.security.FieldSecurity;

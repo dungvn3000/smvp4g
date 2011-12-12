@@ -27,7 +27,7 @@ import com.google.gwt.user.client.ui.Widget;
 import com.smvp.reflection.client.field.FieldType;
 import com.smvp.reflection.client.marker.Reflection;
 import com.smvp.reflection.client.method.MethodType;
-import com.smvp.reflection.client.utils.ClassUtils;
+import net.smvp.factory.client.utils.ClassUtils;
 import net.smvp.mvp.client.core.i18n.I18nField;
 import net.smvp.mvp.client.core.i18n.I18nText;
 import net.smvp.mvp.client.core.security.FieldSecurity;

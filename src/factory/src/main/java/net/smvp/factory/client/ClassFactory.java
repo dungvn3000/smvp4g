@@ -17,7 +17,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp.reflection.client.factory;
+package net.smvp.factory.client;
 
 import com.smvp.reflection.client.clazz.ClassType;
 

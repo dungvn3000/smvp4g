@@ -14,6 +14,7 @@
         <module>generator</module>
         <module>aop</module>
         <module>reflection</module>
+        <module>factory</module>
         <module>mvp</module>
         <module>example</module>
     </modules>

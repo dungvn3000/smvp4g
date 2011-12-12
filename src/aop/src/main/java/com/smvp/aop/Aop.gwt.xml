@@ -13,8 +13,5 @@
         <when-type-assignable class="com.smvp.aop.client.utils.AopUtils"/>
     </generate-with>
 
-    <generate-with class="com.smvp.aop.generator.factory.AopFactoryGenerated">
-        <when-type-assignable class="com.smvp.aop.client.factory.AopFactory"/>
-    </generate-with>
 
 </module>

@@ -4,6 +4,7 @@
     <inherits name="com.smvp.reflection.Reflection"/>
     <inherits name="com.smvp.aop.Aop"/>
     <inherits name="com.smvp.generator.Generator"/>
+    <inherits name="net.smvp.factory.Factory"/>
 
     <!-- Inherit the core Web Toolkit stuff.                        -->
     <inherits name='com.google.gwt.user.User'/>

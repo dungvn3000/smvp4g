@@ -29,7 +29,7 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.user.client.ui.SimplePanel;
-import com.smvp.reflection.client.utils.ClassUtils;
+import net.smvp.factory.client.utils.ClassUtils;
 import net.smvp.mvp.client.core.place.AbstractPlace;
 import net.smvp.mvp.client.core.place.DefaultPlace;
 import net.smvp.mvp.client.core.presenter.Presenter;
