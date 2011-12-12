@@ -1,0 +1,26 @@
+.mainmenu {
+    padding-left: 10px;
+    width: 85%;
+}
+
+.topmenu {
+    border: 1px solid #666666;
+}
+
+.copyright_panel {
+    padding-top: 50px;
+    text-align: center;
+}
+
+.login_panel {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.float_right {
+    float: right;
+}
+
+.float_left {
+    float: left;
+}

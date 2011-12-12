@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net</groupId>
+    <artifactId>smvp</artifactId>
+    <version>0.1-BETA</version>
+    <packaging>pom</packaging>
+    <name>smvp</name>
+
+    <modules>
+        <module>generator</module>
+        <module>aop</module>
+        <module>reflection</module>
+        <module>mvp</module>
+        <module>example</module>
+    </modules>
+
+    <developers>
+        <developer>
+            <name>Nguyen Duc Dung</name>
+            <email>dungvn3000@gmail.com</email>
+            <organization>smvp.net</organization>
+        </developer>
+    </developers>
+
+    <!--  convenience to define GWT version in one place -->
+    <properties>
+        <gwtVersion>2.3.0</gwtVersion>
+        <guiceVersion>3.0</guiceVersion>
+        <gwtentVersion>2.0.0-RC1</gwtentVersion>
+        <gxtVersion>2.2.4</gxtVersion>
+        <gwtlogVersion>3.1.5</gwtlogVersion>
+        <ginVersion>1.5.0</ginVersion>
+        <freemarkerVersion>2.3.18</freemarkerVersion>
+        <guavaVersion>10.0.1</guavaVersion>
+        <testngVersion>6.1.1</testngVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!--GWT 2.3.0 dependencies(need it to run)-->
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <version>${gwtVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-dev</artifactId>
+            <version>${gwtVersion}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <classifier>sources</classifier>
+            <version>1.0.0.GA</version>
+            <scope>provided</scope>
+        </dependency>
+        <!---->
+    </dependencies>
+
+    <build>
+        <!--  Include SOURCE in output artifact for GWT (GWT libraries must include source) -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+            </resource>
+        </resources>
+
+        <plugins>
+            <!-- Plugin for compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <target>1.6</target>
+                    <source>1.6</source>
+                    <optimize>true</optimize>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+
+            <!-- Plugin to produce source JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.0.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Plugin to build JAR files -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <version>${gwtVersion}</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>ivngwt</id>
+            <url>http://ivngwt.googlecode.com/svn/maven2</url>
+        </repository>
+    </repositories>
+</project>

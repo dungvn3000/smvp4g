@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>smvp</artifactId>
+        <groupId>net</groupId>
+        <version>0.1-BETA</version>
+    </parent>
+
+    <groupId>net.smvp</groupId>
+    <artifactId>mvp</artifactId>
+    <packaging>jar</packaging>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>net.smvp</groupId>
+            <artifactId>reflection</artifactId>
+            <version>0.1-BETA</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.smvp</groupId>
+            <artifactId>aop</artifactId>
+            <version>0.1-BETA</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.smvp</groupId>
+            <artifactId>generator</artifactId>
+            <version>0.1-BETA</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.extjs</groupId>
+            <artifactId>gxt</artifactId>
+            <version>${gxtVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gwt-log</groupId>
+            <artifactId>gwt-log</artifactId>
+            <version>${gwtlogVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gwtent</groupId>
+            <artifactId>gwtent</artifactId>
+            <version>${gwtentVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.gwt.inject</groupId>
+            <artifactId>gin</artifactId>
+            <version>${ginVersion}</version>
+        </dependency>
+
+        <dependency>
+          <groupId>org.freemarker</groupId>
+          <artifactId>freemarker</artifactId>
+          <version>${freemarkerVersion}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testngVersion}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-gwt</artifactId>
+            <version>${guavaVersion}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='Mvp'>
+
+    <inherits name="com.smvp.reflection.Reflection"/>
+    <inherits name="com.smvp.aop.Aop"/>
+    <inherits name="com.smvp.generator.Generator"/>
+
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.place.Place"/>
+    <inherits name="com.google.gwt.activity.Activity"/>
+
+    <!--Add google gin -->
+    <inherits name="com.google.gwt.inject.Inject"/>
+
+    <!--Add ext gwt support-->
+    <inherits name="com.extjs.gxt.ui.GXT"/>
+
+    <!-- Add Reflection Support -->
+    <inherits name="com.gwtent.reflection.Reflection"/>
+
+    <!-- For development, a default of `DEBUG` is recommended -->
+    <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG"/>
+
+    <!--Configure Loggers -->
+    <set-property name="log_ConsoleLogger" value="ENABLED"/>
+    <set-property name="log_DivLogger" value="DISABLED"/>
+    <set-property name="log_FirebugLogger" value="DISABLED"/>
+    <set-property name="log_GWTLogger" value="DISABLED"/>
+    <set-property name="log_SystemLogger" value="ENABLED"/>
+    <set-property name="log_WindowLogger" value="DISABLED"/>
+
+    <!-- Generator -->
+    <generate-with class="net.smvp.mvp.generator.factory.ClientFactoryGenerator">
+        <when-type-assignable class="net.smvp.mvp.client.core.factory.IClientFactory"/>
+    </generate-with>
+
+    <!-- Specify the paths for translatable code                    -->
+    <source path='client'/>
+    <source path='shared'/>
+
+</module>
