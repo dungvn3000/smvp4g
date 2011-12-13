@@ -93,12 +93,12 @@ public final class ClassUtils {
 
 
     public static ClassType getClassType(Class<?> clazz) {
-        return classFactory.instantiate(clazz, ClassType.class);
+        return classFactory.instantiate(getRealClass(clazz), ClassType.class);
     }
 
     @SuppressWarnings("unchecked")
     public static <T> T instantiate(Class<T> clazz) {
-        return classFactory.instantiate(clazz, clazz);
+        return (T) classFactory.instantiate(clazz, clazz);
     }
 
     public static Class<?> getRealClass(Class<?> proxyClass) {
