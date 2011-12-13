@@ -15,4 +15,8 @@
         <when-type-assignable class="net.smvp.factory.client.classtype.ClassTypeCreator"/>
     </generate-with>
 
+    <generate-with class="net.smvp.factory.generator.clazz.ClassCreatorGenerator">
+        <when-type-assignable class="net.smvp.factory.client.clazz.ClassCreator"/>
+    </generate-with>
+
 </module>

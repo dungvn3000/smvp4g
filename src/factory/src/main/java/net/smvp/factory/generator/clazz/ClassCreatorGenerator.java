@@ -17,16 +17,15 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.generator.classtype;
+package net.smvp.factory.generator.clazz;
 
-import net.smvp.factory.client.classtype.ClassTypeCreator;
-import net.smvp.factory.scan.analyzer.ClassCreatorAnalyzer;
-import net.smvp.factory.scan.reader.ClassReflectionReader;
-import net.smvp.generator.scan.ClassScanner;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JPackage;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
+import net.smvp.factory.client.clazz.ClassCreator;
+import net.smvp.factory.scan.reader.ClassReflectionReader;
 import net.smvp.generator.generator.AbstractGenerator;
+import net.smvp.generator.scan.ClassScanner;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,18 +34,16 @@ import java.util.Map;
  * The Class ClassCreatorGenerator.
  *
  * @author Nguyen Duc Dung
- * @since 11/23/11, 8:30 PM
+ * @since 12/13/11, 11:15 AM
  */
-public class ClassCreatorGenerator extends AbstractGenerator<ClassTypeTemplateData> {
+public class ClassCreatorGenerator extends AbstractGenerator<ClassCreatorTemplateData> {
 
-    private static final String TEMPLATE_FILE = "ClassTypeCreatorGenerated.ftl";
+    private static final String TEMPLATE_FILE = "ClassCreatorGenerated.ftl";
     private static final String DATA_TEMPLATE = "data";
 
     @Override
-    protected Map<String, ClassTypeTemplateData> scan() {
+    protected Map<String, ClassCreatorTemplateData> scan() {
         ClassReflectionReader classReflectionReader = new ClassReflectionReader();
-        ClassCreatorAnalyzer creatorAnalyzer = new ClassCreatorAnalyzer();
-        creatorAnalyzer.setReader(classReflectionReader);
         ClassScanner scanner = new ClassScanner();
         scanner.addReader(classReflectionReader);
         TypeOracle typeOracle = context.getTypeOracle();
@@ -55,9 +52,8 @@ public class ClassCreatorGenerator extends AbstractGenerator<ClassTypeTemplateDa
                 scanner.scan(jClassType, context);
             }
         }
-        scanner.analyzeResult(context);
-        Map<String, ClassTypeTemplateData> dataTemplateMap = new HashMap<String, ClassTypeTemplateData>();
-        ClassTypeTemplateData data = new ClassTypeTemplateData(getClassName(), getPackageName());
+        Map<String, ClassCreatorTemplateData> dataTemplateMap = new HashMap<String, ClassCreatorTemplateData>();
+        ClassCreatorTemplateData data = new ClassCreatorTemplateData(getClassName(), getPackageName());
         data.setClassScanModels(classReflectionReader.getData());
         dataTemplateMap.put(DATA_TEMPLATE, data);
         return dataTemplateMap;
@@ -70,6 +66,6 @@ public class ClassCreatorGenerator extends AbstractGenerator<ClassTypeTemplateDa
 
     @Override
     protected Class<?> getResourceClass() {
-        return ClassTypeCreator.class;
+        return ClassCreator.class;
     }
 }

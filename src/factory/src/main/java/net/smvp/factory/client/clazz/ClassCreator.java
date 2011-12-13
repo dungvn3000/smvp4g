@@ -5,27 +5,37 @@
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
- *  
+ *
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- *  
+ *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.client.creator;
+package net.smvp.factory.client.clazz;
+
+import net.smvp.factory.client.creator.Creator;
+import net.smvp.reflection.client.clazz.ClassType;
 
 /**
- * The Class Creator.
+ * The Class ClassCreator.
  *
  * @author Nguyen Duc Dung
- * @since 12/13/11, 9:44 AM
+ * @since 12/13/11, 11:12 AM
  */
-public interface Creator {
-    <T> T create(Class<?> clazz);
-    boolean isFor(Class<?> classType);
+public class ClassCreator implements Creator {
+    @Override
+    public <T> T create(Class<?> clazz) {
+        return null;
+    }
+
+    @Override
+    public boolean isFor(Class<?> classType) {
+        return classType != ClassType.class;
+    }
 }

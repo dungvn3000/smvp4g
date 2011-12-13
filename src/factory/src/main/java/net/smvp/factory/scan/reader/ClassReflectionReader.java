@@ -32,12 +32,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The Class ClassFactoryReader.
+ * The Class ClassReflectionReader.
  *
  * @author Nguyen Duc Dung
  * @since 11/23/11, 9:16 PM
  */
-public class ClassFactoryReader implements Reader<ClassScanModel> {
+public class ClassReflectionReader implements Reader<ClassScanModel> {
 
     private List<ClassScanModel> modelFactories = new ArrayList<ClassScanModel>();
 

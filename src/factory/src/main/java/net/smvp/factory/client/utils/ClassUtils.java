@@ -20,6 +20,7 @@
 package net.smvp.factory.client.utils;
 
 import com.google.gwt.core.client.GWT;
+import net.smvp.aop.client.marker.Aspectable;
 import net.smvp.aop.client.utils.AopUtils;
 import net.smvp.aop.client.utils.AopUtilsImpl;
 import net.smvp.aop.client.wrapper.ClassWrapper;
@@ -92,13 +93,12 @@ public final class ClassUtils {
 
 
     public static ClassType getClassType(Class<?> clazz) {
-//        return classFactory.getClassType(getRealClass(clazz));
-        return null;
+        return classFactory.instantiate(clazz, ClassType.class);
     }
 
     @SuppressWarnings("unchecked")
     public static <T> T instantiate(Class<T> clazz) {
-        return (T) classFactory.instantiate(clazz);
+        return classFactory.instantiate(clazz, clazz);
     }
 
     public static Class<?> getRealClass(Class<?> proxyClass) {

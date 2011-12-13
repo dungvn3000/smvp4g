@@ -20,6 +20,7 @@
 package net.smvp.factory.client.classtype;
 
 import net.smvp.factory.client.creator.Creator;
+import net.smvp.reflection.client.clazz.ClassType;
 
 /**
  * The Class ClassTypeCreator.
@@ -31,5 +32,10 @@ public class ClassTypeCreator implements Creator {
     @Override
     public <T> T create(Class<?> clazz) {
         return null;
+    }
+
+    @Override
+    public boolean isFor(Class<?> classType) {
+        return classType == ClassType.class;
     }
 }
