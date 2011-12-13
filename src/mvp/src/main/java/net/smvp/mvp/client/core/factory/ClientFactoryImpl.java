@@ -45,7 +45,7 @@ import java.util.List;
  * @author Nguyen Duc Dung
  * @since 11/17/11, 5:16 PM
  */
-public class ClientFactoryImpl implements IClientFactory {
+public class ClientFactoryImpl implements ClientFactory {
 
     protected List<FactoryModel> factoryModels = new ArrayList<FactoryModel>();
     protected List<Presenter<? extends View>> presenters =

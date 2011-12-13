@@ -20,9 +20,9 @@
 package net.smvp.mvp.client.core.module;
 
 import com.google.gwt.core.client.GWT;
+import net.smvp.mvp.client.core.factory.ClientFactory;
 import net.smvp.reflection.client.marker.Reflection;
 import net.smvp.mvp.client.core.factory.ClientFactoryImpl;
-import net.smvp.mvp.client.core.factory.IClientFactory;
 
 /**
  * The Class ApplicationModule.
@@ -33,7 +33,7 @@ import net.smvp.mvp.client.core.factory.IClientFactory;
 @Reflection
 public class ApplicationModule implements Module {
 
-    private IClientFactory factory = GWT.create(ClientFactoryImpl.class);
+    private ClientFactory factory = GWT.create(ClientFactoryImpl.class);
 
     @Override
     public void configure() {

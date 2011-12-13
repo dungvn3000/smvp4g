@@ -30,7 +30,7 @@
 
     <!-- Generator -->
     <generate-with class="net.smvp.mvp.generator.factory.ClientFactoryGenerator">
-        <when-type-assignable class="net.smvp.mvp.client.core.factory.IClientFactory"/>
+        <when-type-assignable class="net.smvp.mvp.client.core.factory.ClientFactory"/>
     </generate-with>
 
     <!-- Specify the paths for translatable code                    -->

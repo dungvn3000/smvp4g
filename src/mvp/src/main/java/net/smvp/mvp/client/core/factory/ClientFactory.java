@@ -23,12 +23,12 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 
 /**
- * The Class IClientFactory.
+ * The Class ClientFactory.
  *
  * @author Nguyen Duc Dung
  * @since 11/2/11, 12:07 PM
  */
-public interface IClientFactory {
+public interface ClientFactory {
 
     ActivityMapper createActivityMapper();
 
