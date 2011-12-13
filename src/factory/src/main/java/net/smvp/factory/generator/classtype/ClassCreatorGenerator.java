@@ -17,32 +17,32 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.generator;
+package net.smvp.factory.generator.classtype;
 
+import net.smvp.factory.client.classtype.ClassTypeCreator;
 import net.smvp.factory.scan.reader.ClassFactoryReader;
 import net.smvp.generator.scan.ClassScanner;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JPackage;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
 import net.smvp.generator.generator.AbstractGenerator;
-import net.smvp.factory.client.ClassFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The Class ClassFactoryGenerator.
+ * The Class ClassCreatorGenerator.
  *
  * @author Nguyen Duc Dung
  * @since 11/23/11, 8:30 PM
  */
-public class ClassFactoryGenerator extends AbstractGenerator<ClassFactoryTemplateData> {
+public class ClassCreatorGenerator extends AbstractGenerator<ClassTypeTemplateData> {
 
-    private static final String TEMPLATE_FILE = "ClassFactoryImplGenerated.ftl";
+    private static final String TEMPLATE_FILE = "ClassTypeCreatorGenerated.ftl";
     private static final String DATA_TEMPLATE = "data";
 
     @Override
-    protected Map<String, ClassFactoryTemplateData> scan() {
+    protected Map<String, ClassTypeTemplateData> scan() {
         ClassFactoryReader classFactoryReader = new ClassFactoryReader();
         ClassScanner scanner = new ClassScanner();
         scanner.addReader(classFactoryReader);
@@ -53,8 +53,8 @@ public class ClassFactoryGenerator extends AbstractGenerator<ClassFactoryTemplat
             }
         }
         scanner.analyzeResult(context);
-        Map<String, ClassFactoryTemplateData> dataTemplateMap = new HashMap<String, ClassFactoryTemplateData>();
-        ClassFactoryTemplateData data = new ClassFactoryTemplateData(getClassName(), getPackageName());
+        Map<String, ClassTypeTemplateData> dataTemplateMap = new HashMap<String, ClassTypeTemplateData>();
+        ClassTypeTemplateData data = new ClassTypeTemplateData(getClassName(), getPackageName());
         data.setClassScanModels(classFactoryReader.getData());
         dataTemplateMap.put(DATA_TEMPLATE, data);
         return dataTemplateMap;
@@ -67,6 +67,6 @@ public class ClassFactoryGenerator extends AbstractGenerator<ClassFactoryTemplat
 
     @Override
     protected Class<?> getResourceClass() {
-        return ClassFactory.class;
+        return ClassTypeCreator.class;
     }
 }

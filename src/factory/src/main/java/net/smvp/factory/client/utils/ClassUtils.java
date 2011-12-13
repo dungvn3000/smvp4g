@@ -92,7 +92,8 @@ public final class ClassUtils {
 
 
     public static ClassType getClassType(Class<?> clazz) {
-        return classFactory.getClassType(getRealClass(clazz));
+//        return classFactory.getClassType(getRealClass(clazz));
+        return null;
     }
 
     @SuppressWarnings("unchecked")

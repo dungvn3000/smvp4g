@@ -20,7 +20,12 @@
 package net.smvp.factory.client;
 
 import com.google.gwt.core.client.GWT;
-import net.smvp.reflection.client.clazz.ClassType;
+import net.smvp.factory.client.aop.AopCreator;
+import net.smvp.factory.client.classtype.ClassTypeCreator;
+import net.smvp.factory.client.creator.Creator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class ClassFactoryImpl.
@@ -30,17 +35,23 @@ import net.smvp.reflection.client.clazz.ClassType;
  */
 public class ClassFactoryImpl implements ClassFactory {
 
-    public static final AopFactory AOP_FACTORY = GWT.create(AopFactoryImpl.class);
+    protected List<Creator> creators = new ArrayList<Creator>();
+    protected Creator aopCreator = GWT.create(AopCreator.class);
+    protected Creator classTypeCreator = GWT.create(ClassTypeCreator.class);
 
+    public ClassFactoryImpl() {
+        creators.add(aopCreator);
+        creators.add(classTypeCreator);
+    }
+    
     @Override
     public <T> T instantiate(Class<T> clazz) {
-        //Don't do any thing, GWT Generator will do it.
-        return null;
-    }
-
-    @Override
-    public ClassType getClassType(Class<?> clazz) {
-        //Don't do any thing, GWT Generator will do it.
+        for (Creator creator : creators) {
+            T obj = creator.create(clazz);
+            if (obj != null) {
+                return obj;
+            }
+        }
         return null;
     }
 }

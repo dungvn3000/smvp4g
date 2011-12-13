@@ -1,5 +1,5 @@
 [#ftl]
-[#-- @ftlvariable name="data" type="net.smvp.factory.generator.AopFactoryTemplateData" --]
+[#-- @ftlvariable name="data" type="net.smvp.factory.generator.aop.AopCreatorTemplateData" --]
 /*
  * Copyright (C) 2009 - 2012 SMVP.NET
  *
@@ -21,31 +21,32 @@
 
 package ${data.generatePackageName};
 
+import net.smvp.factory.client.creator.Creator;
 import com.google.gwt.core.client.GWT;
 import net.smvp.aop.client.interceptor.*;
 
 /**
- * The Class AopFactoryGeneratedImpl.
+ * The Class AopCreator.
  *
  * @author Nguyen Duc Dung
- * @since 12/9/11, 11:39 AM
+ * @since 12/13/11, 9:55 AM
  */
-public class ${data.generateClassName} extends AopFactoryImpl {
+public class ${data.generateClassName} extends AopCreator {
 
     public ${data.generateClassName}() {
         createIntercrepter();
     }
 
     @Override
-    public <T> T instantiate(Class<T> clazz) {
-        Object obj = null;
+    public <T> T create(Class<?> clazz) {
+        T obj = null;
         [#list data.classScanModels as class]
             if (clazz == ${class.className}.class) {
                 obj = GWT.create(${class.className}.class);
                 injectInterceptor((HasInterceptor)obj);
             }
         [/#list]
-        return (T) obj;
+        return obj;
     }
 
     public void createIntercrepter() {

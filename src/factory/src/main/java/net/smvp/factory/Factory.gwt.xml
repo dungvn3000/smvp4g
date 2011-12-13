@@ -7,12 +7,12 @@
     <inherits name="net.smvp.aop.Aop"/>
     <inherits name="net.smvp.generator.Generator" />
     
-    <generate-with class="net.smvp.factory.generator.AopFactoryGenerated">
-            <when-type-assignable class="net.smvp.factory.client.AopFactory"/>
+    <generate-with class="net.smvp.factory.generator.aop.AopCreatorGenerated">
+            <when-type-assignable class="net.smvp.factory.client.aop.AopCreator"/>
     </generate-with>
 
-    <generate-with class="net.smvp.factory.generator.ClassFactoryGenerator">
-        <when-type-assignable class="net.smvp.factory.client.ClassFactory"/>
+    <generate-with class="net.smvp.factory.generator.classtype.ClassCreatorGenerator">
+        <when-type-assignable class="net.smvp.factory.client.classtype.ClassTypeCreator"/>
     </generate-with>
 
 </module>

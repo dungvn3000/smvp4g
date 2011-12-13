@@ -17,7 +17,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.generator;
+package net.smvp.factory.generator.classtype;
 
 import net.smvp.generator.generator.AbstractTemplateData;
 import net.smvp.generator.scan.model.ClassScanModel;
@@ -25,17 +25,15 @@ import net.smvp.generator.scan.model.ClassScanModel;
 import java.util.List;
 
 /**
- * The Class AopFactoryTemplateData.
+ * The Class ClassTypeTemplateData.
  *
  * @author Nguyen Duc Dung
- * @since 12/9/11, 11:42 AM
+ * @since 12/13/11, 10:16 AM
  */
-public class AopFactoryTemplateData extends AbstractTemplateData {
-
+public class ClassTypeTemplateData extends AbstractTemplateData {
     private List<ClassScanModel> classScanModels;
-    private List<ClassScanModel> interceptorClassModels;
 
-    public AopFactoryTemplateData(String generateClassName, String generatePackageName) {
+    public ClassTypeTemplateData(String generateClassName, String generatePackageName) {
         super(generateClassName, generatePackageName);
     }
 
@@ -45,13 +43,5 @@ public class AopFactoryTemplateData extends AbstractTemplateData {
 
     public void setClassScanModels(List<ClassScanModel> classScanModels) {
         this.classScanModels = classScanModels;
-    }
-
-    public List<ClassScanModel> getInterceptorClassModels() {
-        return interceptorClassModels;
-    }
-
-    public void setInterceptorClassModels(List<ClassScanModel> interceptorClassModels) {
-        this.interceptorClassModels = interceptorClassModels;
     }
 }

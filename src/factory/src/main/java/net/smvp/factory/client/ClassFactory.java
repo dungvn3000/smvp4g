@@ -29,5 +29,4 @@ import net.smvp.reflection.client.clazz.ClassType;
  */
 public interface ClassFactory {
     <T> T instantiate(Class<T> clazz);
-    ClassType getClassType(Class<?> clazz);
 }

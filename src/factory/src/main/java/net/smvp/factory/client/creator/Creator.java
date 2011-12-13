@@ -5,45 +5,26 @@
  * under the terms of the GNU Lesser General Public License as
  * published by the Free Software Foundation; either version 3 of
  * the License, or (at your option) any later version.
- *
+ *  
  * This software is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
  * Lesser General Public License for more details.
- *
+ *  
  * You should have received a copy of the GNU Lesser General Public
  * License along with this software; if not, write to the Free
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.client;
-
-import net.smvp.aop.client.interceptor.HasInterceptor;
-import net.smvp.aop.client.interceptor.MethodInterceptor;
-
-import java.util.ArrayList;
-import java.util.List;
+package net.smvp.factory.client.creator;
 
 /**
- * The Class AopFactoryImpl.
+ * The Class Creator.
  *
  * @author Nguyen Duc Dung
- * @since 12/9/11, 11:39 AM
+ * @since 12/13/11, 9:44 AM
  */
-public class AopFactoryImpl implements AopFactory {
-
-    protected List<MethodInterceptor> interceptors = new ArrayList<MethodInterceptor>();
-
-    @Override
-    public <T> T instantiate(Class<T> clazz) {
-        //Don't do anything GWT generator will do it.
-        return null;
-    }
-
-    protected void injectInterceptor(HasInterceptor hasInterceptor) {
-        for (MethodInterceptor interceptor : interceptors) {
-            hasInterceptor.addInterceptor(interceptor);
-        }
-    }
+public interface Creator {
+    <T> T create(Class<?> clazz);
 }

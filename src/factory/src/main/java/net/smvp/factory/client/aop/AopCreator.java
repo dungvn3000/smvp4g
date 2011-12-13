@@ -17,32 +17,34 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.generator;
+package net.smvp.factory.client.aop;
 
-import net.smvp.generator.generator.AbstractTemplateData;
-import net.smvp.generator.scan.model.ClassScanModel;
+import net.smvp.aop.client.interceptor.HasInterceptor;
+import net.smvp.aop.client.interceptor.MethodInterceptor;
+import net.smvp.factory.client.creator.Creator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The Class ClassFactoryTemplateData.
+ * The Class AopCreator.
  *
  * @author Nguyen Duc Dung
- * @since 12/3/11, 12:32 PM
+ * @since 12/13/11, 10:09 AM
  */
-public class ClassFactoryTemplateData extends AbstractTemplateData {
+public class AopCreator implements Creator {
 
-    private List<ClassScanModel> classScanModels;
+    protected List<MethodInterceptor> interceptors = new ArrayList<MethodInterceptor>();
 
-    public ClassFactoryTemplateData(String generateClassName, String packageClassName) {
-        super(generateClassName, packageClassName);
+    @Override
+    public <T> T create(Class<?> clazz) {
+        //Don't do anything GWT generator will do it.
+        return null;
     }
 
-    public List<ClassScanModel> getClassScanModels() {
-        return classScanModels;
-    }
-
-    public void setClassScanModels(List<ClassScanModel> classScanModels) {
-        this.classScanModels = classScanModels;
+    protected void injectInterceptor(HasInterceptor hasInterceptor) {
+        for (MethodInterceptor interceptor : interceptors) {
+            hasInterceptor.addInterceptor(interceptor);
+        }
     }
 }

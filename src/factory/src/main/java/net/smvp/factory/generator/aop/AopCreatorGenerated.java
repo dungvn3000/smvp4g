@@ -17,31 +17,31 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.generator;
+package net.smvp.factory.generator.aop;
 
+import net.smvp.factory.client.aop.AopCreator;
 import net.smvp.generator.scan.ClassScanner;
 import net.smvp.aop.scan.reader.AspectableClassReader;
 import net.smvp.aop.scan.reader.InterceptorReader;
 import net.smvp.generator.generator.AbstractGenerator;
-import net.smvp.factory.client.AopFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The Class AopFactoryGenerated.
+ * The Class AopCreatorGenerated.
  *
  * @author Nguyen Duc Dung
  * @since 12/9/11, 11:50 AM
  */
-public class AopFactoryGenerated extends AbstractGenerator<AopFactoryTemplateData> {
+public class AopCreatorGenerated extends AbstractGenerator<AopCreatorTemplateData> {
     
-    private static final String TEMPLATE_FILE = "AopFactoryGeneratedImpl.ftl";
+    private static final String TEMPLATE_FILE = "AopCreatorGenerated.ftl";
     private static final String DATA_TEMPLATE = "data";
     
     @Override
-    protected Map<String, AopFactoryTemplateData> scan() {
-        Map<String, AopFactoryTemplateData> data = new HashMap<String, AopFactoryTemplateData>();
+    protected Map<String, AopCreatorTemplateData> scan() {
+        Map<String, AopCreatorTemplateData> data = new HashMap<String, AopCreatorTemplateData>();
 
         ClassScanner scanner = new ClassScanner();
         AspectableClassReader aspectableClassReader = new AspectableClassReader();
@@ -50,7 +50,7 @@ public class AopFactoryGenerated extends AbstractGenerator<AopFactoryTemplateDat
         scanner.addReader(interceptorReader);
         scanner.scan(classType, context);
 
-        AopFactoryTemplateData templateData = new AopFactoryTemplateData(getClassName(), getPackageName());
+        AopCreatorTemplateData templateData = new AopCreatorTemplateData(getClassName(), getPackageName());
         templateData.setClassScanModels(aspectableClassReader.getData());
         templateData.setInterceptorClassModels(interceptorReader.getData());
         data.put(DATA_TEMPLATE, templateData);
@@ -64,6 +64,6 @@ public class AopFactoryGenerated extends AbstractGenerator<AopFactoryTemplateDat
 
     @Override
     protected Class<?> getResourceClass() {
-        return AopFactory.class;
+        return AopCreator.class;
     }
 }

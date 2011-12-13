@@ -17,14 +17,19 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.client;
+package net.smvp.factory.client.classtype;
+
+import net.smvp.factory.client.creator.Creator;
 
 /**
- * The Class AopFactory.
+ * The Class ClassTypeCreator.
  *
  * @author Nguyen Duc Dung
- * @since 12/9/11, 11:39 AM
+ * @since 12/13/11, 10:22 AM
  */
-public interface AopFactory {
-    <T> T instantiate(Class<T> clazz);
+public class ClassTypeCreator implements Creator {
+    @Override
+    public <T> T create(Class<?> clazz) {
+        return null;
+    }
 }

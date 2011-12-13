@@ -1,5 +1,5 @@
 [#ftl]
-[#-- @ftlvariable name="data" type="net.smvp.factory.generator.ClassFactoryTemplateData" --]
+[#-- @ftlvariable name="data" type="net.smvp.factory.generator.classtype.ClassTypeTemplateData" --]
 /*
  * Copyright (C) 2009 - 2012 SMVP.NET
  *
@@ -21,42 +21,27 @@
 
 package ${data.generatePackageName};
 
+import net.smvp.factory.client.creator.Creator;
+import net.smvp.reflection.client.marker.*;
 import com.google.gwt.core.client.GWT;
-import net.smvp.reflection.client.marker.Reflectable;
-import net.smvp.reflection.client.marker.ReflectionTarget;
-import net.smvp.reflection.client.clazz.ClassType;
 
 /**
-* The Class ClassFactoryImpl.
-*
-* @author Nguyen Duc Dung
-* @since 11/23/11, 8:31 PM
-*/
-public class ${data.generateClassName} extends ClassFactoryImpl {
-    @Override
-    public <T> T instantiate(Class<T> clazz) {
-        Object obj = null;
-        [#list data.classScanModels as class]
-            if (clazz == ${class.className}.class) {
-            [#if class.aspectable]
-                obj = AOP_FACTORY.instantiate(${class.className}.class);
-            [#else]
-                obj = new ${class.className}();
-            [/#if]
-            }
-        [/#list]
-        return (T) obj;
-    }
+ * The Class ClassTypeCreator.
+ *
+ * @author Nguyen Duc Dung
+ * @since 12/13/11, 10:12 AM
+ */
+public class ${data.generateClassName} extends ClassTypeCreator {
 
     @Override
-    public ClassType getClassType(Class<?> clazz) {
-        Object obj = null;
+    public <T> T create(Class<?> clazz) {
+        T obj = null;
         [#list data.classScanModels as class]
         if (clazz == ${class.className}.class) {
             obj = GWT.create(${class.simpleClassName}.class);
         }
         [/#list]
-        return (ClassType) obj;
+        return obj;
     }
 
     [#list data.classScanModels as class]
