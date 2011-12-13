@@ -19,6 +19,7 @@
 
 package net.smvp.factory.client.aop;
 
+import com.google.gwt.user.client.Window;
 import net.smvp.aop.client.interceptor.HasInterceptor;
 import net.smvp.aop.client.interceptor.MethodInterceptor;
 import net.smvp.factory.client.creator.Creator;

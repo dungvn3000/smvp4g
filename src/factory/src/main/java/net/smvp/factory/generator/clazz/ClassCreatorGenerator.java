@@ -23,6 +23,7 @@ import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JPackage;
 import com.google.gwt.core.ext.typeinfo.TypeOracle;
 import net.smvp.factory.client.clazz.ClassCreator;
+import net.smvp.factory.scan.analyzer.ClassCreatorAnalyzer;
 import net.smvp.factory.scan.reader.ClassReflectionReader;
 import net.smvp.generator.generator.AbstractGenerator;
 import net.smvp.generator.scan.ClassScanner;
@@ -44,7 +45,10 @@ public class ClassCreatorGenerator extends AbstractGenerator<ClassCreatorTemplat
     @Override
     protected Map<String, ClassCreatorTemplateData> scan() {
         ClassReflectionReader classReflectionReader = new ClassReflectionReader();
+        ClassCreatorAnalyzer creatorAnalyzer = new ClassCreatorAnalyzer();
+        creatorAnalyzer.setReader(classReflectionReader);
         ClassScanner scanner = new ClassScanner();
+        scanner.addAnalyzer(creatorAnalyzer);
         scanner.addReader(classReflectionReader);
         TypeOracle typeOracle = context.getTypeOracle();
         for (JPackage jPackage : typeOracle.getPackages()) {
@@ -52,6 +56,7 @@ public class ClassCreatorGenerator extends AbstractGenerator<ClassCreatorTemplat
                 scanner.scan(jClassType, context);
             }
         }
+        scanner.analyzeResult(context);
         Map<String, ClassCreatorTemplateData> dataTemplateMap = new HashMap<String, ClassCreatorTemplateData>();
         ClassCreatorTemplateData data = new ClassCreatorTemplateData(getClassName(), getPackageName());
         data.setClassScanModels(classReflectionReader.getData());

@@ -45,8 +45,6 @@ public class ClassCreatorGenerator extends AbstractGenerator<ClassTypeTemplateDa
     @Override
     protected Map<String, ClassTypeTemplateData> scan() {
         ClassReflectionReader classReflectionReader = new ClassReflectionReader();
-        ClassCreatorAnalyzer creatorAnalyzer = new ClassCreatorAnalyzer();
-        creatorAnalyzer.setReader(classReflectionReader);
         ClassScanner scanner = new ClassScanner();
         scanner.addReader(classReflectionReader);
         TypeOracle typeOracle = context.getTypeOracle();
@@ -55,7 +53,6 @@ public class ClassCreatorGenerator extends AbstractGenerator<ClassTypeTemplateDa
                 scanner.scan(jClassType, context);
             }
         }
-        scanner.analyzeResult(context);
         Map<String, ClassTypeTemplateData> dataTemplateMap = new HashMap<String, ClassTypeTemplateData>();
         ClassTypeTemplateData data = new ClassTypeTemplateData(getClassName(), getPackageName());
         data.setClassScanModels(classReflectionReader.getData());
