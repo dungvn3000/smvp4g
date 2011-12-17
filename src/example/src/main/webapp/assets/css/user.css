@@ -3,6 +3,10 @@
     width: 85%;
 }
 
+.mainmenu .active {
+    background: #4169e1;
+}
+
 .topmenu {
     border: 1px solid #666666;
 }

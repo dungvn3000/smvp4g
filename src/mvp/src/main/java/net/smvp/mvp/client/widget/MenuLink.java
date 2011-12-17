@@ -50,16 +50,16 @@ public class MenuLink extends Hyperlink {
         super(text, targetHistoryToken);
     }
 
-    @Override
-    public void setText(String text) {
-        super.setText(text);
-    }
-
     public boolean isActive() {
         return isActive;
     }
 
     public void setActive(boolean active) {
         isActive = active;
+        if (active) {
+            setStyleName(ACTIVE_MENU_CSS_STYLE, true);
+        } else {
+            setStyleName(ACTIVE_MENU_CSS_STYLE, false);
+        }
     }
 }

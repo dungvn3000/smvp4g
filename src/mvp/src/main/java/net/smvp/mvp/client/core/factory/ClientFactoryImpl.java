@@ -23,20 +23,20 @@ import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.place.shared.Place;
-import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.place.shared.PlaceHistoryMapper;
+import com.google.gwt.place.shared.*;
 import com.google.gwt.user.client.ui.SimplePanel;
 import net.smvp.factory.client.utils.ClassUtils;
 import net.smvp.mvp.client.core.eventbus.Event;
 import net.smvp.mvp.client.core.eventbus.annotation.EventHandler;
+import net.smvp.mvp.client.core.eventbus.annotation.HistoryHandler;
 import net.smvp.mvp.client.core.mapper.ActivityMapperImpl;
 import net.smvp.mvp.client.core.mapper.PlaceHistoryMapperImpl;
 import net.smvp.mvp.client.core.place.AbstractPlace;
 import net.smvp.mvp.client.core.place.DefaultPlace;
 import net.smvp.mvp.client.core.presenter.Presenter;
 import net.smvp.mvp.client.core.view.View;
+import net.smvp.mvp.client.widget.MenuLink;
+import net.smvp.reflection.client.field.FieldType;
 import net.smvp.reflection.client.method.MethodType;
 
 import java.util.ArrayList;
@@ -82,23 +82,46 @@ public class ClientFactoryImpl implements ClientFactory {
         presenter.setPlaceController(placeController);
         presenter.bind();
         presenters.add(presenter);
-        configureHandler(presenter);
     }
 
-    protected void configureHandler(final Presenter<?> presenter) {
-        for (final MethodType method : ClassUtils.getMethods(presenter.getClass())) {
-            final EventHandler eventHandler = method.getAnnotation(EventHandler.class);
-            if (eventHandler != null) {
-                eventBus.addHandler(Event.TYPE, new net.smvp.mvp.client.core.eventbus.EventHandler() {
-                    @Override
-                    public boolean isMath(String eventName) {
-                        return eventHandler.eventName().equals(eventName);
-                    }
-                    @Override
-                    public void doHandle() {
-                        method.invoke(presenter);
-                    }
-                });
+    protected void configureHandler(final Object object) {
+        if (object != null) {
+            for (final MethodType method : ClassUtils.getMethods(object.getClass())) {
+                final EventHandler eventHandler = method.getAnnotation(EventHandler.class);
+                if (eventHandler != null) {
+                    eventBus.addHandler(Event.TYPE, new net.smvp.mvp.client.core.eventbus.EventHandler() {
+                        @Override
+                        public boolean isMath(String eventName) {
+                            return eventHandler.eventName().equals(eventName);
+                        }
+
+                        @Override
+                        public void doHandle() {
+                            method.invoke(object);
+                        }
+                    });
+                }
+            }
+
+            for (final FieldType fieldType : ClassUtils.getFields(object.getClass())) {
+                HistoryHandler historyHandler = fieldType.getAnnotation(HistoryHandler.class);
+                if (historyHandler != null) {
+                    eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
+                        @Override
+                        public void onPlaceChange(PlaceChangeEvent event) {
+                            Object field = fieldType.get(object);
+                            if (field instanceof MenuLink) {
+                                AbstractPlace place = (AbstractPlace) event.getNewPlace();
+                                if (place != null && ((MenuLink) field).
+                                        getTargetHistoryToken().equals(place.getToken())) {
+                                    ((MenuLink) field).setActive(true);
+                                } else {
+                                    ((MenuLink) field).setActive(false);
+                                }
+                            }
+                        }
+                    });
+                }
             }
         }
     }
@@ -142,6 +165,7 @@ public class ClientFactoryImpl implements ClientFactory {
             View view = createView(model);
             AbstractPlace place = createPlace(model);
             configurePresenter(presenter, view, place);
+            configureHandler(presenter);
         }
         return presenter;
     }
@@ -151,6 +175,7 @@ public class ClientFactoryImpl implements ClientFactory {
         if (view != null) {
             view.setParentDomId(model.getViewParentDomID());
         }
+        configureHandler(view);
         return view;
     }
 

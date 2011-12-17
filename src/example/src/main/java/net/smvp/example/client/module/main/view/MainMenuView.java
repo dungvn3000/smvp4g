@@ -22,6 +22,7 @@ package net.smvp.example.client.module.main.view;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import net.smvp.example.client.constant.DomIdConstant;
+import net.smvp.mvp.client.core.eventbus.annotation.HistoryHandler;
 import net.smvp.mvp.client.core.view.AbstractView;
 import net.smvp.mvp.client.core.view.annotation.View;
 import net.smvp.mvp.client.widget.MenuLink;
@@ -35,6 +36,17 @@ import net.smvp.mvp.client.widget.MenuLink;
 @View(parentDomId = DomIdConstant.LEFT_PANEL)
 public class MainMenuView extends AbstractView {
 
+    private static final String MENU_CSS_STYLE = "mainmenu";
+
+    @HistoryHandler
+    public MenuLink mlMainPanel = new MenuLink("Main Panel","main/test");
+
+    @HistoryHandler
+    public MenuLink mlTest1Panel = new MenuLink("Test1 Panel","test/test1");
+
+    @HistoryHandler
+    public MenuLink mlTest2Panel = new MenuLink("Test2 Panel","test/test2");
+
     public MainMenuView() {
         RootPanel.get("loading").setVisible(false);
     }
@@ -42,9 +54,10 @@ public class MainMenuView extends AbstractView {
     @Override
     protected void initializeView() {
         VerticalPanel panel = new VerticalPanel();
-        panel.add(new MenuLink("Main Panel","main/test"));
-        panel.add(new MenuLink("Test1 Panel","test/test1"));
-        panel.add(new MenuLink("Test2 Panel","test/test2"));
+        panel.add(mlMainPanel);
+        panel.add(mlTest1Panel);
+        panel.add(mlTest2Panel);
         setWidget(panel);
+        setStyleName(MENU_CSS_STYLE);
     }
 }
