@@ -30,7 +30,12 @@ import com.google.gwt.event.shared.GwtEvent;
 public class Event extends GwtEvent<EventHandler> {
 
     public final static Type<EventHandler> TYPE = new Type<EventHandler>();
+    private String eventName;
 
+    public Event(String eventName) {
+        this.eventName = eventName;
+    }
+    
     @Override
     public Type<EventHandler> getAssociatedType() {
         return TYPE;
@@ -38,6 +43,6 @@ public class Event extends GwtEvent<EventHandler> {
 
     @Override
     protected void dispatch(EventHandler handler) {
-        handler.doHandle();
+        handler.handle(eventName);
     }
 }

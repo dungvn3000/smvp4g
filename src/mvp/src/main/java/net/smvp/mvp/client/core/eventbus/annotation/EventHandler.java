@@ -26,5 +26,5 @@ package net.smvp.mvp.client.core.eventbus.annotation;
  * @since 12/16/11, 1:04 PM
  */
 public @interface EventHandler {
-    String name();
+    String eventName();
 }

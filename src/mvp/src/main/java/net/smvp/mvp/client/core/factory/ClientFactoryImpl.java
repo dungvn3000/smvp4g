@@ -82,14 +82,18 @@ public class ClientFactoryImpl implements ClientFactory {
         presenter.setPlaceController(placeController);
         presenter.bind();
         presenters.add(presenter);
-        addHandler(presenter);
+        configureHandler(presenter);
     }
 
-    protected void addHandler(final Presenter<?> presenter) {
+    protected void configureHandler(final Presenter<?> presenter) {
         for (final MethodType method : ClassUtils.getMethods(presenter.getClass())) {
-            EventHandler eventHandler = method.getAnnotation(EventHandler.class);
+            final EventHandler eventHandler = method.getAnnotation(EventHandler.class);
             if (eventHandler != null) {
                 eventBus.addHandler(Event.TYPE, new net.smvp.mvp.client.core.eventbus.EventHandler() {
+                    @Override
+                    public boolean isMath(String eventName) {
+                        return eventHandler.eventName().equals(eventName);
+                    }
                     @Override
                     public void doHandle() {
                         method.invoke(presenter);

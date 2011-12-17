@@ -19,7 +19,10 @@
 
 package net.smvp.example.client.module.main.presenter;
 
+import com.google.gwt.user.client.Window;
 import net.smvp.example.client.module.main.view.BannerView;
+import net.smvp.example.client.module.test.presenter.Test2Presenter;
+import net.smvp.mvp.client.core.eventbus.annotation.EventHandler;
 import net.smvp.mvp.client.core.presenter.AbstractPresenter;
 import net.smvp.mvp.client.core.presenter.annotation.Presenter;
 
@@ -34,5 +37,10 @@ public class BannerPresenter extends AbstractPresenter<BannerView> {
     @Override
     public void onActivate() {
         view.show();
+    }
+
+    @EventHandler(eventName = Test2Presenter.EVENT_HELLO_NAME)
+    public void hello() {
+        Window.alert(getClass().getName() + " hello");
     }
 }

@@ -25,6 +25,15 @@ package net.smvp.mvp.client.core.eventbus;
  * @author Nguyen Duc Dung
  * @since 12/17/11, 9:15 AM
  */
-public interface EventHandler extends com.google.gwt.event.shared.EventHandler {
-    void doHandle();
+public abstract class EventHandler implements com.google.gwt.event.shared.EventHandler {
+    
+    public void handle(String eventName) {
+        if (isMath(eventName)) {
+            doHandle();
+        }
+    }
+    
+    public abstract boolean isMath(String eventName);
+    
+    public abstract void doHandle();
 }
