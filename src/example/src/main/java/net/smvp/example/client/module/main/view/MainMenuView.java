@@ -27,15 +27,15 @@ import net.smvp.mvp.client.core.view.AbstractView;
 import net.smvp.mvp.client.core.view.annotation.View;
 
 /**
- * The Class MainView.
+ * The Class MainMenuView.
  *
  * @author Nguyen Duc Dung
  * @since 10/30/11, 1:44 PM
  */
 @View(parentDomId = DomIdConstant.LEFT_PANEL)
-public class MainView extends AbstractView {
+public class MainMenuView extends AbstractView {
 
-    public MainView() {
+    public MainMenuView() {
         RootPanel.get("loading").setVisible(false);
     }
 

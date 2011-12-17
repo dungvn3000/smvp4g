@@ -19,18 +19,18 @@
 
 package net.smvp.example.client.module.main.presenter;
 
-import net.smvp.example.client.module.main.view.MainView;
+import net.smvp.example.client.module.main.view.MainMenuView;
 import net.smvp.mvp.client.core.presenter.AbstractPresenter;
 import net.smvp.mvp.client.core.presenter.annotation.Presenter;
 
 /**
- * The Class MainPresenter.
+ * The Class MainMenuPresenter.
  *
  * @author Nguyen Duc Dung
  * @since 10/30/11, 1:44 PM
  */
-@Presenter(view = MainView.class)
-public class MainPresenter extends AbstractPresenter<MainView> {
+@Presenter(view = MainMenuView.class)
+public class MainMenuPresenter extends AbstractPresenter<MainMenuView> {
     @Override
     public void onActivate() {
         view.show();
