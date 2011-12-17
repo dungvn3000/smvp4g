@@ -19,12 +19,12 @@
 
 package net.smvp.example.client.module.main.view;
 
-import com.google.gwt.user.client.ui.Hyperlink;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import net.smvp.example.client.constant.DomIdConstant;
 import net.smvp.mvp.client.core.view.AbstractView;
 import net.smvp.mvp.client.core.view.annotation.View;
+import net.smvp.mvp.client.widget.MenuLink;
 
 /**
  * The Class MainMenuView.
@@ -42,9 +42,9 @@ public class MainMenuView extends AbstractView {
     @Override
     protected void initializeView() {
         VerticalPanel panel = new VerticalPanel();
-        panel.add(new Hyperlink("Main Panel","main/test"));
-        panel.add(new Hyperlink("Test1 Panel","test/test1"));
-        panel.add(new Hyperlink("Test2 Panel","test/test2"));
+        panel.add(new MenuLink("Main Panel","main/test"));
+        panel.add(new MenuLink("Test1 Panel","test/test1"));
+        panel.add(new MenuLink("Test2 Panel","test/test2"));
         setWidget(panel);
     }
 }

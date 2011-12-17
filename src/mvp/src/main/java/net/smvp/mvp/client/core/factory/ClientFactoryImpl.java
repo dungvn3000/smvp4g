@@ -165,7 +165,8 @@ public class ClientFactoryImpl implements ClientFactory {
 
     @Override
     public void configure() {
-        //Don't do any thing, GWT Generator will do that.
+        createAndHandleHistory();
+        createDefaultPresenter();
     }
 
     protected <T, V extends T> T instantiate(Class<V> clazz) {

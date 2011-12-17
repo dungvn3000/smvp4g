@@ -39,5 +39,6 @@ public class ${data.generateClassName} extends ClientFactoryImpl {
             model${presenter_index}.setViewParentDomID("${presenter.getViewParentDomID()}");
             factoryModels.add(model${presenter_index});
         [/#list]
+        supper.configure();
     }
 }

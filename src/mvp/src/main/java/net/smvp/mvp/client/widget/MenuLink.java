@@ -19,9 +19,7 @@
 
 package net.smvp.mvp.client.widget;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Hyperlink;
-import net.smvp.mvp.client.core.history.HistoryPlaceGinInjector;
 import net.smvp.mvp.client.core.utils.StringUtils;
 
 /**
@@ -33,11 +31,9 @@ import net.smvp.mvp.client.core.utils.StringUtils;
 public class MenuLink extends Hyperlink {
 
     /**
-     * We will add this style name when a menu link was  active.
+     * We will add this style name when a menu link was actived.
      */
     public static final String ACTIVE_MENU_CSS_STYLE = "active";
-
-    private HistoryPlaceGinInjector historyPlaceGinInjector = GWT.create(HistoryPlaceGinInjector.class);
 
     private boolean isActive;
 
@@ -48,7 +44,10 @@ public class MenuLink extends Hyperlink {
      */
     public MenuLink(String targetHistoryToken) {
         super(StringUtils.EMPTY, targetHistoryToken);
-        historyPlaceGinInjector.getHistoryPlace().addMenuLink(this);
+    }
+    
+    public MenuLink(String text, String targetHistoryToken) {
+        super(text, targetHistoryToken);
     }
 
     @Override

@@ -20,6 +20,7 @@
 package net.smvp.mvp.client.core.factory;
 
 import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import net.smvp.mvp.client.core.place.AbstractPlace;
 import net.smvp.mvp.client.core.presenter.Presenter;
@@ -32,6 +33,7 @@ import net.smvp.mvp.client.core.view.View;
  * @since 11/2/11, 12:07 PM
  */
 public interface ClientFactory {
+    public static final ClientFactory INSTANCE = GWT.create(ClientFactoryImpl.class);
     ActivityMapper createActivityMapper();
     PlaceHistoryMapper createHistoryMapper();
     void createAndHandleHistory();
