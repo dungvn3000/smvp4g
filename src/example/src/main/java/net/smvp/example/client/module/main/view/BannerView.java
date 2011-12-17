@@ -35,7 +35,7 @@ public class BannerView extends AbstractView {
 
     @Override
     protected void initializeView() {
-        HTML html = new HTML("<h1 style='text-align:center'>SMVP v0.1</h1>");
+        HTML html = new HTML("<h1 style='text-align:center'>SMVP4G v0.1</h1>");
         setWidget(html);
     }
 }

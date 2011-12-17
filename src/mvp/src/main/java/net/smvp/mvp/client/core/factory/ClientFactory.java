@@ -21,6 +21,9 @@ package net.smvp.mvp.client.core.factory;
 
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
+import net.smvp.mvp.client.core.place.AbstractPlace;
+import net.smvp.mvp.client.core.presenter.Presenter;
+import net.smvp.mvp.client.core.view.View;
 
 /**
  * The Class ClientFactory.
@@ -29,14 +32,13 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
  * @since 11/2/11, 12:07 PM
  */
 public interface ClientFactory {
-
     ActivityMapper createActivityMapper();
-
     PlaceHistoryMapper createHistoryMapper();
-
     void createAndHandleHistory();
-
     void configure();
-
     void createDefaultPresenter();
+    <T extends Presenter<? extends View>> T getExitsPresenter(Class<T> presenterClass);
+    Presenter createPresenter(FactoryModel model);
+    AbstractPlace createPlace(FactoryModel model);
+    <P extends AbstractPlace> P getExitsPlace(Class<P> placeClass);
 }

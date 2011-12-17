@@ -19,7 +19,6 @@
 
 package net.smvp.mvp.client.core.factory;
 
-import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.event.shared.EventBus;
@@ -32,10 +31,11 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import net.smvp.factory.client.utils.ClassUtils;
 import net.smvp.mvp.client.core.eventbus.Event;
 import net.smvp.mvp.client.core.eventbus.annotation.EventHandler;
+import net.smvp.mvp.client.core.mapper.ActivityMapperImpl;
+import net.smvp.mvp.client.core.mapper.PlaceHistoryMapperImpl;
 import net.smvp.mvp.client.core.place.AbstractPlace;
 import net.smvp.mvp.client.core.place.DefaultPlace;
 import net.smvp.mvp.client.core.presenter.Presenter;
-import net.smvp.mvp.client.core.utils.StringUtils;
 import net.smvp.mvp.client.core.view.View;
 import net.smvp.reflection.client.method.MethodType;
 
@@ -59,12 +59,12 @@ public class ClientFactoryImpl implements ClientFactory {
 
     @Override
     public ActivityMapper createActivityMapper() {
-        return new ActivityMapperImpl();
+        return new ActivityMapperImpl(factoryModels, this);
     }
 
     @Override
     public PlaceHistoryMapper createHistoryMapper() {
-        return new PlaceHistoryMapperImpl();
+        return new PlaceHistoryMapperImpl(factoryModels, this);
     }
 
     @Override
@@ -104,7 +104,8 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @SuppressWarnings("unchecked")
-    protected <T extends Presenter<? extends View>> T getExitsPresenter(Class<T> presenterClass) {
+    @Override
+    public <T extends Presenter<? extends View>> T getExitsPresenter(Class<T> presenterClass) {
         for (Presenter<? extends View> presenter : presenters) {
             if (ClassUtils.getRealClass(presenter) == presenterClass) {
                 return (T) presenter;
@@ -114,7 +115,8 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @SuppressWarnings("unchecked")
-    protected <P extends AbstractPlace> P getExitsPlace(Class<P> placeClass) {
+    @Override
+    public <P extends AbstractPlace> P getExitsPlace(Class<P> placeClass) {
         for (Presenter<? extends View> presenter : presenters) {
             if (ClassUtils.getRealClass(presenter.getPlace()) == placeClass) {
                 return (P) presenter.getPlace();
@@ -133,7 +135,8 @@ public class ClientFactoryImpl implements ClientFactory {
         }
     }
 
-    protected Presenter createPresenter(FactoryModel model) {
+    @Override
+    public Presenter createPresenter(FactoryModel model) {
         Presenter presenter = instantiate(model.getPresenterClass());
         if (presenter != null) {
             View view = createView(model);
@@ -151,7 +154,8 @@ public class ClientFactoryImpl implements ClientFactory {
         return view;
     }
 
-    protected AbstractPlace createPlace(FactoryModel model) {
+    @Override
+    public AbstractPlace createPlace(FactoryModel model) {
         AbstractPlace place = instantiate(model.getPlaceClass());
         if (place != null) {
             place.setToken(model.getToken());
@@ -166,47 +170,5 @@ public class ClientFactoryImpl implements ClientFactory {
 
     protected <T, V extends T> T instantiate(Class<V> clazz) {
         return ClassUtils.instantiate(clazz);
-    }
-
-    private class PlaceHistoryMapperImpl implements PlaceHistoryMapper {
-        @Override
-        public Place getPlace(String token) {
-            for (FactoryModel model : factoryModels) {
-                if (StringUtils.isNotBlank(model.getToken()) && model.getToken().equals(token)) {
-                    AbstractPlace place = getExitsPlace(model.getPlaceClass());
-                    if (place == null) {
-                        place = createPlace(model);
-                    }
-                    return place;
-                }
-            }
-            return null;
-        }
-
-        @Override
-        public String getToken(Place place) {
-            for (FactoryModel model : factoryModels) {
-                if (ClassUtils.getRealClass(place) == model.getPlaceClass()) {
-                    return model.getToken();
-                }
-            }
-            return null;
-        }
-    }
-
-    private class ActivityMapperImpl implements ActivityMapper {
-        @Override
-        public Activity getActivity(Place place) {
-            for (FactoryModel model : factoryModels) {
-                if (ClassUtils.getRealClass(place) == model.getPlaceClass()) {
-                    Presenter presenter = getExitsPresenter(model.getPresenterClass());
-                    if (presenter == null) {
-                        presenter = createPresenter(model);
-                    }
-                    return presenter;
-                }
-            }
-            return null;
-        }
     }
 }
