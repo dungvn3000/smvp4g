@@ -30,11 +30,14 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.user.client.ui.SimplePanel;
 import net.smvp.factory.client.utils.ClassUtils;
+import net.smvp.mvp.client.core.eventbus.Event;
+import net.smvp.mvp.client.core.eventbus.annotation.EventHandler;
 import net.smvp.mvp.client.core.place.AbstractPlace;
 import net.smvp.mvp.client.core.place.DefaultPlace;
 import net.smvp.mvp.client.core.presenter.Presenter;
 import net.smvp.mvp.client.core.utils.StringUtils;
 import net.smvp.mvp.client.core.view.View;
+import net.smvp.reflection.client.method.MethodType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +82,21 @@ public class ClientFactoryImpl implements ClientFactory {
         presenter.setPlaceController(placeController);
         presenter.bind();
         presenters.add(presenter);
+        addHandler(presenter);
+    }
+
+    protected void addHandler(final Presenter<?> presenter) {
+        for (final MethodType method : ClassUtils.getMethods(presenter.getClass())) {
+            EventHandler eventHandler = method.getAnnotation(EventHandler.class);
+            if (eventHandler != null) {
+                eventBus.addHandler(Event.TYPE, new net.smvp.mvp.client.core.eventbus.EventHandler() {
+                    @Override
+                    public void doHandle() {
+                        method.invoke(presenter);
+                    }
+                });
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")

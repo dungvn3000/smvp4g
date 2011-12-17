@@ -19,12 +19,12 @@
 
 package net.smvp.reflection.scan.reader;
 
-import net.smvp.generator.scan.model.FieldScanModel;
-import net.smvp.generator.scan.utils.ScanUtils;
 import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JField;
+import net.smvp.generator.scan.model.FieldScanModel;
 import net.smvp.generator.scan.reader.Reader;
+import net.smvp.generator.scan.utils.ScanUtils;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
@@ -46,7 +46,7 @@ public class FieldReader implements Reader<FieldScanModel> {
             if (field.isPublic() && !field.isFinal()) {
                 FieldScanModel model = new FieldScanModel();
                 model.setName(field.getName());
-                model.setTypeClassName(field.getType().getParameterizedQualifiedSourceName());
+                model.setTypeClassName(field.getType().getQualifiedSourceName());
                 model.setAnnotationScanModels(ScanUtils.getAnnotations(field));
                 models.add(model);
             }

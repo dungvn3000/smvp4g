@@ -27,15 +27,15 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import net.smvp.aop.client.marker.Aspectable;
-import net.smvp.reflection.client.field.FieldType;
-import net.smvp.reflection.client.method.MethodType;
-import net.smvp.factory.client.utils.ClassUtils;
 import net.smvp.example.client.constant.DomIdConstant;
 import net.smvp.example.client.module.test.view.security.Test2ViewSecurity;
+import net.smvp.factory.client.utils.ClassUtils;
 import net.smvp.mvp.client.core.security.FieldSecurity;
 import net.smvp.mvp.client.core.security.ViewSecurity;
 import net.smvp.mvp.client.core.view.AbstractView;
 import net.smvp.mvp.client.core.view.annotation.View;
+import net.smvp.reflection.client.field.FieldType;
+import net.smvp.reflection.client.method.MethodType;
 
 /**
  * The Class Test2View.
@@ -54,6 +54,7 @@ public class Test2View extends AbstractView implements Aspectable {
     public Button button2 = new Button("Get Fields");
     private Button button3 = new Button("Get Methods");
     public Button button4 = new Button("Set Fields");
+    public Button button5 = new Button("Fire Event");
 
     private HorizontalPanel panel = new HorizontalPanel();
 
@@ -64,6 +65,7 @@ public class Test2View extends AbstractView implements Aspectable {
         panel.add(button2);
         panel.add(button3);
         panel.add(button4);
+        panel.add(button5);
         button1.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -94,6 +96,11 @@ public class Test2View extends AbstractView implements Aspectable {
         setWidget(panel);
     }
 
+    public Button getButton5() {
+        return button5;
+    }
+
+    @Test(name = "callMe")
     public void callMe() {
         Window.alert("This method be called by Reflection.");
     }
@@ -101,6 +108,10 @@ public class Test2View extends AbstractView implements Aspectable {
     private void testReflectionMethod() {
         MethodType methodType = ClassUtils.getMethod(Test2View.class, "callMe");
         methodType.invoke(this);
+        Test test = methodType.getAnnotation(Test.class);
+        if (test != null) {
+            Window.alert(test.name());
+        }
     }
 
     private void testReflectionFields() {
@@ -115,4 +126,5 @@ public class Test2View extends AbstractView implements Aspectable {
         fieldType.set(this, new Button("New Button set by Reflection"));
         panel.add((Widget) fieldType.get(this));
     }
+
 }

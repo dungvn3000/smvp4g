@@ -19,8 +19,13 @@
 
 package net.smvp.example.client.module.test.presenter;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
 import net.smvp.example.client.module.test.place.Test2Place;
 import net.smvp.example.client.module.test.view.Test2View;
+import net.smvp.mvp.client.core.eventbus.Event;
+import net.smvp.mvp.client.core.eventbus.annotation.EventHandler;
 import net.smvp.mvp.client.core.presenter.AbstractPresenter;
 import net.smvp.mvp.client.core.presenter.annotation.Presenter;
 
@@ -32,8 +37,24 @@ import net.smvp.mvp.client.core.presenter.annotation.Presenter;
  */
 @Presenter(view = Test2View.class, place = Test2Place.class)
 public class Test2Presenter extends AbstractPresenter<Test2View> {
+
     @Override
     public void onActivate() {
         view.show();
+    }
+
+    @Override
+    protected void doBind() {
+        view.getButton5().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                eventBus.fireEvent(new Event());
+            }
+        });
+    }
+
+    @EventHandler(name = "hello")
+    public void hello() {
+        Window.alert("Congratulation Dung");
     }
 }

@@ -23,6 +23,8 @@ import net.smvp.reflection.client.executor.Executor;
 import net.smvp.reflection.client.executor.HasGetter;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Class MethodTypeImpl.
@@ -30,11 +32,13 @@ import java.lang.annotation.Annotation;
  * @author Nguyen Duc Dung
  * @since 12/4/11, 4:02 PM
  */
+@SuppressWarnings("UnusedDeclaration")
 public class MethodTypeImpl implements MethodType, HasGetter {
     
     private String name;
     private Class<?> returnType;
     private Executor executor;
+    private List<Annotation> annotations = new ArrayList<Annotation>();
 
     @Override
     public String getName() {
@@ -64,9 +68,20 @@ public class MethodTypeImpl implements MethodType, HasGetter {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public <T extends Annotation> T getAnnotation(Class<T> clazz) {
+        for (Annotation annotation : annotations) {
+            if (clazz == annotation.annotationType()) {
+                return (T) annotation;
+            }
+        }
         return null;
+    }
+
+    @Override
+    public void addAnnotation(Annotation annotation) {
+        annotations.add(annotation);
     }
 
     @Override
