@@ -19,11 +19,13 @@
 
 package net.smvp.example.client.module.main.view;
 
+import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import net.smvp.example.client.constant.DomIdConstant;
 import net.smvp.mvp.client.core.eventbus.annotation.HistoryHandler;
+import net.smvp.mvp.client.core.place.AbstractPlace;
 import net.smvp.mvp.client.core.view.AbstractView;
 import net.smvp.mvp.client.core.view.annotation.View;
 import net.smvp.mvp.client.widget.MenuLink;
@@ -63,7 +65,7 @@ public class MainMenuView extends AbstractView {
     }
 
     @HistoryHandler
-    public void testHistoryHandler() {
-        Window.alert("ok");
+    public void testHistoryHandler(PlaceChangeEvent event) {
+        Window.alert(((AbstractPlace)event.getNewPlace()).getToken());
     }
 }

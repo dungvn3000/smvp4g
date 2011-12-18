@@ -71,7 +71,7 @@ public class HistoryHandlerConfigure implements Configure<Object> {
                     eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
                         @Override
                         public void onPlaceChange(PlaceChangeEvent event) {
-                            methodType.invoke(object);
+                            methodType.invoke(object, event);
                         }
                     });
                 }

@@ -35,6 +35,6 @@ public interface MethodType extends HasAnnotations {
     void setName(String name);
     Class<?> getReturnType();
     void setReturnType(Class<?> returnType);
-    Object invoke(Object object);
+    Object invoke(Object object, Object... prams);
     void addAnnotation(Annotation annotation);
 }

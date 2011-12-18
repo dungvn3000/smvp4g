@@ -19,12 +19,14 @@
 
 package net.smvp.reflection.scan.reader;
 
-import net.smvp.generator.scan.model.MethodScanModel;
-import net.smvp.generator.scan.reader.Reader;
-import net.smvp.generator.scan.utils.ScanUtils;
 import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JMethod;
+import com.google.gwt.core.ext.typeinfo.JParameter;
+import net.smvp.generator.scan.model.MethodScanModel;
+import net.smvp.generator.scan.reader.Reader;
+import net.smvp.generator.scan.utils.ScanUtils;
+import org.apache.commons.lang.StringUtils;
 
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
@@ -43,11 +45,23 @@ public class MethodReader implements Reader<MethodScanModel> {
     @Override
     public void read(JClassType classType, GeneratorContext context) {
         for (JMethod method : classType.getMethods()) {
-            if (method.isPublic() && method.getParameters().length == 0) {
+            if (method.isPublic()) {
                 MethodScanModel model = new MethodScanModel();
                 model.setName(method.getName());
                 model.setReturnType(method.getReturnType().getParameterizedQualifiedSourceName());
                 model.setAnnotationScanModels(ScanUtils.getAnnotations(method));
+                model.setPramsLength(method.getParameters().length);
+                String params = StringUtils.EMPTY;
+                int i = 0;
+                for (JParameter parameter : method.getParameters()) {
+                    if (i > 0) {
+                        params = params + ",";
+                    }
+                    params = params + "(" + parameter.getType().
+                            getQualifiedSourceName() + ")params[" + i + "]";
+                    i++;
+                }
+                model.setParams(params);
                 models.add(model);
             }
         }

@@ -84,14 +84,14 @@ public class ${data.generateClassName} implements ClassType {
         [/#list]
         field${field_index}.setGetterExecutor(new Executor() {
             @Override
-            public Object execute(Object object, Object... param) {
+            public Object execute(Object object, Object... params) {
                 return ((${data.className}) object).${field.name};
             }
         });
         field${field_index}.setSetterExecutor(new Executor() {
             @Override
-            public Object execute(Object object, Object... param) {
-                ((${data.className}) object).${field.name} = (${field.typeClassName})param[0];
+            public Object execute(Object object, Object... params) {
+                ((${data.className}) object).${field.name} = (${field.typeClassName})params[0];
                 return null;
             }
         });
@@ -135,11 +135,11 @@ public class ${data.generateClassName} implements ClassType {
         [/#list]
         method${method_index}.setGetterExecutor(new Executor() {
             @Override
-            public Object execute(Object object, Object... param) {
+            public Object execute(Object object, Object... params) {
                 [#if method.returnType != "void"]
-                    return ((${data.className}) object).${method.name}();
+                    return ((${data.className}) object).${method.name}(${method.params});
                 [#else]
-                    ((${data.className}) object).${method.name}();
+                    ((${data.className}) object).${method.name}(${method.params});
                     return null;
                 [/#if]
             }

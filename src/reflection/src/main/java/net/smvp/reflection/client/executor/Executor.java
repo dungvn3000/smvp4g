@@ -26,5 +26,5 @@ package net.smvp.reflection.client.executor;
  * @since 12/4/11, 3:04 PM
  */
 public interface Executor {
-    Object execute(Object object, Object... param);
+    Object execute(Object object, Object... params);
 }

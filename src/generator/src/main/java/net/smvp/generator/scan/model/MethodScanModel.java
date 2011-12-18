@@ -30,6 +30,8 @@ import java.util.List;
 public class MethodScanModel {
     
     private String name;
+    private int pramsLength;
+    private String params;
     private String returnType;
     private String returnValue;
     private List<AnnotationScanModel> annotationScanModels;
@@ -64,5 +66,21 @@ public class MethodScanModel {
 
     public void setAnnotationScanModels(List<AnnotationScanModel> annotationScanModels) {
         this.annotationScanModels = annotationScanModels;
+    }
+
+    public int getPramsLength() {
+        return pramsLength;
+    }
+
+    public void setPramsLength(int pramsLength) {
+        this.pramsLength = pramsLength;
+    }
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
     }
 }

@@ -34,7 +34,7 @@ import java.util.List;
  */
 @SuppressWarnings("UnusedDeclaration")
 public class MethodTypeImpl implements MethodType, HasGetter {
-    
+
     private String name;
     private Class<?> returnType;
     private Executor executor;
@@ -61,9 +61,9 @@ public class MethodTypeImpl implements MethodType, HasGetter {
     }
 
     @Override
-    public Object invoke(Object object) {
+    public Object invoke(Object object, Object... prams) {
         if (executor != null) {
-            return executor.execute(object);
+            return executor.execute(object, prams);
         }
         return null;
     }
