@@ -190,8 +190,8 @@ public class ClientFactoryImpl implements ClientFactory {
 
     @Override
     public void configure() {
-        createAndHandleHistory();
         createDefaultPresenter();
+        createAndHandleHistory();
     }
 
     protected <T, V extends T> T instantiate(Class<V> clazz) {
