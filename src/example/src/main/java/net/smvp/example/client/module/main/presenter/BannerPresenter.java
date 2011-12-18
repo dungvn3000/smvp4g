@@ -40,7 +40,7 @@ public class BannerPresenter extends AbstractPresenter<BannerView> {
     }
 
     @EventHandler(eventName = Test2Presenter.EVENT_HELLO_NAME)
-    public void hello() {
-        Window.alert(getClass().getName() + " hello");
+    public void hello(String name) {
+        Window.alert("Hello " + name);
     }
 }

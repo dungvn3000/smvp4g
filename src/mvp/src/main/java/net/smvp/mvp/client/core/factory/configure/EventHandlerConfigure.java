@@ -52,8 +52,8 @@ public class EventHandlerConfigure implements Configure<Object> {
                         }
 
                         @Override
-                        public void doHandle() {
-                            method.invoke(object);
+                        public void doHandle(Object... prams) {
+                            method.invoke(object, prams);
                         }
                     });
                 }

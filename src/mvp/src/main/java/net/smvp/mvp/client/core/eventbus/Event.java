@@ -31,9 +31,11 @@ public class Event extends GwtEvent<EventHandler> {
 
     public final static Type<EventHandler> TYPE = new Type<EventHandler>();
     private String eventName;
+    private Object[] prams;
 
-    public Event(String eventName) {
+    public Event(String eventName, Object... prams) {
         this.eventName = eventName;
+        this.prams = prams;
     }
     
     @Override
@@ -43,6 +45,6 @@ public class Event extends GwtEvent<EventHandler> {
 
     @Override
     protected void dispatch(EventHandler handler) {
-        handler.handle(eventName);
+        handler.handle(eventName, prams);
     }
 }

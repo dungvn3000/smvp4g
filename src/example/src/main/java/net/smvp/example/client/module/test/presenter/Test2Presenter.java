@@ -48,7 +48,7 @@ public class Test2Presenter extends AbstractPresenter<Test2View> {
         view.getButton5().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                eventBus.fireEvent(new Event(EVENT_HELLO_NAME));
+                eventBus.fireEvent(new Event(EVENT_HELLO_NAME, getClass().getName()));
             }
         });
     }

@@ -27,13 +27,13 @@ package net.smvp.mvp.client.core.eventbus;
  */
 public abstract class EventHandler implements com.google.gwt.event.shared.EventHandler {
     
-    public void handle(String eventName) {
+    public void handle(String eventName, Object... params) {
         if (isMath(eventName)) {
-            doHandle();
+            doHandle(params);
         }
     }
     
     public abstract boolean isMath(String eventName);
     
-    public abstract void doHandle();
+    public abstract void doHandle(Object... prams);
 }
