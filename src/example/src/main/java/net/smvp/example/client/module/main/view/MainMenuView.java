@@ -19,6 +19,7 @@
 
 package net.smvp.example.client.module.main.view;
 
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import net.smvp.example.client.constant.DomIdConstant;
@@ -59,5 +60,10 @@ public class MainMenuView extends AbstractView {
         panel.add(mlTest2Panel);
         setWidget(panel);
         setStyleName(MENU_CSS_STYLE);
+    }
+
+    @HistoryHandler
+    public void testHistoryHandler() {
+        Window.alert("ok");
     }
 }
