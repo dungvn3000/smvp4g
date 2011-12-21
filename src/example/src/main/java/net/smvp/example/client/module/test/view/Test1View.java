@@ -22,7 +22,6 @@ package net.smvp.example.client.module.test.view;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.gwtent.reflection.client.ClassHelper;
 import net.smvp.example.client.constant.DomIdConstant;
 import net.smvp.example.client.module.test.view.security.Test1ViewSecurity;
 import net.smvp.mvp.client.core.security.ViewSecurity;
@@ -47,7 +46,6 @@ public class Test1View extends AbstractView {
 
     @Override
     protected void initializeView() {
-        ClassHelper.AsClass(Test1View.class);
         HorizontalPanel panel = new HorizontalPanel();
         panel.add(new Label("Test View 1"));
         panel.add(button);
