@@ -26,4 +26,5 @@ package net.smvp.reflection.client.marker;
  * @since 11/23/11, 9:19 PM
  */
 public @interface Reflection {
+    boolean isClassLiteral() default false;
 }

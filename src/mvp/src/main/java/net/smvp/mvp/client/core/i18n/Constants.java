@@ -17,17 +17,17 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.mvp.client.core.view.annotation;
+package net.smvp.mvp.client.core.i18n;
 
-import net.smvp.mvp.client.core.i18n.Constants;
+import com.google.gwt.i18n.client.ConstantsWithLookup;
+import net.smvp.reflection.client.marker.Reflection;
 
 /**
- * The Class View.
+ * The Class Constants.
  *
  * @author Nguyen Duc Dung
- * @since 11/17/11, 3:37 PM
+ * @since 12/21/11, 9:51 PM
  */
-public @interface View {
-    String parentDomId() default "";
-    Class<? extends Constants> constantsClass() default Constants.class;
+@Reflection(isClassLiteral = true)
+public interface Constants extends ConstantsWithLookup {
 }

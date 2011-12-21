@@ -19,12 +19,12 @@
 
 package net.smvp.factory.scan.reader;
 
-import net.smvp.aop.client.marker.Aspectable;
-import net.smvp.generator.scan.model.ClassScanModel;
-import net.smvp.generator.utils.ClassUtils;
 import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.typeinfo.JClassType;
+import net.smvp.aop.client.marker.Aspectable;
+import net.smvp.generator.scan.model.ClassScanModel;
 import net.smvp.generator.scan.reader.Reader;
+import net.smvp.generator.utils.ClassUtils;
 import net.smvp.reflection.client.marker.Reflection;
 
 import java.lang.annotation.Annotation;
@@ -45,16 +45,16 @@ public class ClassReflectionReader implements Reader<ClassScanModel> {
     public void read(JClassType classType, GeneratorContext context) {
         if (isMath(classType.getAnnotation(Reflection.class))) {
             for (JClassType subType : classType.getSubtypes()) {
-                if(!subType.isAbstract()) {
-                    ClassScanModel model = new ClassScanModel();
-                    model.setClassName(subType.getParameterizedQualifiedSourceName());
-                    model.setSimpleClassName(subType.getSimpleSourceName());
-                    JClassType aspectable = ClassUtils.getJClassType(Aspectable.class.getName(), context);
-                    if (subType.isAssignableTo(aspectable)) {
-                        model.setAspectable(true);
-                    }
-                    modelFactories.add(model);
+                ClassScanModel model = new ClassScanModel();
+                model.setClassName(subType.getParameterizedQualifiedSourceName());
+                model.setSimpleClassName(subType.getSimpleSourceName());
+                JClassType aspectable = ClassUtils.getJClassType(Aspectable.class.getName(), context);
+                if (subType.isAssignableTo(aspectable)) {
+                    model.setAspectable(true);
                 }
+                Reflection reflection = classType.getAnnotation(Reflection.class);
+                model.setClassLiteral(reflection.isClassLiteral());
+                modelFactories.add(model);
             }
         }
     }

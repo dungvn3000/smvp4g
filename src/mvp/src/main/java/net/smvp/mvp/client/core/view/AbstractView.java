@@ -20,14 +20,11 @@
 package net.smvp.mvp.client.core.view;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.google.gwt.i18n.client.ConstantsWithLookup;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Widget;
-import net.smvp.reflection.client.field.FieldType;
-import net.smvp.reflection.client.marker.Reflection;
-import net.smvp.reflection.client.method.MethodType;
 import net.smvp.factory.client.utils.ClassUtils;
+import net.smvp.mvp.client.core.i18n.Constants;
 import net.smvp.mvp.client.core.i18n.I18nField;
 import net.smvp.mvp.client.core.i18n.I18nText;
 import net.smvp.mvp.client.core.security.FieldSecurity;
@@ -38,8 +35,10 @@ import net.smvp.mvp.client.core.utils.GWTUtils;
 import net.smvp.mvp.client.core.utils.LoginUtils;
 import net.smvp.mvp.client.core.utils.WidgetUtils;
 import net.smvp.mvp.client.core.view.templateview.AccessDenyView;
+import net.smvp.reflection.client.field.FieldType;
+import net.smvp.reflection.client.marker.Reflection;
+import net.smvp.reflection.client.method.MethodType;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,7 +50,7 @@ import java.util.List;
  * @since Aug 15, 2010, 6:45:32 PM
  */
 @Reflection
-public abstract class AbstractView<C extends ConstantsWithLookup> extends FlexTable implements View<C> {
+public abstract class AbstractView extends FlexTable implements View {
 
     /**
      * Default width of views.
@@ -66,8 +65,7 @@ public abstract class AbstractView<C extends ConstantsWithLookup> extends FlexTa
     /**
      * I18nField constant of this view.
      */
-    @Inject
-    private C constant;
+    private Constants constant;
 
     /**
      * The Security Configurator of this view.
@@ -211,12 +209,12 @@ public abstract class AbstractView<C extends ConstantsWithLookup> extends FlexTa
      * Do bind i18n to all filed mark by annotation {@link net.smvp.mvp.client.core.i18n.I18nField} of a view.
      */
     private void bindI18n() {
-        if (constant != null) {
+        if (getConstant() != null) {
             for (FieldType fieldType : ClassUtils.getFields(getClass())) {
                 I18nField fieldAnnotation = fieldType.getAnnotation(I18nField.class);
                 if (fieldAnnotation != null) {
                     Object widget = fieldType.get(this);
-                    String i18nText = constant.getString(fieldType.getName());
+                    String i18nText = getConstant().getString(fieldType.getName());
                     if (!fieldAnnotation.emptyText()) {
                         //Set text for widget in view.
                         WidgetUtils.setText(widget, i18nText);
@@ -226,7 +224,7 @@ public abstract class AbstractView<C extends ConstantsWithLookup> extends FlexTa
                     }
                 } else if (fieldType.getAnnotation(I18nText.class) != null) {
                     //Set value for i18nText in View.
-                    String i18nText = constant.getString(fieldType.getName());
+                    String i18nText = getConstant().getString(fieldType.getName());
                     fieldType.set(this, i18nText);
                 }
             }
@@ -246,7 +244,15 @@ public abstract class AbstractView<C extends ConstantsWithLookup> extends FlexTa
     }
 
     @Override
-    public final C getConstant() {
+    public final Constants getConstant() {
+        if (constant == null) {
+            net.smvp.mvp.client.core.view.annotation.View view = ClassUtils.getAnnotation(getClass(),
+                    net.smvp.mvp.client.core.view.annotation.View.class);
+            if (view != null) {
+                Class<? extends Constants> constantsClass = view.constantsClass();
+                constant = ClassUtils.instantiate(constantsClass);
+            }
+        }
         return constant;
     }
 

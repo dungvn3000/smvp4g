@@ -29,6 +29,7 @@ public class ClassScanModel {
 
     private String className;
     private String simpleClassName;
+    private boolean isClassLiteral;
     private boolean isAspectable;
 
     public String getClassName() {
@@ -55,4 +56,11 @@ public class ClassScanModel {
         isAspectable = aspectable;
     }
 
+    public boolean isClassLiteral() {
+        return isClassLiteral;
+    }
+
+    public void setClassLiteral(boolean classLiteral) {
+        isClassLiteral = classLiteral;
+    }
 }

@@ -19,8 +19,8 @@
 
 package net.smvp.mvp.client.core.view;
 
-import com.google.gwt.i18n.client.ConstantsWithLookup;
 import com.google.gwt.user.client.ui.Widget;
+import net.smvp.mvp.client.core.i18n.Constants;
 import net.smvp.mvp.client.core.security.HasRole;
 
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.List;
  * @author dungvn3000
  * @since 3/13/11, 6:54 PM
  */
-public interface View<C extends ConstantsWithLookup> {
+public interface View {
 
     /**
      * Bind with a presenter.
@@ -99,7 +99,7 @@ public interface View<C extends ConstantsWithLookup> {
      *
      * @return
      */
-    C getConstant();
+    Constants getConstant();
 
     /**
      * Check this view is a security view or not.

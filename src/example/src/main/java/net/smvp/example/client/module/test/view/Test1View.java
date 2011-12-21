@@ -23,7 +23,6 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.gwtent.reflection.client.ClassHelper;
-import com.gwtent.reflection.client.annotations.Reflect_Mini;
 import net.smvp.example.client.constant.DomIdConstant;
 import net.smvp.example.client.module.test.view.security.Test1ViewSecurity;
 import net.smvp.mvp.client.core.security.ViewSecurity;
@@ -38,7 +37,6 @@ import net.smvp.mvp.client.core.view.annotation.View;
  */
 @ViewSecurity(configuratorClass = Test1ViewSecurity.class)
 @View(parentDomId = DomIdConstant.CONTENT_PANEL)
-@Reflect_Mini
 public class Test1View extends AbstractView {
 
     private Button button = new Button("Ok");

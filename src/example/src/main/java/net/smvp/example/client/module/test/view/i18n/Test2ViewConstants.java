@@ -17,17 +17,16 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.mvp.client.core.view.annotation;
+package net.smvp.example.client.module.test.view.i18n;
 
 import net.smvp.mvp.client.core.i18n.Constants;
 
 /**
- * The Class View.
+ * The Class Test2ViewConstants.
  *
  * @author Nguyen Duc Dung
- * @since 11/17/11, 3:37 PM
+ * @since 12/19/11, 11:13 AM
  */
-public @interface View {
-    String parentDomId() default "";
-    Class<? extends Constants> constantsClass() default Constants.class;
+public interface Test2ViewConstants extends Constants {
+    String lblViewTitle();
 }

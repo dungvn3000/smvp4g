@@ -28,8 +28,10 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import net.smvp.aop.client.marker.Aspectable;
 import net.smvp.example.client.constant.DomIdConstant;
+import net.smvp.example.client.module.test.view.i18n.Test2ViewConstants;
 import net.smvp.example.client.module.test.view.security.Test2ViewSecurity;
 import net.smvp.factory.client.utils.ClassUtils;
+import net.smvp.mvp.client.core.i18n.I18nField;
 import net.smvp.mvp.client.core.security.FieldSecurity;
 import net.smvp.mvp.client.core.security.ViewSecurity;
 import net.smvp.mvp.client.core.view.AbstractView;
@@ -43,7 +45,7 @@ import net.smvp.reflection.client.method.MethodType;
  * @author Nguyen Duc Dung
  * @since 11/18/11, 9:39 PM
  */
-@View(parentDomId = DomIdConstant.CONTENT_PANEL)
+@View(parentDomId = DomIdConstant.CONTENT_PANEL, constantsClass = Test2ViewConstants.class)
 @ViewSecurity(configuratorClass = Test2ViewSecurity.class)
 public class Test2View extends AbstractView implements Aspectable {
 
@@ -56,11 +58,14 @@ public class Test2View extends AbstractView implements Aspectable {
     public Button button4 = new Button("Set Fields");
     public Button button5 = new Button("Fire Event");
 
+    @I18nField
+    public Label lblViewTitle = new Label();
+
     private HorizontalPanel panel = new HorizontalPanel();
 
     @Override
     protected void initializeView() {
-        panel.add(new Label("Test View 2"));
+        panel.add(lblViewTitle);
         panel.add(button1);
         panel.add(button2);
         panel.add(button3);

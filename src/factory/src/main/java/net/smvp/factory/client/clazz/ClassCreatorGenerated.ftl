@@ -37,7 +37,11 @@ public class ${data.generateClassName} extends ClassCreator {
         Object obj = null;
         [#list data.classScanModels as class]
         if (clazz == ${class.className}.class) {
-            obj = new ${class.className}();
+            [#if class.classLiteral]
+                obj = GWT.create(${class.className}.class);
+            [#else]
+                obj = new ${class.className}();
+            [/#if]
         }
         [/#list]
         return (T)obj;
