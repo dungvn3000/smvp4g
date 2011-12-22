@@ -43,7 +43,7 @@ public class FieldReader implements Reader<FieldScanModel> {
     @Override
     public void read(JClassType classType, GeneratorContext context) {
         for (JField field : classType.getFields()) {
-            if (field.isPublic() && !field.isFinal()) {
+            if ((field.isPublic() || field.isDefaultAccess()) && !field.isFinal()) {
                 FieldScanModel model = new FieldScanModel();
                 model.setName(field.getName());
                 if (field.getType().isPrimitive() != null) {

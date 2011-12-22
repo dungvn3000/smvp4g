@@ -46,7 +46,7 @@ public class MethodReader implements Reader<MethodScanModel> {
     @Override
     public void read(JClassType classType, GeneratorContext context) {
         for (JMethod method : classType.getMethods()) {
-            if (method.isPublic()) {
+            if (method.isPublic() || method.isDefaultAccess()) {
                 MethodScanModel model = new MethodScanModel();
                 model.setName(method.getName());
                 if (method.getReturnType().isPrimitive() != null) {
