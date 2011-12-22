@@ -48,7 +48,7 @@ public class MethodReader implements Reader<MethodScanModel> {
             if (method.isPublic()) {
                 MethodScanModel model = new MethodScanModel();
                 model.setName(method.getName());
-                model.setReturnType(method.getReturnType().getParameterizedQualifiedSourceName());
+                model.setReturnType(method.getReturnType().getQualifiedSourceName());
                 model.setAnnotationScanModels(ScanUtils.getAnnotations(method));
                 model.setPramsLength(method.getParameters().length);
                 String params = StringUtils.EMPTY;

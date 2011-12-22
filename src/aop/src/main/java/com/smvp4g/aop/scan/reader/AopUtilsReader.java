@@ -50,7 +50,7 @@ public class AopUtilsReader implements Reader<ClassWrapperModel> {
                     ClassWrapperModel model = new ClassWrapperModel();
                     model.setClassName(jClassType.getSimpleSourceName());
                     model.setPackageName(jPackage.getName());
-                    model.setRealClassName(jClassType.getParameterizedQualifiedSourceName());
+                    model.setRealClassName(jClassType.getQualifiedSourceName());
                     data.add(model);
                 }
             }

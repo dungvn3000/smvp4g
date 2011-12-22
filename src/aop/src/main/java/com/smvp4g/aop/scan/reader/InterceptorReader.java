@@ -46,7 +46,7 @@ public class InterceptorReader implements Reader<ClassScanModel> {
             for (JClassType jClassType : jPackage.getTypes()) {
                 if (jClassType.isAnnotationPresent(Aspect.class)) {
                     ClassScanModel model = new ClassScanModel();
-                    model.setClassName(jClassType.getParameterizedQualifiedSourceName());
+                    model.setClassName(jClassType.getQualifiedSourceName());
                     datas.add(model);
                 }
             }

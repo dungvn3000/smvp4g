@@ -47,7 +47,7 @@ public class ClassWrapperReader implements Reader<ClassWrapperModel> {
             ClassWrapperModel model = new ClassWrapperModel();
             model.setClassName(classType.getSimpleSourceName());
             model.setPackageName(classType.getPackage().getName());
-            model.setRealClassName(classType.getParameterizedQualifiedSourceName());
+            model.setRealClassName(classType.getQualifiedSourceName());
             datas.add(model);
         }
     }

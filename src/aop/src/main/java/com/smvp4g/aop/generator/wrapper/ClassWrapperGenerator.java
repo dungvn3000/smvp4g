@@ -51,7 +51,7 @@ public class ClassWrapperGenerator extends AbstractGenerator<ClassWrapperTemplat
         scanner.scan(classType, context);
 
         ClassWrapperTemplateData dataTemplate = new ClassWrapperTemplateData(getClassName(), getPackageName());
-        dataTemplate.setRealClassName(classType.getParameterizedQualifiedSourceName());
+        dataTemplate.setRealClassName(classType.getQualifiedSourceName());
         dataTemplateMap.put(DATA_TEMPLATE, dataTemplate);
         dataTemplate.setMethodScanModels(aspectMethodReader.getData());
         return dataTemplateMap;

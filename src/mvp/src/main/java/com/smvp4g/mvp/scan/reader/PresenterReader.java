@@ -44,7 +44,7 @@ public class PresenterReader implements Reader<PresenterScanModel> {
         Presenter presenterAnnotation = classType.getAnnotation(Presenter.class);
         if (isMath(presenterAnnotation)) {
             PresenterScanModel model = new PresenterScanModel();
-            model.setPresenterClassName(classType.getParameterizedQualifiedSourceName());
+            model.setPresenterClassName(classType.getQualifiedSourceName());
             model.setViewClassName(presenterAnnotation.view().getName());
             model.setPlaceClassName(presenterAnnotation.place().getName());
             models.add(model);

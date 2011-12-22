@@ -48,7 +48,7 @@ public class AspectableClassReader implements Reader<ClassScanModel> {
                 JClassType aspectable = ClassUtils.getJClassType(Aspectable.class.getName(), context);
                 if (jClassType.isAssignableTo(aspectable) && !jClassType.isAbstract()) {
                     ClassScanModel model = new ClassScanModel();
-                    model.setClassName(jClassType.getParameterizedQualifiedSourceName());
+                    model.setClassName(jClassType.getQualifiedSourceName());
                     data.add(model);
                 }
             }

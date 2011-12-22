@@ -51,7 +51,7 @@ public class AspectMethodReader implements Reader<MethodScanModel> {
                         && !jMethod.isPrivate()) {
                     MethodScanModel model = new MethodScanModel();
                     model.setName(jMethod.getName());
-                    model.setReturnType(jMethod.getReturnType().getParameterizedQualifiedSourceName());
+                    model.setReturnType(jMethod.getReturnType().getQualifiedSourceName());
                     data.add(model);
                 }
             }

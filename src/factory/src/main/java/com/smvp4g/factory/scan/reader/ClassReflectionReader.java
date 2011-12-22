@@ -46,7 +46,7 @@ public class ClassReflectionReader implements Reader<ClassScanModel> {
         if (isMath(classType.getAnnotation(Reflection.class))) {
             for (JClassType subType : classType.getSubtypes()) {
                 ClassScanModel model = new ClassScanModel();
-                model.setClassName(subType.getParameterizedQualifiedSourceName());
+                model.setClassName(subType.getQualifiedSourceName());
                 model.setSimpleClassName(subType.getSimpleSourceName());
                 JClassType aspectable = ClassUtils.getJClassType(Aspectable.class.getName(), context);
                 if (subType.isAssignableTo(aspectable)) {
