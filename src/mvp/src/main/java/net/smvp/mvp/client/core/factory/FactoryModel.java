@@ -37,7 +37,6 @@ public class FactoryModel {
     private Class<? extends AbstractPlace> placeClass;
     private Class<? extends Module> moduleClass;
     private String token;
-    private String viewParentDomID;
 
     public Class<? extends Presenter> getPresenterClass() {
         return presenterClass;
@@ -77,13 +76,5 @@ public class FactoryModel {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public String getViewParentDomID() {
-        return viewParentDomID;
-    }
-
-    public void setViewParentDomID(String viewParentDomID) {
-        this.viewParentDomID = viewParentDomID;
     }
 }

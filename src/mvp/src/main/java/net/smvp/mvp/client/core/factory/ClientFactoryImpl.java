@@ -132,9 +132,8 @@ public class ClientFactoryImpl implements ClientFactory {
     protected View createView(FactoryModel model) {
         View view = instantiate(model.getViewClass());
         if (view != null) {
-            view.setParentDomId(model.getViewParentDomID());
+            historyHandlerConfigure.configure(view);
         }
-        historyHandlerConfigure.configure(view);
         return view;
     }
 

@@ -122,6 +122,13 @@ public abstract class AbstractView extends FlexTable implements View {
 
     @Override
     public String getParentDomId() {
+        if (parentDomId == null) {
+            net.smvp.mvp.client.core.view.annotation.View view = ClassUtils.getAnnotation(getClass(),
+                    net.smvp.mvp.client.core.view.annotation.View.class);
+            if (view != null) {
+                setParentDomId(view.parentDomId());
+            }
+        }
         return parentDomId;
     }
 

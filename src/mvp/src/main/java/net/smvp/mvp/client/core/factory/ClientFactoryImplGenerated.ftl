@@ -36,7 +36,6 @@ public class ${data.generateClassName} extends ClientFactoryImpl {
             model${presenter_index}.setViewClass(${presenter.getViewClassName()}.class);
             model${presenter_index}.setPlaceClass(${presenter.getPlaceClassName()}.class);
             model${presenter_index}.setToken("${presenter.getToken()}");
-            model${presenter_index}.setViewParentDomID("${presenter.getViewParentDomID()}");
             factoryModels.add(model${presenter_index});
         [/#list]
         super.configure();
