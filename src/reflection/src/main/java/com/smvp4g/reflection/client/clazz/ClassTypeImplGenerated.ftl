@@ -136,7 +136,7 @@ public class ${data.generateClassName} implements ClassType {
         method${method_index}.setGetterExecutor(new Executor() {
             @Override
             public Object execute(Object object, Object... params) {
-                [#if method.returnType != "void"]
+                [#if !method.isVoidMethod()]
                     return ((${data.className}) object).${method.name}(${method.params});
                 [#else]
                     ((${data.className}) object).${method.name}(${method.params});

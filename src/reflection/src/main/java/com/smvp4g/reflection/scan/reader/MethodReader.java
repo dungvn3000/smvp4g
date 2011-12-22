@@ -23,6 +23,7 @@ import com.google.gwt.core.ext.GeneratorContext;
 import com.google.gwt.core.ext.typeinfo.JClassType;
 import com.google.gwt.core.ext.typeinfo.JMethod;
 import com.google.gwt.core.ext.typeinfo.JParameter;
+import com.google.gwt.core.ext.typeinfo.JPrimitiveType;
 import com.smvp4g.generator.scan.model.MethodScanModel;
 import com.smvp4g.generator.scan.reader.Reader;
 import com.smvp4g.generator.scan.utils.ScanUtils;
@@ -48,7 +49,15 @@ public class MethodReader implements Reader<MethodScanModel> {
             if (method.isPublic()) {
                 MethodScanModel model = new MethodScanModel();
                 model.setName(method.getName());
-                model.setReturnType(method.getReturnType().getQualifiedSourceName());
+                if (method.getReturnType().isPrimitive() != null) {
+                    JPrimitiveType returnType = method.getReturnType().isPrimitive();
+                    model.setReturnType(returnType.getQualifiedBoxedSourceName());
+                    if (returnType == JPrimitiveType.VOID) {
+                        model.setVoidMethod(true);
+                    }
+                } else {
+                    model.setReturnType(method.getReturnType().getQualifiedSourceName());
+                }
                 model.setAnnotationScanModels(ScanUtils.getAnnotations(method));
                 model.setPramsLength(method.getParameters().length);
                 String params = StringUtils.EMPTY;

@@ -46,7 +46,12 @@ public class FieldReader implements Reader<FieldScanModel> {
             if (field.isPublic() && !field.isFinal()) {
                 FieldScanModel model = new FieldScanModel();
                 model.setName(field.getName());
-                model.setTypeClassName(field.getType().getQualifiedSourceName());
+                if (field.getType().isPrimitive() != null) {
+                    model.setTypeClassName(field.getType().isPrimitive()
+                            .getQualifiedBoxedSourceName());
+                } else {
+                    model.setTypeClassName(field.getType().getQualifiedSourceName());
+                }
                 model.setAnnotationScanModels(ScanUtils.getAnnotations(field));
                 models.add(model);
             }

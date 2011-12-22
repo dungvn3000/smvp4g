@@ -34,6 +34,7 @@ public class MethodScanModel {
     private String params;
     private String returnType;
     private String returnValue;
+    private boolean isVoidMethod;
     private List<AnnotationScanModel> annotationScanModels;
 
     public String getName() {
@@ -82,5 +83,13 @@ public class MethodScanModel {
 
     public void setParams(String params) {
         this.params = params;
+    }
+
+    public boolean isVoidMethod() {
+        return isVoidMethod;
+    }
+
+    public void setVoidMethod(boolean voidMethod) {
+        isVoidMethod = voidMethod;
     }
 }
