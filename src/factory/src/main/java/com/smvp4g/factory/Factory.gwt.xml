@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='Factory'>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+
+    <inherits name="com.smvp4g.reflection.Reflection"/>
+    <inherits name="com.smvp4g.aop.Aop"/>
+    <inherits name="com.smvp4g.generator.Generator" />
+    
+    <generate-with class="com.smvp4g.factory.generator.aop.AopCreatorGenerated">
+            <when-type-assignable class="com.smvp4g.factory.client.aop.AopCreator"/>
+    </generate-with>
+
+    <generate-with class="com.smvp4g.factory.generator.classtype.ClassCreatorGenerator">
+        <when-type-assignable class="com.smvp4g.factory.client.classtype.ClassTypeCreator"/>
+    </generate-with>
+
+    <generate-with class="com.smvp4g.factory.generator.clazz.ClassCreatorGenerator">
+        <when-type-assignable class="com.smvp4g.factory.client.clazz.ClassCreator"/>
+    </generate-with>
+
+</module>

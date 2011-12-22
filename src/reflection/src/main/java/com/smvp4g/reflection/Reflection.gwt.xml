@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='Reflection'>
+    <!-- Inherit the core Web Toolkit stuff.                        -->
+    <inherits name='com.google.gwt.user.User'/>
+
+    <inherits name="com.smvp4g.generator.Generator" />
+
+    <!-- Generator -->
+    <generate-with class="com.smvp4g.reflection.generator.reflection.ClassTypeGenerator">
+        <when-type-assignable class="com.smvp4g.reflection.client.marker.Reflectable"/>
+    </generate-with>
+</module>

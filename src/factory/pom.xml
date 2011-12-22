@@ -3,29 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>smvp</artifactId>
-        <groupId>net</groupId>
+        <artifactId>smvp4g</artifactId>
+        <groupId>com</groupId>
         <version>0.1-BETA</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.smvp</groupId>
+    <groupId>com.smvp4g</groupId>
     <artifactId>factory</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>net.smvp</groupId>
+            <groupId>com.smvp4g</groupId>
             <artifactId>generator</artifactId>
             <version>0.1-BETA</version>
         </dependency>
         <dependency>
-            <groupId>net.smvp</groupId>
+            <groupId>com.smvp4g</groupId>
             <artifactId>reflection</artifactId>
             <version>0.1-BETA</version>
         </dependency>
         <dependency>
-            <groupId>net.smvp</groupId>
+            <groupId>com.smvp4g</groupId>
             <artifactId>aop</artifactId>
             <version>0.1-BETA</version>
         </dependency>
