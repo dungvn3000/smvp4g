@@ -31,12 +31,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The Class ClassCreatorGenerator.
+ * The Class ClassTypeCreatorGenerator.
  *
  * @author Nguyen Duc Dung
  * @since 11/23/11, 8:30 PM
  */
-public class ClassCreatorGenerator extends AbstractGenerator<ClassTypeTemplateData> {
+public class ClassTypeCreatorGenerator extends AbstractGenerator<ClassTypeTemplateData> {
 
     private static final String TEMPLATE_FILE = "ClassTypeCreatorGenerated.ftl";
     private static final String DATA_TEMPLATE = "data";

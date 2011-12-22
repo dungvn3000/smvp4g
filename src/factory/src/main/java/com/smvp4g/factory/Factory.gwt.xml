@@ -11,7 +11,7 @@
             <when-type-assignable class="com.smvp4g.factory.client.aop.AopCreator"/>
     </generate-with>
 
-    <generate-with class="com.smvp4g.factory.generator.classtype.ClassCreatorGenerator">
+    <generate-with class="com.smvp4g.factory.generator.classtype.ClassTypeCreatorGenerator">
         <when-type-assignable class="com.smvp4g.factory.client.classtype.ClassTypeCreator"/>
     </generate-with>
 
