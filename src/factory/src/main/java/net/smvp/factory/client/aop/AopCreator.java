@@ -19,11 +19,9 @@
 
 package net.smvp.factory.client.aop;
 
-import com.google.gwt.user.client.Window;
 import net.smvp.aop.client.interceptor.HasInterceptor;
 import net.smvp.aop.client.interceptor.MethodInterceptor;
-import net.smvp.factory.client.creator.Creator;
-import net.smvp.reflection.client.clazz.ClassType;
+import net.smvp.factory.client.creator.AbstractCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,20 +32,9 @@ import java.util.List;
  * @author Nguyen Duc Dung
  * @since 12/13/11, 10:09 AM
  */
-public class AopCreator implements Creator {
+public class AopCreator extends AbstractCreator {
 
     protected List<MethodInterceptor> interceptors = new ArrayList<MethodInterceptor>();
-
-    @Override
-    public <T> T create(Class<?> clazz) {
-        //Don't do anything GWT generator will do it.
-        return null;
-    }
-
-    @Override
-    public boolean isFor(Class<?> classType) {
-        return classType != ClassType.class;
-    }
 
     protected void injectInterceptor(HasInterceptor hasInterceptor) {
         for (MethodInterceptor interceptor : interceptors) {

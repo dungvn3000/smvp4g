@@ -17,16 +17,26 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package net.smvp.factory.client.clazz;
-
-import net.smvp.factory.client.creator.AbstractCreator;
+package net.smvp.factory.client.creator;
 
 /**
- * The Class ClassCreator.
+ * The Class AbstractCreator.
  *
  * @author Nguyen Duc Dung
- * @since 12/13/11, 11:12 AM
+ * @since 12/22/11, 8:33 AM
  */
-public class ClassCreator extends AbstractCreator {
+public class AbstractCreator implements Creator {
+
+    @Override
+    public <T> T create(Class<?> clazz) {
+        //Don't do anything GWT generator will do it.
+        return null;
+    }
+
+    @Override
+    public boolean isFor(Class<?> classType) {
+        //GWT Generator will override it.
+        return false;
+    }
 
 }

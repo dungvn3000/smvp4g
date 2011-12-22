@@ -22,6 +22,7 @@
 package ${data.generatePackageName};
 
 import net.smvp.factory.client.creator.Creator;
+import net.smvp.reflection.client.clazz.ClassType;
 import com.google.gwt.core.client.GWT;
 
 /**
@@ -45,6 +46,16 @@ public class ${data.generateClassName} extends ClassCreator {
         }
         [/#list]
         return (T)obj;
+    }
+
+    @Override
+    public boolean isFor(Class<?> classType) {
+        [#list data.classScanModels as class]
+        if (classType == ${class.className}.class) {
+            return true;
+        }
+        [/#list]
+        return false;
     }
 
 }

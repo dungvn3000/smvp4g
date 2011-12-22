@@ -49,6 +49,16 @@ public class ${data.generateClassName} extends AopCreator {
         return obj;
     }
 
+    @Override
+    public boolean isFor(Class<?> classType) {
+        [#list data.classScanModels as class]
+        if (classType == ${class.className}.class) {
+            return true;
+        }
+        [/#list]
+        return false;
+    }
+
     public void createIntercrepter() {
         [#list data.interceptorClassModels as intercreptor]
             interceptors.add(new ${intercreptor.className}());
