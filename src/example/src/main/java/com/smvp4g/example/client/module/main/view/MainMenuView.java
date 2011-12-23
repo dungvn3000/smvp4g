@@ -41,7 +41,7 @@ public class MainMenuView extends AbstractView {
     private static final String MENU_CSS_STYLE = "mainmenu";
 
     @HistoryHandler
-    public MenuLink mlMainPanel = new MenuLink("Main Panel","main/test");
+    public MenuLink mlMainPanel = new MenuLink("Main Panel", "");
 
     @HistoryHandler
     public MenuLink mlTest1Panel = new MenuLink("Test1 Panel","test/test1");

@@ -23,7 +23,6 @@ import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
@@ -75,8 +74,19 @@ public class ClientFactoryImpl implements ClientFactory {
         ActivityManager activityManager = new ActivityManager(createActivityMapper(), eventBus);
         activityManager.setDisplay(new SimplePanel());
         PlaceHistoryHandler placeHistoryHandler = new PlaceHistoryHandler(createHistoryMapper());
-        placeHistoryHandler.register(placeController, eventBus, Place.NOWHERE);
+        placeHistoryHandler.register(placeController, eventBus, getDefaultPlace());
         placeHistoryHandler.handleCurrentHistory();
+    }
+    
+    private AbstractPlace getDefaultPlace() {
+        for (FactoryModel model : factoryModels) {
+            com.smvp4g.mvp.client.core.place.Place place = ClassUtils.getAnnotation(model.getPlaceClass(),
+                    com.smvp4g.mvp.client.core.place.Place.class);
+            if (place != null && place.defaultPlace()) {
+                return ClassUtils.instantiate(model.getPlaceClass());
+            }
+        }
+        return null;
     }
 
     protected <V extends View> void configurePresenter(Presenter<V> presenter, V view, AbstractPlace place) {

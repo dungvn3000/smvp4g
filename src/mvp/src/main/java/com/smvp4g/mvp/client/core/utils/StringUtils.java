@@ -133,4 +133,14 @@ public final class StringUtils extends Format {
         }
         return null;
     }
+
+    /**
+     * Using like String.valueOf(Object)
+     * but it'll return empty string for null object.
+     * @param obj
+     * @return
+     */
+    public static String valueOf(Object obj) {
+        return (obj == null) ? EMPTY : obj.toString();
+    }
 }
