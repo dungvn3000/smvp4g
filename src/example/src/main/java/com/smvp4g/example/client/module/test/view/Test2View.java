@@ -47,7 +47,7 @@ import com.smvp4g.reflection.client.method.MethodType;
  */
 @View(parentDomId = DomIdConstant.CONTENT_PANEL, constantsClass = Test2ViewConstants.class)
 @ViewSecurity(configuratorClass = Test2ViewSecurity.class)
-public class Test2View extends AbstractView implements Aspectable {
+public class Test2View extends AbstractView<Test2ViewConstants> implements Aspectable {
 
     @Test(name = "b1")
     @FieldSecurity

@@ -50,7 +50,7 @@ import java.util.List;
  * @since Aug 15, 2010, 6:45:32 PM
  */
 @Reflection
-public abstract class AbstractView extends FlexTable implements View {
+public abstract class AbstractView<C extends Constants> extends FlexTable implements View<C> {
 
     /**
      * Default width of views.
@@ -65,7 +65,7 @@ public abstract class AbstractView extends FlexTable implements View {
     /**
      * I18nField constant of this view.
      */
-    private Constants constant;
+    private C constant;
 
     /**
      * The Security Configurator of this view.
@@ -250,14 +250,15 @@ public abstract class AbstractView extends FlexTable implements View {
         setWidget(0, 0, w);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public final Constants getConstant() {
+    public final C getConstant() {
         if (constant == null) {
             com.smvp4g.mvp.client.core.view.annotation.View view = ClassUtils.getAnnotation(getClass(),
                     com.smvp4g.mvp.client.core.view.annotation.View.class);
             if (view != null) {
                 Class<? extends Constants> constantsClass = view.constantsClass();
-                constant = ClassUtils.instantiate(constantsClass);
+                constant = (C) ClassUtils.instantiate(constantsClass);
             }
         }
         return constant;

@@ -31,7 +31,7 @@ import java.util.List;
  * @author dungvn3000
  * @since 3/13/11, 6:54 PM
  */
-public interface View {
+public interface View<C extends Constants> {
 
     /**
      * Bind with a presenter.
@@ -99,7 +99,7 @@ public interface View {
      *
      * @return
      */
-    Constants getConstant();
+    C getConstant();
 
     /**
      * Check this view is a security view or not.
