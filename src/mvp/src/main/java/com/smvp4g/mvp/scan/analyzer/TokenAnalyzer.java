@@ -69,8 +69,12 @@ public class TokenAnalyzer implements Analyzer {
             }
             for (ModuleScanModel module : modules) {
                 if (presenter.getPresenterClassName().contains(module.getModulePackageName())) {
-                    String token = module.getToken() + "/" + presenter.getToken();
-                    presenter.setToken(token);
+                    if (presenter.getToken() != null) {
+                        String token = module.getToken() + "/" + presenter.getToken();
+                        presenter.setToken(token);
+                    } else {
+                        presenter.setToken(StringUtils.EMPTY);
+                    }
                 }
             }
         }
