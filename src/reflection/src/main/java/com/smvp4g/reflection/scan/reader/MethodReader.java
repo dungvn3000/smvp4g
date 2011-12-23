@@ -66,8 +66,15 @@ public class MethodReader implements Reader<MethodScanModel> {
                     if (i > 0) {
                         params = params + ",";
                     }
-                    params = params + "(" + parameter.getType().
-                            getQualifiedSourceName() + ")params[" + i + "]";
+                    params += "(" ;
+                    if (parameter.getType().isPrimitive() == null) {
+                        params += parameter.getType().
+                                                    getQualifiedSourceName();
+                    } else {
+                        params += parameter.getType().isPrimitive().
+                                                    getQualifiedBoxedSourceName();
+                    }
+                    params += ")params[" + i + "]";
                     i++;
                 }
                 model.setParams(params);
