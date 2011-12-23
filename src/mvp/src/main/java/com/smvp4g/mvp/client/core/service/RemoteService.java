@@ -19,7 +19,7 @@
 
 package com.smvp4g.mvp.client.core.service;
 
-import com.gwtent.reflection.client.annotations.Reflect_SubClasses;
+import com.smvp4g.reflection.client.marker.Reflection;
 
 /**
  * The interface RemoteService.
@@ -28,7 +28,7 @@ import com.gwtent.reflection.client.annotations.Reflect_SubClasses;
  * @since 5/7/11, 3:52 PM
  */
 @SuppressWarnings({"GWTRemoteServiceAsyncCheck"})
-@Reflect_SubClasses
+@Reflection(isClassLiteral = true)
 public interface RemoteService<S extends RemoteService> extends com.google.gwt.user.client.rpc.RemoteService {
 
 
