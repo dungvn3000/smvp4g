@@ -21,7 +21,6 @@ package com.smvp4g.example.client.module.main.view;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.place.shared.PlaceChangeEvent;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.smvp4g.example.client.constant.DomIdConstant;
 import com.smvp4g.mvp.client.core.eventbus.annotation.HistoryHandler;
@@ -49,10 +48,6 @@ public class MainMenuView extends AbstractView {
 
     @HistoryHandler
     public MenuLink mlTest2Panel = new MenuLink("Test2 Panel","test/test2");
-
-    public MainMenuView() {
-        RootPanel.get("loading").setVisible(false);
-    }
 
     @Override
     protected void initializeView() {

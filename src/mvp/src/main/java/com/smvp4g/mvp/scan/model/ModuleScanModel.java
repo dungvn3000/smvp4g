@@ -28,6 +28,7 @@ package com.smvp4g.mvp.scan.model;
 public class ModuleScanModel {
 
     private String modulePackageName;
+    private String className;
     public String token;
 
     public String getModulePackageName() {
@@ -44,5 +45,13 @@ public class ModuleScanModel {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

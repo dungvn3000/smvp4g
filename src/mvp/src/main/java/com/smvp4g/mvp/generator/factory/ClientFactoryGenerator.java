@@ -25,6 +25,7 @@ import com.google.gwt.core.ext.typeinfo.TypeOracle;
 import com.smvp4g.generator.generator.AbstractGenerator;
 import com.smvp4g.generator.scan.ClassScanner;
 import com.smvp4g.mvp.client.core.factory.ClientFactoryImpl;
+import com.smvp4g.mvp.scan.analyzer.PresenterAnalyzer;
 import com.smvp4g.mvp.scan.analyzer.TokenAnalyzer;
 import com.smvp4g.mvp.scan.reader.ModuleReader;
 import com.smvp4g.mvp.scan.reader.PresenterReader;
@@ -47,14 +48,14 @@ public class ClientFactoryGenerator extends AbstractGenerator<ClientFactoryTempl
     protected Map<String, ClientFactoryTemplateData> scan() {
         PresenterReader presenterReader = new PresenterReader();
         ModuleReader moduleReader = new ModuleReader();
-        TokenAnalyzer tokenAnalyzer = new TokenAnalyzer();
-        tokenAnalyzer.setModuleReader(moduleReader);
-        tokenAnalyzer.setPresenterReader(presenterReader);
+        TokenAnalyzer tokenAnalyzer = new TokenAnalyzer(presenterReader, moduleReader);
+        PresenterAnalyzer presenterAnalyzer = new PresenterAnalyzer(presenterReader, moduleReader);
 
         ClassScanner scanner = new ClassScanner();
         scanner.addReader(presenterReader);
         scanner.addReader(moduleReader);
         scanner.addAnalyzer(tokenAnalyzer);
+        scanner.addAnalyzer(presenterAnalyzer);
         TypeOracle typeOracle = context.getTypeOracle();
         for (JPackage jPackage : typeOracle.getPackages()) {
             for (JClassType jClassType : jPackage.getTypes()) {

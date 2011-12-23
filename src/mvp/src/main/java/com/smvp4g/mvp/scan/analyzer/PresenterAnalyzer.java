@@ -21,10 +21,6 @@ package com.smvp4g.mvp.scan.analyzer;
 
 import com.google.gwt.core.ext.GeneratorContext;
 import com.smvp4g.generator.scan.analyzer.Analyzer;
-import com.smvp4g.generator.utils.ClassUtils;
-import com.smvp4g.mvp.client.core.place.DefaultPlace;
-import com.smvp4g.mvp.client.core.place.Place;
-import com.smvp4g.mvp.client.core.utils.StringUtils;
 import com.smvp4g.mvp.scan.model.ModuleScanModel;
 import com.smvp4g.mvp.scan.model.PresenterScanModel;
 import com.smvp4g.mvp.scan.reader.ModuleReader;
@@ -33,44 +29,29 @@ import com.smvp4g.mvp.scan.reader.PresenterReader;
 import java.util.List;
 
 /**
- * The Class TokenAnalyzer.
+ * The Class PresenterAnalyzer.
  *
  * @author Nguyen Duc Dung
- * @since 11/20/11, 3:26 PM
+ * @since 12/23/11, 8:21 AM
  */
-public class TokenAnalyzer implements Analyzer {
+public class PresenterAnalyzer implements Analyzer {
 
     private PresenterReader presenterReader;
     private ModuleReader moduleReader;
 
-    public TokenAnalyzer(PresenterReader presenterReader, ModuleReader moduleReader) {
+    public PresenterAnalyzer(PresenterReader presenterReader, ModuleReader moduleReader) {
         this.presenterReader = presenterReader;
         this.moduleReader = moduleReader;
     }
-
+    
     @Override
     public void analyze(GeneratorContext context) {
         List<PresenterScanModel> presenters = presenterReader.getData();
         List<ModuleScanModel> modules = moduleReader.getData();
         for (PresenterScanModel presenter : presenters) {
-            if (!presenter.getPlaceClassName().equals(DefaultPlace.class.getName())) {
-                //Don't set history token for Default Place.
-                Place place = ClassUtils.
-                        getAnnotation(presenter.getPlaceClassName(), Place.class, context);
-                if (place != null) {
-                    if (StringUtils.isEmpty(place.token())) {
-                        presenter.setToken(StringUtils.
-                                getHistoryName(ClassUtils.
-                                        getSimpleNameOfClass(presenter.getPlaceClassName(), context)));
-                    } else {
-                        presenter.setToken(place.token());
-                    }
-                }
-            }
             for (ModuleScanModel module : modules) {
                 if (presenter.getPresenterClassName().contains(module.getModulePackageName())) {
-                    String token = module.getToken() + "/" + presenter.getToken();
-                    presenter.setToken(token);
+                    presenter.setModuleClassName(module.getClassName());
                 }
             }
         }

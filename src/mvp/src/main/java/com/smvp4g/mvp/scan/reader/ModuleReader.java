@@ -46,6 +46,7 @@ public class ModuleReader implements Reader<ModuleScanModel> {
         if (isMath(module)) {
             ModuleScanModel model = new ModuleScanModel();
             model.setModulePackageName(classType.getPackage().getName());
+            model.setClassName(classType.getQualifiedSourceName());
             if (StringUtils.isNotEmpty(module.historyName())) {
                 model.setToken(module.historyName());
             } else {

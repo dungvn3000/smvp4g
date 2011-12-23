@@ -33,6 +33,7 @@ import com.smvp4g.mvp.client.core.factory.configure.EventHandlerConfigure;
 import com.smvp4g.mvp.client.core.factory.configure.HistoryHandlerConfigure;
 import com.smvp4g.mvp.client.core.mapper.ActivityMapperImpl;
 import com.smvp4g.mvp.client.core.mapper.PlaceHistoryMapperImpl;
+import com.smvp4g.mvp.client.core.module.Module;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.place.DefaultPlace;
 import com.smvp4g.mvp.client.core.presenter.Presenter;
@@ -52,6 +53,7 @@ public class ClientFactoryImpl implements ClientFactory {
     protected List<FactoryModel> factoryModels = new ArrayList<FactoryModel>();
     protected List<Presenter<? extends View>> presenters =
             new ArrayList<Presenter<? extends View>>();
+    protected List<Module> modules = new ArrayList<Module>();
 
     private EventBus eventBus = new SimpleEventBus();
     private PlaceController placeController = new PlaceController(eventBus);
@@ -123,6 +125,9 @@ public class ClientFactoryImpl implements ClientFactory {
         if (presenter != null) {
             View view = createView(model);
             AbstractPlace place = createPlace(model);
+            if (getExitsModule(model.getModuleClass()) == null) {
+                createModule(model);
+            }
             configurePresenter(presenter, view, place);
             eventHandlerConfigure.configure(presenter);
         }
@@ -144,6 +149,32 @@ public class ClientFactoryImpl implements ClientFactory {
             place.setToken(model.getToken());
         }
         return place;
+    }
+
+    @Override
+    public Module createModule(FactoryModel model) {
+        Module module = instantiate(model.getModuleClass());
+        if (module != null) {
+            configureModule(module);
+            modules.add(module);
+        }
+        return module;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <M extends Module> M getExitsModule(Class<M> moduleClass) {
+        for (Module module : modules) {
+            if (module.getClass() == ClassUtils.getRealClass(moduleClass)) {
+                return (M) module;
+            }
+        }
+        return null;
+    }
+
+    private void configureModule(Module module) {
+        module.configure();
+        module.start();
     }
 
     @Override

@@ -30,6 +30,7 @@ public class PresenterScanModel {
     private String presenterClassName;
     private String viewClassName;
     private String placeClassName;
+    private String moduleClassName;
     private String token;
     private String viewParentDomID;
 
@@ -71,5 +72,13 @@ public class PresenterScanModel {
 
     public void setViewParentDomID(String viewParentDomID) {
         this.viewParentDomID = viewParentDomID;
+    }
+
+    public String getModuleClassName() {
+        return moduleClassName;
+    }
+
+    public void setModuleClassName(String moduleClassName) {
+        this.moduleClassName = moduleClassName;
     }
 }

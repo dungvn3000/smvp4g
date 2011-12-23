@@ -19,6 +19,7 @@
 
 package com.smvp4g.example.client.module.test;
 
+import com.smvp4g.mvp.client.core.module.AbstractModule;
 import com.smvp4g.mvp.client.core.module.annotation.Module;
 
 /**
@@ -28,5 +29,12 @@ import com.smvp4g.mvp.client.core.module.annotation.Module;
  * @since 11/20/11, 1:56 PM
  */
 @Module
-public class TestModule {
+public class TestModule extends AbstractModule {
+    @Override
+    public void configure() {
+    }
+
+    @Override
+    public void start() {
+    }
 }

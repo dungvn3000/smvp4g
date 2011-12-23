@@ -17,26 +17,17 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main;
+package com.smvp4g.mvp.client.core.module;
 
-import com.google.gwt.user.client.ui.RootPanel;
-import com.smvp4g.mvp.client.core.module.AbstractModule;
-import com.smvp4g.mvp.client.core.module.annotation.Module;
+import com.smvp4g.reflection.client.marker.Reflection;
 
 /**
- * The Class MainModule.
+ * The Class AbstractModule.
  *
  * @author Nguyen Duc Dung
- * @since 10/30/11, 1:44 PM
+ * @since 12/23/11, 7:49 AM
  */
-@Module
-public class MainModule extends AbstractModule {
-    @Override
-    public void configure() {
-    }
+@Reflection
+public abstract class AbstractModule implements Module {
 
-    @Override
-    public void start() {
-        RootPanel.get("loading").setVisible(false);
-    }
 }

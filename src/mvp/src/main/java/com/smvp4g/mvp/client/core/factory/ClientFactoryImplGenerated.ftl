@@ -32,9 +32,10 @@ public class ${data.generateClassName} extends ClientFactoryImpl {
     public void configure() {
         [#list data.getPresenterScanModels() as presenter]
             FactoryModel model${presenter_index} = new FactoryModel();
-            model${presenter_index}.setPresenterClass(${presenter.getPresenterClassName()}.class);
-            model${presenter_index}.setViewClass(${presenter.getViewClassName()}.class);
-            model${presenter_index}.setPlaceClass(${presenter.getPlaceClassName()}.class);
+            model${presenter_index}.setPresenterClass(${presenter.presenterClassName}.class);
+            model${presenter_index}.setViewClass(${presenter.viewClassName}.class);
+            model${presenter_index}.setPlaceClass(${presenter.placeClassName}.class);
+            model${presenter_index}.setModuleClass(${presenter.moduleClassName}.class);
             model${presenter_index}.setToken("${presenter.getToken()}");
             factoryModels.add(model${presenter_index});
         [/#list]
