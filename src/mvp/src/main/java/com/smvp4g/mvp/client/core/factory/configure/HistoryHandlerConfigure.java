@@ -24,7 +24,6 @@ import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.smvp4g.factory.client.utils.ClassUtils;
 import com.smvp4g.mvp.client.core.eventbus.annotation.HistoryHandler;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
-import com.smvp4g.mvp.client.core.utils.StringUtils;
 import com.smvp4g.mvp.client.widget.MenuLink;
 import com.smvp4g.reflection.client.field.FieldType;
 import com.smvp4g.reflection.client.method.MethodType;
@@ -56,7 +55,7 @@ public class HistoryHandlerConfigure implements Configure<Object> {
                             if (field instanceof MenuLink) {
                                 AbstractPlace place = (AbstractPlace) event.getNewPlace();
                                 if (place != null && ((MenuLink) field).
-                                        getTargetHistoryToken().equals(StringUtils.valueOf(place.getToken()))) {
+                                        getTargetHistoryToken().equals(place.getToken())) {
                                     ((MenuLink) field).setActive(true);
                                 } else {
                                     ((MenuLink) field).setActive(false);
