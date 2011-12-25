@@ -6,7 +6,7 @@
     <parent>
         <artifactId>smvp4g</artifactId>
         <groupId>com</groupId>
-        <version>0.1-BETA</version>
+        <version>0.1</version>
     </parent>
 
     <groupId>com.smvp4g</groupId>
@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>factory</artifactId>
-            <version>0.1-BETA</version>
+            <version>${smvp4gVersion}</version>
         </dependency>
 
         <dependency>

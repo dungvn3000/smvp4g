@@ -5,7 +5,7 @@
     <parent>
         <artifactId>smvp4g</artifactId>
         <groupId>com</groupId>
-        <version>0.1-BETA</version>
+        <version>0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -17,17 +17,17 @@
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>generator</artifactId>
-            <version>0.1-BETA</version>
+            <version>${smvp4gVersion}</version>
         </dependency>
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>reflection</artifactId>
-            <version>0.1-BETA</version>
+            <version>${smvp4gVersion}</version>
         </dependency>
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>aop</artifactId>
-            <version>0.1-BETA</version>
+            <version>${smvp4gVersion}</version>
         </dependency>
     </dependencies>
 
