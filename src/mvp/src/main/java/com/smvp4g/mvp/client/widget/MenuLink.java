@@ -20,6 +20,7 @@
 package com.smvp4g.mvp.client.widget;
 
 import com.google.gwt.user.client.ui.Hyperlink;
+import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.utils.StringUtils;
 
 /**
@@ -35,19 +36,12 @@ public class MenuLink extends Hyperlink {
      */
     public static final String ACTIVE_MENU_CSS_STYLE = "active";
 
+    private Class<? extends AbstractPlace> placeClass;
     private boolean isActive;
 
-    /**
-     * Creates a hyperlink with its text and target history token specified.
-     *
-     * @param targetHistoryToken the history token to which it will link.
-     */
-    public MenuLink(String targetHistoryToken) {
-        super(StringUtils.EMPTY, targetHistoryToken);
-    }
-    
-    public MenuLink(String text, String targetHistoryToken) {
-        super(text, targetHistoryToken);
+    public MenuLink(String text, Class<? extends AbstractPlace> placeClass) {
+        super(text, StringUtils.EMPTY);
+        this.placeClass = placeClass;
     }
 
     public boolean isActive() {
@@ -61,5 +55,13 @@ public class MenuLink extends Hyperlink {
         } else {
             setStyleName(ACTIVE_MENU_CSS_STYLE, false);
         }
+    }
+
+    public Class<? extends AbstractPlace> getPlaceClass() {
+        return placeClass;
+    }
+
+    public void setPlaceClass(Class<? extends AbstractPlace> placeClass) {
+        this.placeClass = placeClass;
     }
 }

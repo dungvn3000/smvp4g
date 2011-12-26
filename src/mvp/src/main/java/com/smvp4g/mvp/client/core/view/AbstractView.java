@@ -19,7 +19,6 @@
 
 package com.smvp4g.mvp.client.core.view;
 
-import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Widget;
@@ -288,19 +287,13 @@ public abstract class AbstractView<C extends Constants> extends FlexTable implem
     }
 
     private ViewSecurityConfigurator getSecurityConfigurator() {
-        ViewSecurityConfigurator configurator = this.securityConfigurator;
-        if (configurator == null) {
+        if (securityConfigurator == null) {
             ViewSecurity viewSecurity = ClassUtils.getAnnotation(getClass(), ViewSecurity.class);
             if (viewSecurity != null) {
-                try {
-                    configurator = ClassUtils.instantiate(viewSecurity.configuratorClass());
-                    this.securityConfigurator = configurator;
-                } catch (Exception e) {
-                    Log.error(e.getMessage(), e);
-                }
+                securityConfigurator = ClassUtils.instantiate(viewSecurity.configuratorClass());
             }
         }
-        return configurator;
+        return securityConfigurator;
     }
 
     private HasRole[] getRoles(ViewSecurityConfigurator configurator, String configName) {

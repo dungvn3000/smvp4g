@@ -23,6 +23,9 @@ import com.allen_sauer.gwt.log.client.Log;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.smvp4g.example.client.constant.DomIdConstant;
+import com.smvp4g.example.client.module.main.place.TestPlace;
+import com.smvp4g.example.client.module.test.place.Test1Place;
+import com.smvp4g.example.client.module.test.place.Test2Place;
 import com.smvp4g.mvp.client.core.eventbus.annotation.HistoryHandler;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.view.AbstractView;
@@ -41,13 +44,13 @@ public class MainMenuView extends AbstractView {
     private static final String MENU_CSS_STYLE = "mainmenu";
 
     @HistoryHandler
-    public MenuLink mlMainPanel = new MenuLink("Main Panel","main/test");
+    public MenuLink mlMainPanel = new MenuLink("Main Panel", TestPlace.class);
 
     @HistoryHandler
-    public MenuLink mlTest1Panel = new MenuLink("Test1 Panel","test/test1");
+    public MenuLink mlTest1Panel = new MenuLink("Test1 Panel", Test1Place.class);
 
     @HistoryHandler
-    public MenuLink mlTest2Panel = new MenuLink("Test2 Panel","test/test2");
+    public MenuLink mlTest2Panel = new MenuLink("Test2 Panel", Test2Place.class);
 
     @Override
     protected void initializeView() {
@@ -61,6 +64,6 @@ public class MainMenuView extends AbstractView {
 
     @HistoryHandler
     public void testHistoryHandler(PlaceChangeEvent event) {
-        Log.debug(((AbstractPlace)event.getNewPlace()).getToken());
+        Log.debug(((AbstractPlace) event.getNewPlace()).getToken());
     }
 }

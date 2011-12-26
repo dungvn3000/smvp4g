@@ -27,4 +27,5 @@ package com.smvp4g.mvp.client.core.place;
  */
 public @interface Place {
     String token() default "";
+    boolean defaultPlace() default false;
 }

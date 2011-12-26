@@ -23,10 +23,13 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceChangeEvent;
 import com.smvp4g.factory.client.utils.ClassUtils;
 import com.smvp4g.mvp.client.core.eventbus.annotation.HistoryHandler;
+import com.smvp4g.mvp.client.core.factory.FactoryModel;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.widget.MenuLink;
 import com.smvp4g.reflection.client.field.FieldType;
 import com.smvp4g.reflection.client.method.MethodType;
+
+import java.util.List;
 
 /**
  * The Class HistoryHandlerConfigure.
@@ -36,10 +39,12 @@ import com.smvp4g.reflection.client.method.MethodType;
  */
 public class HistoryHandlerConfigure implements Configure<Object> {
 
+    private List<FactoryModel> factoryModels;
     private EventBus eventBus;
 
-    public HistoryHandlerConfigure(EventBus eventBus) {
+    public HistoryHandlerConfigure(EventBus eventBus, List<FactoryModel> factoryModels) {
         this.eventBus = eventBus;
+        this.factoryModels = factoryModels;
     }
 
     @Override
@@ -48,21 +53,26 @@ public class HistoryHandlerConfigure implements Configure<Object> {
             for (final FieldType fieldType : ClassUtils.getFields(object.getClass())) {
                 HistoryHandler historyHandler = fieldType.getAnnotation(HistoryHandler.class);
                 if (historyHandler != null) {
-                    eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
-                        @Override
-                        public void onPlaceChange(PlaceChangeEvent event) {
-                            Object field = fieldType.get(object);
-                            if (field instanceof MenuLink) {
+                    final Object field = fieldType.get(object);
+                    if (field instanceof MenuLink) {
+                        final MenuLink menuLink = (MenuLink) field;
+                        eventBus.addHandler(PlaceChangeEvent.TYPE, new PlaceChangeEvent.Handler() {
+                            @Override
+                            public void onPlaceChange(PlaceChangeEvent event) {
                                 AbstractPlace place = (AbstractPlace) event.getNewPlace();
-                                if (place != null && ((MenuLink) field).
-                                        getTargetHistoryToken().equals(place.getToken())) {
-                                    ((MenuLink) field).setActive(true);
+                                if (place != null && menuLink.getPlaceClass() == place.getClass()) {
+                                    menuLink.setActive(true);
                                 } else {
-                                    ((MenuLink) field).setActive(false);
+                                    menuLink.setActive(false);
                                 }
                             }
+                        });
+                        for (FactoryModel model : factoryModels) {
+                            if (model.getPlaceClass() == menuLink.getPlaceClass()) {
+                                menuLink.setTargetHistoryToken(model.getToken());
+                            }
                         }
-                    });
+                    }
                 }
             }
             for (final MethodType methodType : ClassUtils.getMethods(object.getClass())) {

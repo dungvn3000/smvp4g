@@ -37,6 +37,9 @@ import com.smvp4g.mvp.client.core.module.Module;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.place.DefaultPlace;
 import com.smvp4g.mvp.client.core.presenter.Presenter;
+import com.smvp4g.mvp.client.core.security.ViewSecurity;
+import com.smvp4g.mvp.client.core.security.ViewSecurityConfigurator;
+import com.smvp4g.mvp.client.core.utils.LoginUtils;
 import com.smvp4g.mvp.client.core.view.View;
 
 import java.util.ArrayList;
@@ -58,7 +61,7 @@ public class ClientFactoryImpl implements ClientFactory {
     private EventBus eventBus = new SimpleEventBus();
     private PlaceController placeController = new PlaceController(eventBus);
     private EventHandlerConfigure eventHandlerConfigure = new EventHandlerConfigure(eventBus);
-    private HistoryHandlerConfigure historyHandlerConfigure = new HistoryHandlerConfigure(eventBus);
+    private HistoryHandlerConfigure historyHandlerConfigure = new HistoryHandlerConfigure(eventBus, factoryModels);
 
     @Override
     public ActivityMapper createActivityMapper() {
@@ -75,8 +78,28 @@ public class ClientFactoryImpl implements ClientFactory {
         ActivityManager activityManager = new ActivityManager(createActivityMapper(), eventBus);
         activityManager.setDisplay(new SimplePanel());
         PlaceHistoryHandler placeHistoryHandler = new PlaceHistoryHandler(createHistoryMapper());
-        placeHistoryHandler.register(placeController, eventBus, Place.NOWHERE);
+        placeHistoryHandler.register(placeController, eventBus, getDefaultPlace());
         placeHistoryHandler.handleCurrentHistory();
+    }
+    
+    private Place getDefaultPlace() {
+        for (FactoryModel model : factoryModels) {
+            com.smvp4g.mvp.client.core.place.Place place = ClassUtils.getAnnotation(model.
+                    getPlaceClass(), com.smvp4g.mvp.client.core.place.Place.class);
+            if (place != null && place.defaultPlace()) {
+                ViewSecurity viewSecurity = ClassUtils.getAnnotation(model.getViewClass(), ViewSecurity.class);
+                if (viewSecurity != null) {
+                    ViewSecurityConfigurator configurator = ClassUtils.instantiate(viewSecurity.configuratorClass());
+                    if ((LoginUtils.checkPermission(configurator.getRoles(), LoginUtils.getRole()) && !viewSecurity.showOnlyGuest())
+                            || (viewSecurity.showOnlyGuest() && LoginUtils.getRole() == null)) {
+                        return ClassUtils.instantiate(model.getPlaceClass());
+                    }
+                } else {
+                    return ClassUtils.instantiate(model.getPlaceClass());
+                }
+            }
+        }
+        return Place.NOWHERE;
     }
 
     protected <V extends View> void configurePresenter(Presenter<V> presenter, V view, AbstractPlace place) {
