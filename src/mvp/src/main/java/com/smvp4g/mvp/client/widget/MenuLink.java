@@ -39,6 +39,10 @@ public class MenuLink extends Hyperlink {
     private Class<? extends AbstractPlace> placeClass;
     private boolean isActive;
 
+    public MenuLink(Class<? extends AbstractPlace> placeClass) {
+        this(StringUtils.EMPTY, placeClass);
+    }
+
     public MenuLink(String text, Class<? extends AbstractPlace> placeClass) {
         super(text, StringUtils.EMPTY);
         this.placeClass = placeClass;
