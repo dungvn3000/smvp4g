@@ -80,10 +80,10 @@ public abstract class AbstractView<C extends Constants> extends FlexTable implem
     @Override
     public final void createView() {
         getElement().setId(generateDomId());
+        initializeView();
         if (isSecurityView()) {
             doSecurity();
         }
-        initializeView();
         applyStyle();
     }
 
@@ -145,13 +145,13 @@ public abstract class AbstractView<C extends Constants> extends FlexTable implem
             if (securityAnnotation != null) {
                 Object widget = fieldType.get(this);
                 if (securityAnnotation.showOnlyGuest() && LoginUtils.getRole() != null) {
-                    WidgetUtils.setVisible(widget, false);
+                    WidgetUtils.removeFormParent(widget);
                 } else {
                     ViewSecurityConfigurator configurator = getSecurityConfigurator();
                     if (configurator != null) {
                         HasRole[] roles = getRoles(configurator, fieldType.getName());
                         if (!LoginUtils.checkPermission(roles, LoginUtils.getRole())) {
-                            WidgetUtils.setVisible(widget, false);
+                            WidgetUtils.removeFormParent(widget);
                         }
                     }
                 }

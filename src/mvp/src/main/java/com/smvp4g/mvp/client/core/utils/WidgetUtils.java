@@ -21,12 +21,15 @@ package com.smvp4g.mvp.client.core.utils;
 
 import com.allen_sauer.gwt.log.client.Log;
 import com.extjs.gxt.ui.client.widget.ContentPanel;
+import com.extjs.gxt.ui.client.widget.LayoutContainer;
 import com.extjs.gxt.ui.client.widget.Text;
+import com.extjs.gxt.ui.client.widget.WidgetComponent;
 import com.extjs.gxt.ui.client.widget.button.Button;
 import com.extjs.gxt.ui.client.widget.form.Field;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.UIObject;
+import com.google.gwt.user.client.ui.Widget;
 
 /**
  * The Class WidgetUtils.
@@ -94,4 +97,27 @@ public final class WidgetUtils {
         }
     }
 
+    /**
+     * Remove widget form parent.
+     *
+     * @param widget
+     */
+    public static void removeFormParent(Object widget) {
+        if (widget instanceof Widget) {
+            Widget parent = ((Widget) widget).getParent();
+            if (parent != null) {
+                if (parent instanceof WidgetComponent) {
+                    //It was wrapped by WidgetComponent.
+                    parent = parent.getParent();
+                }
+                if (parent instanceof LayoutContainer) {
+                    ((LayoutContainer) parent).remove((Widget)widget);
+                } else {
+                    ((Widget) widget).removeFromParent();
+                }
+            }
+        } else if (widget != null) {
+            Log.error("Can't remove cass " + widget.getClass());
+        }
+    }
 }
