@@ -34,7 +34,6 @@
         <gwtentVersion>2.0.0-RC1</gwtentVersion>
         <gxtVersion>2.2.4</gxtVersion>
         <gwtlogVersion>3.1.5</gwtlogVersion>
-        <ginVersion>1.5.0</ginVersion>
         <freemarkerVersion>2.3.18</freemarkerVersion>
         <guavaVersion>10.0.1</guavaVersion>
         <testngVersion>6.1.1</testngVersion>

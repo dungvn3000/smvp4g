@@ -40,12 +40,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.google.gwt.inject</groupId>
-            <artifactId>gin</artifactId>
-            <version>${ginVersion}</version>
-        </dependency>
-
-        <dependency>
           <groupId>org.freemarker</groupId>
           <artifactId>freemarker</artifactId>
           <version>${freemarkerVersion}</version>

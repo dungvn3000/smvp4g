@@ -8,9 +8,6 @@
     <inherits name="com.google.gwt.place.Place"/>
     <inherits name="com.google.gwt.activity.Activity"/>
 
-    <!--Add google gin -->
-    <inherits name="com.google.gwt.inject.Inject"/>
-
     <!--Add ext gwt support-->
     <inherits name="com.extjs.gxt.ui.GXT"/>
 
