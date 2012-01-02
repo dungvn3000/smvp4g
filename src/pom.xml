@@ -32,7 +32,7 @@
         <gwtVersion>2.3.0</gwtVersion>
         <guiceVersion>3.0</guiceVersion>
         <gwtentVersion>2.0.0-RC1</gwtentVersion>
-        <gxtVersion>2.2.4</gxtVersion>
+        <gxtVersion>2.2.5</gxtVersion>
         <gwtlogVersion>3.1.5</gwtlogVersion>
         <freemarkerVersion>2.3.18</freemarkerVersion>
         <guavaVersion>10.0.1</guavaVersion>
