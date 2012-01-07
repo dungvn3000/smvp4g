@@ -58,8 +58,8 @@ public abstract class AbstractGenerator<M extends AbstractTemplateData> extends 
                 createTemplate().process(scan(), templateWriter);
                 sourceWriter.print(templateWriter.toString());
                 context.commit(logger, sourceWriter);
-                return getPackageName() + "." + getClassName();
             }
+            return getPackageName() + "." + getClassName();
         } catch (Exception e) {
             logger.log(TreeLogger.Type.ERROR, e.getMessage());
         }
