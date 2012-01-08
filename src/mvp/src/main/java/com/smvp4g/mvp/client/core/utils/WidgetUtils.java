@@ -20,16 +20,14 @@
 package com.smvp4g.mvp.client.core.utils;
 
 import com.allen_sauer.gwt.log.client.Log;
-import com.extjs.gxt.ui.client.widget.ContentPanel;
-import com.extjs.gxt.ui.client.widget.LayoutContainer;
-import com.extjs.gxt.ui.client.widget.Text;
-import com.extjs.gxt.ui.client.widget.WidgetComponent;
-import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.Field;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.user.client.ui.Widget;
+import com.sencha.gxt.widget.core.client.ContentPanel;
+import com.sencha.gxt.widget.core.client.WidgetComponent;
+import com.sencha.gxt.widget.core.client.container.Container;
+import com.sencha.gxt.widget.core.client.form.ValueBaseField;
 
 /**
  * The Class WidgetUtils.
@@ -50,15 +48,8 @@ public final class WidgetUtils {
      * @param text
      */
     public static void setText(Object widget, String text) {
-        if (widget instanceof Text) {
-            //for ext gwt widget.
-            ((Text) widget).setText(text);
-        } else if (widget instanceof Button) {
-            ((Button) widget).setText(text);
-        } else if (widget instanceof Field) {
-            ((Field) widget).setFieldLabel(text);
-        } else if (widget instanceof ContentPanel) {
-            ((ContentPanel) widget).setHeading(text);
+        if (widget instanceof ContentPanel) {
+            ((ContentPanel) widget).setHeadingText(text);
         } else if (widget instanceof Image) {
             ((Image) widget).setTitle(text);
         } else if (widget instanceof HasText) {
@@ -76,8 +67,8 @@ public final class WidgetUtils {
      * @param emptyText
      */
     public static void setEmptyText(Object widget, String emptyText) {
-        if (widget instanceof Field) {
-            ((Field) widget).setEmptyText(emptyText);
+        if (widget instanceof ValueBaseField) {
+            ((ValueBaseField) widget).setEmptyText(emptyText);
         } else if (widget != null) {
             Log.error("Can't set empty text for class " + widget.getClass());
         }
@@ -110,8 +101,8 @@ public final class WidgetUtils {
                     //It was wrapped by WidgetComponent.
                     parent = parent.getParent();
                 }
-                if (parent instanceof LayoutContainer) {
-                    ((LayoutContainer) parent).remove((Widget)widget);
+                if (parent instanceof Container) {
+                    ((Container) parent).remove((Widget)widget);
                 } else {
                     ((Widget) widget).removeFromParent();
                 }

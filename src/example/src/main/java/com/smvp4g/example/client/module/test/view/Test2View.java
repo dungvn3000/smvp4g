@@ -19,11 +19,11 @@
 
 package com.smvp4g.example.client.module.test.view;
 
-import com.extjs.gxt.ui.client.widget.HorizontalPanel;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.smvp4g.aop.client.marker.Aspectable;
