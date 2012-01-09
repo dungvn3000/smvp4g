@@ -19,7 +19,7 @@
 
 package com.smvp4g.mvp.client.core.utils;
 
-import com.sencha.gxt.core.client.util.Format;
+import com.extjs.gxt.ui.client.util.Format;
 
 /**
  * The Class StringUtils like org.apache.commons.lang.StringUtils.

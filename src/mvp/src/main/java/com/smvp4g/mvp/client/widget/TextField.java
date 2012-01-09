@@ -25,23 +25,15 @@ package com.smvp4g.mvp.client.widget;
  * @author Nguyen Duc Dung
  * @since 8/21/11, 2:20 AM
  */
-public class TextField extends com.sencha.gxt.widget.core.client.form.TextField {
+public class TextField<T> extends com.extjs.gxt.ui.client.widget.form.TextField<T> {
 
     private static final String EMPTY_TEXT_ATTR = "placeholder";
 
-    private String emptyText;
-    
     @Override
-    public void setEmptyText(String emptyText) {
+    protected void applyEmptyText() {
         //Fix using placeholder attr for empty text.
         if (isRendered() && getEmptyText() != null) {
-            this.emptyText = emptyText;
-            getInputEl().setAttribute(EMPTY_TEXT_ATTR, getEmptyText());
+            getInputEl().setElementAttribute(EMPTY_TEXT_ATTR, getEmptyText());
         }
-    }
-
-    @Override
-    public String getEmptyText() {
-        return this.emptyText;
     }
 }
