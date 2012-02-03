@@ -55,4 +55,12 @@ public class StringUtilsTest {
         assertEquals(StringUtils.getHistoryName("TestPlaceWord" ), "testPlace");
     }
 
+    public void testConvertNonAscii() {
+        assertEquals(StringUtils.convertNonAscii("ã á à ạ Ã Á À Ạ"),
+                "a a a a A A A A");
+        assertEquals(StringUtils.convertNonAscii("ố ỗ ồ ộ Ố Ỗ Ồ Ộ"),
+                "o o o o O O O O");
+        assertEquals(StringUtils.convertNonAscii("Nguyễn Đức Dũng"), "Nguyen Duc Dung");
+    }
+
 }

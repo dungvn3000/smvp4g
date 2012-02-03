@@ -35,7 +35,7 @@
         <gxtVersion>2.2.5</gxtVersion>
         <gwtlogVersion>3.1.5</gwtlogVersion>
         <freemarkerVersion>2.3.18</freemarkerVersion>
-        <guavaVersion>10.0.1</guavaVersion>
+        <guavaVersion>11.0.1</guavaVersion>
         <testngVersion>6.1.1</testngVersion>
         <smvp4gVersion>0.1</smvp4gVersion>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
