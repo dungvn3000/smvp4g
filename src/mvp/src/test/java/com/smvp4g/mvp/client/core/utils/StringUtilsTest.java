@@ -43,7 +43,7 @@ public class StringUtilsTest {
         assertEquals(StringUtils.isBlank(""), true);
         assertEquals(StringUtils.isBlank(" "), true);
         assertEquals(StringUtils.isBlank("  "), true);
-        assertEquals(StringUtils.isBlank(" 1 ") , false);
+        assertEquals(StringUtils.isBlank(" 1 "), false);
     }
 
     public void testGetFirstWord() {
@@ -52,7 +52,7 @@ public class StringUtilsTest {
         assertEquals(StringUtils.getHistoryName("TWord"), "t");
         assertEquals(StringUtils.getHistoryName("TTTWord"), "tTT");
         assertEquals(StringUtils.getHistoryName("Word"), null);
-        assertEquals(StringUtils.getHistoryName("TestPlaceWord" ), "testPlace");
+        assertEquals(StringUtils.getHistoryName("TestPlaceWord"), "testPlace");
     }
 
     public void testConvertNonAscii() {
@@ -61,6 +61,16 @@ public class StringUtilsTest {
         assertEquals(StringUtils.convertNonAscii("ố ỗ ồ ộ Ố Ỗ Ồ Ộ"),
                 "o o o o O O O O");
         assertEquals(StringUtils.convertNonAscii("Nguyễn Đức Dũng"), "Nguyen Duc Dung");
+    }
+
+    public void testIndexOf() {
+        assertEquals(StringUtils.indexOf("dung.ne", "."), 4);
+        assertEquals(StringUtils.indexOf(".ne", "."), 0);
+        assertEquals(StringUtils.indexOf("dung.", "."), 4);
+        assertEquals(StringUtils.indexOf("", "."), -1);
+        assertEquals(StringUtils.indexOf("", ""), 0);
+        assertEquals(StringUtils.indexOf("dung.", null), -1);
+        assertEquals(StringUtils.indexOf(null, "."), -1);
     }
 
 }

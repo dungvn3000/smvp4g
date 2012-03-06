@@ -177,4 +177,27 @@ public final class StringUtils extends Format {
         st = st.replaceAll("[Đ]", "D");
         return st;
     }
+
+    /**
+     * Rewrite method indexOf(String) in java.lang.String.class
+     *
+     * @param st    String
+     * @param subSt Sub string
+     * @return -1 if not found
+     */
+    public static int indexOf(String st, String subSt) {
+        if (st != null) {
+            String[] results = st.split("");
+            for (int i = 0; i <= st.length(); i++) {
+                String s = results[i];
+                if (s.equals(subSt)) {
+                    if (i > 0) {
+                        return i - 1;
+                    }
+                    return 0;
+                }
+            }
+        }
+        return -1;
+    }
 }
