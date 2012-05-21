@@ -17,16 +17,26 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.mvp.client.core.view;
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.smvp4g.mvp.client.core.i18n.Constants;
+import com.smvp4g.mvp.client.core.utils.StringUtils;
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends BasicPresenter<CopyRightView> {
+/**
+ * The Class ComponentView.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/21/12, 11:14 PM
+ */
+public abstract class ComponentView<C extends Constants> extends AbstractView<C> {
+
     @Override
-    public void onActivate() {
-        view.show();
+    public boolean show(boolean replace) {
+        return true;
+    }
+
+    @Override
+    public String getDomId() {
+        return StringUtils.EMPTY;
     }
 }

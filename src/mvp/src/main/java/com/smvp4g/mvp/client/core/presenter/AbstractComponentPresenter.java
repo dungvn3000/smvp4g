@@ -17,16 +17,22 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.mvp.client.core.presenter;
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.google.gwt.event.shared.EventBus;
+import com.smvp4g.mvp.client.core.view.View;
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends BasicPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
+/**
+ * The Class ComponentPresenter.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/21/12, 11:32 PM
+ */
+public abstract class AbstractComponentPresenter<V extends View> extends BasicPresenter<V> {
+
+    public final void start(EventBus eventBus) {
+        this.eventBus = eventBus;
+        onActivate();
     }
+
 }

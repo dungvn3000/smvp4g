@@ -11,9 +11,6 @@
     <!--Add ext gwt support-->
     <inherits name="com.extjs.gxt.ui.GXT"/>
 
-    <!-- Add Reflection Support -->
-    <inherits name="com.gwtent.reflection.Reflection"/>
-
     <!-- For development, a default of `DEBUG` is recommended -->
     <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG"/>
 

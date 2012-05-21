@@ -30,19 +30,13 @@ import com.smvp4g.mvp.client.core.view.View;
  * @author dungvn3000
  * @since 5/13/11, 10:32 AM
  */
-public interface Presenter<V extends View> extends Activity {
+public interface Presenter<V extends View> {
 
     void setView(V view);
-
-    void setPlace(AbstractPlace place);
-
-    void setPlaceController(PlaceController controller);
 
     void bind();
 
     V getView();
-
-    AbstractPlace getPlace();
 
     void onActivate();
 }

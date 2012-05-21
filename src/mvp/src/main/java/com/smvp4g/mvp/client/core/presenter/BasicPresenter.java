@@ -19,55 +19,51 @@
 
 package com.smvp4g.mvp.client.core.presenter;
 
-import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.view.View;
+import com.smvp4g.reflection.client.marker.Reflection;
 
 /**
- * The Class MainPresenter.
+ * The Class AbstractPresenter.
  *
- * @author Nguyen Duc Dung
- * @since 5/22/12, 12:17 AM
+ * @author dungvn3000
+ * @since 5/13/11, 10:34 AM
  */
-public abstract class AbstractPresenter<V extends View> extends BasicPresenter<V> implements Activity {
+@Reflection
+public abstract class BasicPresenter<V extends View> implements Presenter<V> {
 
-    protected AbstractPlace place;
+    protected V view;
 
-    protected PlaceController placeController;
-
-    @Override
-    public String mayStop() {
-        return null;
-    }
+    protected EventBus eventBus;
 
     @Override
-    public void onCancel() {
-
+    public void setView(V view) {
+        this.view = view;
     }
 
     @Override
-    public void onStop() {
-
+    public V getView() {
+        return view;
     }
 
     @Override
-    public final void start(AcceptsOneWidget panel, EventBus eventBus) {
-        this.eventBus = eventBus;
-        onActivate();
+    public final void bind() {
+        view.bind();
+        doBind();
     }
 
-    public AbstractPlace getPlace() {
-        return place;
+    @Override
+    public void onActivate() {
+
     }
 
-    public void setPlace(AbstractPlace place) {
-        this.place = place;
-    }
+    /**
+     * Do bind with a presenter with a view..
+     */
+    protected void doBind() {
 
-    public void setPlaceController(PlaceController controller) {
-        this.placeController = controller;
     }
 }

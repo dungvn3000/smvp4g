@@ -1,0 +1,5 @@
+*** Release 0.2.0 [Working]
+    - Component support.
+    - Remover DefaultPresenter and DefaultPlace class.
+
+*** Release 0.1.0 [2012-Jan-09]
