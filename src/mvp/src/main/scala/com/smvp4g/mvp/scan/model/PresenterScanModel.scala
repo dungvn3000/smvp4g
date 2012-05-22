@@ -17,17 +17,20 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.mvp.scan.model
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+/**
+ * The Class PresenterScanModel.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/22/12, 8:59 AM
+ *
+ */
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+class PresenterScanModel {
+  var presenterClassName: String = _
+  var viewClassName: String = _
+  var placeClassName: String = _
+  var moduleClassName: String = _
+  var token: String = _
 }

@@ -17,24 +17,34 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.aop.scan.reader
 
-import com.smvp4g.example.client.module.main.place.TestPlace;
-import com.smvp4g.example.client.module.main.view.TestView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.google.gwt.core.ext.GeneratorContext
+import com.google.gwt.core.ext.typeinfo.JClassType
+import com.smvp4g.aop.client.marker.Aspect
+import com.smvp4g.generator.scan.model.ClassScanModel
+import com.smvp4g.generator.scan.reader.Reader
 
 /**
- * The Class TestPresenter.
+ * The Class InterceptorReader.
  *
  * @author Nguyen Duc Dung
- * @since 11/21/11, 5:29 PM
+ * @since 5/22/12, 3:20 PM
+ *
  */
-@Presenter(view = TestView.class, place = TestPlace.class)
-public class TestPresenter extends AbstractPresenter<TestView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+
+class InterceptorReader extends Reader[ClassScanModel] {
+
+  def read(classType: JClassType, context: GeneratorContext) {
+    context.getTypeOracle.getPackages.foreach(jPackage => {
+      jPackage.getTypes.foreach(jClassType => {
+        if (jClassType.isAnnotationPresent(classOf[Aspect])) {
+          val model = new ClassScanModel
+          model.setClassName(jClassType.getQualifiedSourceName)
+          _data += model
+        }
+      })
+    })
+  }
+
 }

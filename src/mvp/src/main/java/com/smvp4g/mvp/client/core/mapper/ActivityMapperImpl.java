@@ -54,7 +54,7 @@ public class ActivityMapperImpl implements ActivityMapper {
                 if (presenter == null) {
                     presenter = factory.createPresenter(model);
                 }
-                return presenter;
+//                return presenter;
             }
         }
         return null;

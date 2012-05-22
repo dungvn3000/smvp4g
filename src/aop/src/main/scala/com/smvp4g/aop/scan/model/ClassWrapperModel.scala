@@ -17,17 +17,22 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.aop.scan.model
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import reflect.BeanProperty
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+/**
+ * The Class ClassWrapperModel.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/22/12, 2:43 PM
+ *
+ */
+
+class ClassWrapperModel {
+  @BeanProperty var packageName: String = _
+
+  @BeanProperty var className: String = _
+
+  @BeanProperty var realClassName: String = _
 }

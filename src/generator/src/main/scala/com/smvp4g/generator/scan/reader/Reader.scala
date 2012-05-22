@@ -17,17 +17,28 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.generator.scan.reader
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.google.gwt.core.ext.GeneratorContext
+import com.google.gwt.core.ext.typeinfo.JClassType
+import annotation.Annotation
+import collection.mutable.ListBuffer
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+/**
+ * The Class Reader.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/22/12, 2:14 PM
+ *
+ */
+
+trait Reader[M] {
+
+  var _data = new ListBuffer[M]
+
+  def read(classType: JClassType, context: GeneratorContext)
+
+  def isMath(checkAnnotation: Annotation): Boolean = false
+
+  def data: List[M] = _data.toList
 }

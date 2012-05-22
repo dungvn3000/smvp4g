@@ -17,17 +17,33 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.generator.scan
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import analyzer.Analyzer
+import collection.mutable.ListBuffer
+import com.google.gwt.core.ext.GeneratorContext
+import com.google.gwt.core.ext.typeinfo.JClassType
+import reader.Reader
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+/**
+ * The Class ClassScanner.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/22/12, 2:23 PM
+ *
+ */
+
+class ClassScanner {
+
+  var readers = new ListBuffer[Reader[_]]
+  var analyzers = new ListBuffer[Analyzer]
+
+  def scan(classType: JClassType,context: GeneratorContext) {
+    readers.foreach(reader => reader.read(classType, context))
+  }
+
+  def analyzeResult(context: GeneratorContext) {
+    analyzers.foreach(analyzer => analyzer.analyze(context))
+  }
+
 }

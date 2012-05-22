@@ -17,24 +17,31 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.mvp.scan.reader
 
-import com.smvp4g.example.client.module.main.place.TestPlace;
-import com.smvp4g.example.client.module.main.view.TestView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.google.gwt.core.ext.GeneratorContext
+import com.google.gwt.core.ext.typeinfo.JClassType
+import com.smvp4g.generator.scan.reader.Reader
+import com.smvp4g.mvp.client.core.presenter.annotation.Presenter
+import com.smvp4g.mvp.scan.model.PresenterScanModel
 
 /**
- * The Class TestPresenter.
+ * The Class PresenterReader.
  *
  * @author Nguyen Duc Dung
- * @since 11/21/11, 5:29 PM
+ * @since 5/22/12, 9:53 PM
+ *
  */
-@Presenter(view = TestView.class, place = TestPlace.class)
-public class TestPresenter extends AbstractPresenter<TestView> {
-    @Override
-    public void onActivate() {
-        view.show();
+
+class PresenterReader extends Reader[PresenterScanModel] {
+  def read(classType: JClassType, context: GeneratorContext) {
+    val presenterAnnotation = classType.getAnnotation(classOf[Presenter])
+    if (presenterAnnotation != null) {
+      val model = new PresenterScanModel
+      model.presenterClassName = (classType.getQualifiedSourceName)
+      model.viewClassName = (presenterAnnotation.view().getName)
+      model.placeClassName = (presenterAnnotation.place().getName)
+      _data += model
     }
+  }
 }

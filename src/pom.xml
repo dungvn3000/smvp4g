@@ -29,6 +29,7 @@
 
     <!--  convenience to define GWT version in one place -->
     <properties>
+        <scala.version>2.9.2</scala.version>
         <gwtVersion>2.3.0</gwtVersion>
         <guiceVersion>3.0</guiceVersion>
         <gxtVersion>2.2.5</gxtVersion>
@@ -71,6 +72,14 @@
             <scope>provided</scope>
         </dependency>
         <!---->
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>${scala.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -84,16 +93,23 @@
         <plugins>
             <!-- Plugin for compiler -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.1</version>
+                <groupId>org.scala-tools</groupId>
+                <artifactId>maven-scala-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                    <target>1.6</target>
-                    <source>1.6</source>
-                    <optimize>true</optimize>
-                    <showWarnings>true</showWarnings>
-                    <showDeprecation>true</showDeprecation>
-                    <skip>false</skip>
+                    <sourceDir>src/main/java</sourceDir>
+                    <sourceDir>src/main/scala</sourceDir>
+                    <jvmArgs>
+                        <jvmArg>-Xms64m</jvmArg>
+                        <jvmArg>-Xmx1024m</jvmArg>
+                    </jvmArgs>
                 </configuration>
             </plugin>
 

@@ -20,6 +20,7 @@
 package com.smvp4g.example.client.module.main.presenter;
 
 import com.smvp4g.example.client.module.main.view.MainMenuView;
+import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
 import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
 import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
 
@@ -30,7 +31,7 @@ import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
  * @since 10/30/11, 1:44 PM
  */
 @Presenter(view = MainMenuView.class)
-public class MainMenuPresenter extends BasicPresenter<MainMenuView> {
+public class MainMenuPresenter extends AbstractPresenter<MainMenuView> {
     @Override
     public void onActivate() {
         view.show();

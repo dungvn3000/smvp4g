@@ -17,17 +17,20 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.mvp.generator.factory
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.smvp4g.generator.AbstractTemplateData
+import com.smvp4g.mvp.scan.model.PresenterScanModel
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+/**
+ * The Class ClientFactoryTemplateData.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/22/12, 9:55 PM
+ *
+ */
+
+class ClientFactoryTemplateData(generateClassName: String, generatePackageName: String) extends
+AbstractTemplateData(generateClassName, generatePackageName) {
+  var presenterScanModels: List[PresenterScanModel] = _
 }

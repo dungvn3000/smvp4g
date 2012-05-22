@@ -17,17 +17,30 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.mvp.scan.analyzer
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.google.gwt.core.ext.GeneratorContext
+import com.smvp4g.generator.scan.analyzer.Analyzer
+import com.smvp4g.mvp.scan.reader.{ModuleReader, PresenterReader}
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+/**
+ * The Class PresenterAnalyzer.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/22/12, 10:00 PM
+ *
+ */
+
+class PresenterAnalyzer(presenterReader: PresenterReader, moduleReader: ModuleReader) extends Analyzer {
+  def analyze(context: GeneratorContext) {
+    val presenters = presenterReader.data
+    val modules = moduleReader.data
+    presenters.foreach(presenter => {
+      modules.foreach(module => {
+        if (presenter.presenterClassName.contains(module.modulePackageName)) {
+          presenter.moduleClassName = module.className
+        }
+      })
+    })
+  }
 }

@@ -23,6 +23,7 @@ import com.google.gwt.user.client.Window;
 import com.smvp4g.example.client.module.main.view.BannerView;
 import com.smvp4g.example.client.module.test.presenter.Test2Presenter;
 import com.smvp4g.mvp.client.core.eventbus.annotation.EventHandler;
+import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
 import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
 import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
 
@@ -33,7 +34,7 @@ import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
  * @since 11/20/11, 8:13 PM
  */
 @Presenter(view = BannerView.class)
-public class BannerPresenter extends BasicPresenter<BannerView> {
+public class BannerPresenter extends AbstractPresenter<BannerView> {
     @Override
     public void onActivate() {
         view.show();

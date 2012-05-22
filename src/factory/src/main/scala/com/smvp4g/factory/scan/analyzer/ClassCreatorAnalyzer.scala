@@ -17,17 +17,34 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.presenter;
+package com.smvp4g.factory.scan.analyzer
 
-import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.google.gwt.core.ext.GeneratorContext
+import com.smvp4g.factory.scan.reader.ClassReflectionReader
+import com.smvp4g.generator.scan.analyzer.Analyzer
+import collection.mutable.ListBuffer
+import com.smvp4g.generator.scan.model.ClassScanModel
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
-    @Override
-    public void onActivate() {
-        view.show();
-    }
+/**
+ * The Class ClassCreatorAnalyzer.
+ *
+ * @author Nguyen Duc Dung
+ * @since 5/22/12, 6:34 PM
+ *
+ */
+
+class ClassCreatorAnalyzer extends Analyzer {
+
+  var reader: ClassReflectionReader = _
+
+  def analyze(context: GeneratorContext) {
+    var removeClass = new ListBuffer[ClassScanModel]
+    reader.data.foreach(clazz => {
+      if (clazz.isAspectable) {
+        removeClass += clazz
+      }
+    })
+
+    reader._data --= removeClass
+  }
 }
