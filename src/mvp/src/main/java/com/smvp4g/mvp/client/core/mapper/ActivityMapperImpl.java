@@ -39,17 +39,15 @@ import java.util.List;
  */
 public class ActivityMapperImpl implements ActivityMapper {
 
-    private List<FactoryModel> factoryModels = new ArrayList<FactoryModel>();
     private ClientFactory factory;
 
-    public ActivityMapperImpl(List<FactoryModel> factoryModels, ClientFactory factory) {
-        this.factoryModels = factoryModels;
+    public ActivityMapperImpl(ClientFactory factory) {
         this.factory = factory;
     }
 
     @Override
     public Activity getActivity(Place place) {
-        for (FactoryModel model : factoryModels) {
+        for (FactoryModel model : factory.getFactoryModels()) {
             if (ClassUtils.getRealClass(place) == model.getPlaceClass()) {
                 Presenter presenter = factory.getExitsPresenter(model.getPresenterClass());
                 if (presenter == null) {

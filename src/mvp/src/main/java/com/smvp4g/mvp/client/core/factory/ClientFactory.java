@@ -19,13 +19,15 @@
 
 package com.smvp4g.mvp.client.core.factory;
 
-import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.place.shared.PlaceHistoryMapper;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.place.shared.PlaceController;
 import com.smvp4g.mvp.client.core.module.Module;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.presenter.Presenter;
 import com.smvp4g.mvp.client.core.view.View;
+
+import java.util.List;
 
 /**
  * The Class ClientFactory.
@@ -35,15 +37,12 @@ import com.smvp4g.mvp.client.core.view.View;
  */
 public interface ClientFactory {
     public static final ClientFactory INSTANCE = GWT.create(ClientFactoryImpl.class);
-    ActivityMapper createActivityMapper();
-    PlaceHistoryMapper createHistoryMapper();
-    void createAndHandleHistory();
-    void configure();
-    void createDefaultPresenter();
+    void configure(EventBus eventBus, PlaceController placeController);
     <T extends Presenter<? extends View>> T getExitsPresenter(Class<T> presenterClass);
     Presenter createPresenter(FactoryModel model);
     AbstractPlace createPlace(FactoryModel model);
     Module createModule(FactoryModel model);
     <P extends AbstractPlace> P getExitsPlace(Class<P> placeClass);
     <M extends Module> M getExitsModule(Class<M> moduleClass);
+    List<FactoryModel> getFactoryModels();
 }

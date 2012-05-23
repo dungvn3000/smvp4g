@@ -37,17 +37,15 @@ import java.util.List;
  */
 public class PlaceHistoryMapperImpl implements PlaceHistoryMapper {
 
-    private List<FactoryModel> factoryModels;
     private ClientFactory factory;
 
-    public PlaceHistoryMapperImpl(List<FactoryModel> factoryModels, ClientFactory factory) {
-        this.factoryModels = factoryModels;
+    public PlaceHistoryMapperImpl(ClientFactory factory) {
         this.factory = factory;
     }
 
     @Override
     public Place getPlace(String token) {
-        for (FactoryModel model : factoryModels) {
+        for (FactoryModel model : factory.getFactoryModels()) {
             if (StringUtils.isNotBlank(model.getToken()) && model.getToken().equals(token)) {
                 AbstractPlace place = factory.getExitsPlace(model.getPlaceClass());
                 if (place == null) {
@@ -61,7 +59,7 @@ public class PlaceHistoryMapperImpl implements PlaceHistoryMapper {
 
     @Override
     public String getToken(Place place) {
-        for (FactoryModel model : factoryModels) {
+        for (FactoryModel model : factory.getFactoryModels()) {
             if (ClassUtils.getRealClass(place) == model.getPlaceClass()) {
                 return model.getToken();
             }

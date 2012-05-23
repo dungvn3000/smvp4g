@@ -59,49 +59,11 @@ public class ClientFactoryImpl implements ClientFactory {
             new ArrayList<Presenter<? extends View>>();
     protected List<Module> modules = new ArrayList<Module>();
 
-    private EventBus eventBus = new SimpleEventBus();
-    private PlaceController placeController = new PlaceController(eventBus);
-    private EventHandlerConfigure eventHandlerConfigure = new EventHandlerConfigure(eventBus);
-    private HistoryHandlerConfigure historyHandlerConfigure = new HistoryHandlerConfigure(eventBus, factoryModels);
+    private EventBus eventBus;
+    private PlaceController placeController;
+    private EventHandlerConfigure eventHandlerConfigure;
+    private HistoryHandlerConfigure historyHandlerConfigure;
 
-    @Override
-    public ActivityMapper createActivityMapper() {
-        return new ActivityMapperImpl(factoryModels, this);
-    }
-
-    @Override
-    public PlaceHistoryMapper createHistoryMapper() {
-        return new PlaceHistoryMapperImpl(factoryModels, this);
-    }
-
-    @Override
-    public void createAndHandleHistory() {
-        ActivityManager activityManager = new ActivityManager(createActivityMapper(), eventBus);
-        activityManager.setDisplay(new SimplePanel());
-        PlaceHistoryHandler placeHistoryHandler = new PlaceHistoryHandler(createHistoryMapper());
-        placeHistoryHandler.register(placeController, eventBus, getDefaultPlace());
-        placeHistoryHandler.handleCurrentHistory();
-    }
-    
-    private Place getDefaultPlace() {
-        for (FactoryModel model : factoryModels) {
-            com.smvp4g.mvp.client.core.place.Place place = ClassUtils.getAnnotation(model.
-                    getPlaceClass(), com.smvp4g.mvp.client.core.place.Place.class);
-            if (place != null && place.defaultPlace()) {
-                ViewSecurity viewSecurity = ClassUtils.getAnnotation(model.getViewClass(), ViewSecurity.class);
-                if (viewSecurity != null) {
-                    ViewSecurityConfigurator configurator = ClassUtils.instantiate(viewSecurity.configuratorClass());
-                    if ((LoginUtils.checkPermission(configurator.getRoles(), LoginUtils.getRole()) && !viewSecurity.showOnlyGuest())
-                            || (viewSecurity.showOnlyGuest() && LoginUtils.getRole() == null)) {
-                        return ClassUtils.instantiate(model.getPlaceClass());
-                    }
-                } else {
-                    return ClassUtils.instantiate(model.getPlaceClass());
-                }
-            }
-        }
-        return Place.NOWHERE;
-    }
 
     protected <V extends View> void configurePresenter(Presenter<V> presenter, V view, AbstractPlace place) {
         presenter.setView(view);
@@ -131,16 +93,6 @@ public class ClientFactoryImpl implements ClientFactory {
             }
         }
         return null;
-    }
-
-    @Override
-    public void createDefaultPresenter() {
-        for (FactoryModel model : factoryModels) {
-            if (model.getPlaceClass() == DefaultPlace.class) {
-                Presenter presenter = createPresenter(model);
-                ((AbstractPresenter)presenter).start(null, eventBus);
-            }
-        }
     }
 
     @Override
@@ -202,12 +154,19 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public void configure() {
-        createDefaultPresenter();
-        createAndHandleHistory();
+    public void configure(EventBus eventBus, PlaceController placeController) {
+        this.eventBus = eventBus;
+        this.placeController = placeController;
+        eventHandlerConfigure = new EventHandlerConfigure(eventBus);
+        historyHandlerConfigure = new HistoryHandlerConfigure(eventBus, factoryModels);
     }
 
     protected <T, V extends T> T instantiate(Class<V> clazz) {
         return ClassUtils.instantiate(clazz);
+    }
+
+    @Override
+    public List<FactoryModel> getFactoryModels() {
+        return factoryModels;
     }
 }

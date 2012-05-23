@@ -21,6 +21,9 @@
 
 package ${data.getGeneratePackageName()};
 
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.place.shared.PlaceController;
+
 /**
 * The Class ClientFactoryImplGenerated.
 *
@@ -29,7 +32,7 @@ package ${data.getGeneratePackageName()};
 */
 public class ${data.getGenerateClassName()} extends ClientFactoryImpl {
     @Override
-    public void configure() {
+    public void configure(EventBus eventBus, PlaceController placeController) {
         [#list data.getPresenterScanModels() as presenter]
             FactoryModel model${presenter_index} = new FactoryModel();
             model${presenter_index}.setPresenterClass(${presenter.getPresenterClassName()}.class);
@@ -39,6 +42,6 @@ public class ${data.getGenerateClassName()} extends ClientFactoryImpl {
             model${presenter_index}.setToken("${presenter.getToken()}");
             factoryModels.add(model${presenter_index});
         [/#list]
-        super.configure();
+        super.configure(eventBus, placeController);
     }
 }

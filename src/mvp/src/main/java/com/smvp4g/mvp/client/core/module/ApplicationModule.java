@@ -19,7 +19,26 @@
 
 package com.smvp4g.mvp.client.core.module;
 
+import com.google.gwt.activity.shared.ActivityManager;
+import com.google.gwt.activity.shared.ActivityMapper;
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceController;
+import com.google.gwt.place.shared.PlaceHistoryHandler;
+import com.google.gwt.place.shared.PlaceHistoryMapper;
+import com.google.gwt.user.client.ui.SimplePanel;
+import com.smvp4g.factory.client.utils.ClassUtils;
 import com.smvp4g.mvp.client.core.factory.ClientFactory;
+import com.smvp4g.mvp.client.core.factory.FactoryModel;
+import com.smvp4g.mvp.client.core.mapper.ActivityMapperImpl;
+import com.smvp4g.mvp.client.core.mapper.PlaceHistoryMapperImpl;
+import com.smvp4g.mvp.client.core.place.DefaultPlace;
+import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
+import com.smvp4g.mvp.client.core.presenter.Presenter;
+import com.smvp4g.mvp.client.core.security.ViewSecurity;
+import com.smvp4g.mvp.client.core.security.ViewSecurityConfigurator;
+import com.smvp4g.mvp.client.core.utils.LoginUtils;
 import com.smvp4g.reflection.client.marker.Reflection;
 
 /**
@@ -30,13 +49,64 @@ import com.smvp4g.reflection.client.marker.Reflection;
  */
 @Reflection
 public class ApplicationModule implements Module {
+
+    private EventBus eventBus = new SimpleEventBus();
+    private PlaceController placeController = new PlaceController(eventBus);
+    private ActivityManager activityManager = new ActivityManager(createActivityMapper(), eventBus);
+    private PlaceHistoryHandler placeHistoryHandler = new PlaceHistoryHandler(createHistoryMapper());
+
     @Override
     public void configure() {
-        ClientFactory.INSTANCE.configure();
+        ClientFactory.INSTANCE.configure(eventBus, placeController);
+        createDefaultPresenter();
+        createAndHandleHistory();
     }
 
     @Override
     public void start() {
         configure();
+    }
+
+    public void createAndHandleHistory() {
+        activityManager.setDisplay(new SimplePanel());
+        placeHistoryHandler.register(placeController, eventBus, getDefaultPlace());
+        placeHistoryHandler.handleCurrentHistory();
+    }
+
+    private ActivityMapper createActivityMapper() {
+        return new ActivityMapperImpl(ClientFactory.INSTANCE);
+    }
+
+    private PlaceHistoryMapper createHistoryMapper() {
+        return new PlaceHistoryMapperImpl(ClientFactory.INSTANCE);
+    }
+
+    private Place getDefaultPlace() {
+        for (FactoryModel model : ClientFactory.INSTANCE.getFactoryModels()) {
+            com.smvp4g.mvp.client.core.place.Place place = ClassUtils.getAnnotation(model.
+                    getPlaceClass(), com.smvp4g.mvp.client.core.place.Place.class);
+            if (place != null && place.defaultPlace()) {
+                ViewSecurity viewSecurity = ClassUtils.getAnnotation(model.getViewClass(), ViewSecurity.class);
+                if (viewSecurity != null) {
+                    ViewSecurityConfigurator configurator = ClassUtils.instantiate(viewSecurity.configuratorClass());
+                    if ((LoginUtils.checkPermission(configurator.getRoles(), LoginUtils.getRole()) && !viewSecurity.showOnlyGuest())
+                            || (viewSecurity.showOnlyGuest() && LoginUtils.getRole() == null)) {
+                        return ClassUtils.instantiate(model.getPlaceClass());
+                    }
+                } else {
+                    return ClassUtils.instantiate(model.getPlaceClass());
+                }
+            }
+        }
+        return Place.NOWHERE;
+    }
+
+    public void createDefaultPresenter() {
+        for (FactoryModel model : ClientFactory.INSTANCE.getFactoryModels()) {
+            if (model.getPlaceClass() == DefaultPlace.class) {
+                Presenter presenter = ClientFactory.INSTANCE.createPresenter(model);
+                ((AbstractPresenter)presenter).start(null, eventBus);
+            }
+        }
     }
 }
