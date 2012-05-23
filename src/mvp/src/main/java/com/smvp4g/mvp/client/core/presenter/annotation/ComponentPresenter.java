@@ -19,7 +19,7 @@
 
 package com.smvp4g.mvp.client.core.presenter.annotation;
 
-import com.smvp4g.mvp.client.core.view.View;
+import com.smvp4g.mvp.client.core.view.AbstractComponentView;
 
 /**
  * The Class MainPresenter.
@@ -28,5 +28,6 @@ import com.smvp4g.mvp.client.core.view.View;
  * @since 5/22/12, 12:50 AM
  */
 public @interface ComponentPresenter {
-    Class<? extends View> view();
+    Class<? extends AbstractComponentView> view();
+    boolean runOnStart() default false;
 }

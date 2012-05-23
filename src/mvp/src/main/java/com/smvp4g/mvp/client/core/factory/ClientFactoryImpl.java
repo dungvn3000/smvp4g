@@ -19,28 +19,15 @@
 
 package com.smvp4g.mvp.client.core.factory;
 
-import com.google.gwt.activity.shared.ActivityManager;
-import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
-import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.place.shared.PlaceHistoryMapper;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.smvp4g.factory.client.utils.ClassUtils;
 import com.smvp4g.mvp.client.core.factory.configure.EventHandlerConfigure;
 import com.smvp4g.mvp.client.core.factory.configure.HistoryHandlerConfigure;
-import com.smvp4g.mvp.client.core.mapper.ActivityMapperImpl;
-import com.smvp4g.mvp.client.core.mapper.PlaceHistoryMapperImpl;
 import com.smvp4g.mvp.client.core.module.Module;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
-import com.smvp4g.mvp.client.core.place.DefaultPlace;
 import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
 import com.smvp4g.mvp.client.core.presenter.Presenter;
-import com.smvp4g.mvp.client.core.security.ViewSecurity;
-import com.smvp4g.mvp.client.core.security.ViewSecurityConfigurator;
-import com.smvp4g.mvp.client.core.utils.LoginUtils;
 import com.smvp4g.mvp.client.core.view.View;
 
 import java.util.ArrayList;
@@ -65,14 +52,6 @@ public class ClientFactoryImpl implements ClientFactory {
     private HistoryHandlerConfigure historyHandlerConfigure;
 
 
-    protected <V extends View> void configurePresenter(Presenter<V> presenter, V view, AbstractPlace place) {
-        presenter.setView(view);
-        ((AbstractPresenter)presenter).setPlace(place);
-        ((AbstractPresenter)presenter).setPlaceController(placeController);
-        presenter.bind();
-        presenters.add(presenter);
-    }
-
     @SuppressWarnings("unchecked")
     @Override
     public <T extends Presenter<? extends View>> T getExitsPresenter(Class<T> presenterClass) {
@@ -88,8 +67,10 @@ public class ClientFactoryImpl implements ClientFactory {
     @Override
     public <P extends AbstractPlace> P getExitsPlace(Class<P> placeClass) {
         for (Presenter<? extends View> presenter : presenters) {
-            if (ClassUtils.getRealClass(((AbstractPresenter)presenter).getPlace()) == placeClass) {
-                return (P) ((AbstractPresenter)presenter).getPlace();
+            if (presenter instanceof AbstractPresenter) {
+                if (ClassUtils.getRealClass(((AbstractPresenter) presenter).getPlace()) == placeClass) {
+                    return (P) ((AbstractPresenter) presenter).getPlace();
+                }
             }
         }
         return null;
@@ -104,7 +85,13 @@ public class ClientFactoryImpl implements ClientFactory {
             if (getExitsModule(model.getModuleClass()) == null) {
                 createModule(model);
             }
-            configurePresenter(presenter, view, place);
+            presenter.setView(view);
+            if (presenter instanceof AbstractPresenter) {
+                ((AbstractPresenter) presenter).setPlace(place);
+                ((AbstractPresenter) presenter).setPlaceController(placeController);
+            }
+            presenter.bind();
+            presenters.add(presenter);
             eventHandlerConfigure.configure(presenter);
         }
         return presenter;
@@ -131,7 +118,8 @@ public class ClientFactoryImpl implements ClientFactory {
     public Module createModule(FactoryModel model) {
         Module module = instantiate(model.getModuleClass());
         if (module != null) {
-            configureModule(module);
+            module.configure();
+            module.start();
             modules.add(module);
         }
         return module;
@@ -148,10 +136,6 @@ public class ClientFactoryImpl implements ClientFactory {
         return null;
     }
 
-    private void configureModule(Module module) {
-        module.configure();
-        module.start();
-    }
 
     @Override
     public void configure(EventBus eventBus, PlaceController placeController) {

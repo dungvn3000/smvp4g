@@ -20,12 +20,11 @@
 package com.smvp4g.example.client.module.main.presenter;
 
 import com.smvp4g.example.client.module.main.view.CopyRightView;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
-import com.smvp4g.mvp.client.core.presenter.BasicPresenter;
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter;
+import com.smvp4g.mvp.client.core.presenter.AbstractComponentPresenter;
+import com.smvp4g.mvp.client.core.presenter.annotation.ComponentPresenter;
 
-@Presenter(view = CopyRightView.class)
-public class CopyRightPresenter extends AbstractPresenter<CopyRightView> {
+@ComponentPresenter(view = CopyRightView.class, runOnStart = true)
+public class CopyRightPresenter extends AbstractComponentPresenter<CopyRightView> {
     @Override
     public void onActivate() {
         view.show();

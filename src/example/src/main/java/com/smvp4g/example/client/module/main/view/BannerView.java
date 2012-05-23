@@ -21,8 +21,8 @@ package com.smvp4g.example.client.module.main.view;
 
 import com.google.gwt.user.client.ui.HTML;
 import com.smvp4g.example.client.constant.DomIdConstant;
-import com.smvp4g.mvp.client.core.view.AbstractView;
-import com.smvp4g.mvp.client.core.view.annotation.View;
+import com.smvp4g.mvp.client.core.view.AbstractComponentView;
+import com.smvp4g.mvp.client.core.view.annotation.ComponentView;
 
 /**
  * The Class BannerView.
@@ -30,12 +30,12 @@ import com.smvp4g.mvp.client.core.view.annotation.View;
  * @author Nguyen Duc Dung
  * @since 11/20/11, 8:10 PM
  */
-@View(parentDomId = DomIdConstant.BANNER_PANEL)
-public class BannerView extends AbstractView {
+@ComponentView(parentDomId = DomIdConstant.BANNER_PANEL)
+public class BannerView extends AbstractComponentView {
 
     @Override
     protected void initializeView() {
-        HTML html = new HTML("<h1 style='text-align:center'>SMVP4G v0.1</h1>");
+        HTML html = new HTML("<h1 style='text-align:center'>SMVP4G v0.2.0</h1>");
         setWidget(html);
     }
 }

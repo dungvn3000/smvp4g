@@ -37,9 +37,13 @@ public class ${data.getGenerateClassName()} extends ClientFactoryImpl {
             FactoryModel model${presenter_index} = new FactoryModel();
             model${presenter_index}.setPresenterClass(${presenter.getPresenterClassName()}.class);
             model${presenter_index}.setViewClass(${presenter.getViewClassName()}.class);
-            model${presenter_index}.setPlaceClass(${presenter.getPlaceClassName()}.class);
-            model${presenter_index}.setModuleClass(${presenter.getModuleClassName()}.class);
-            model${presenter_index}.setToken("${presenter.getToken()}");
+            [#if presenter.getIsComponent()]
+                model${presenter_index}.setComponent(true);
+            [#else]
+                model${presenter_index}.setPlaceClass(${presenter.getPlaceClassName()}.class);
+                model${presenter_index}.setModuleClass(${presenter.getModuleClassName()}.class);
+                model${presenter_index}.setToken("${presenter.getToken()}");
+            [/#if]
             factoryModels.add(model${presenter_index});
         [/#list]
         super.configure(eventBus, placeController);

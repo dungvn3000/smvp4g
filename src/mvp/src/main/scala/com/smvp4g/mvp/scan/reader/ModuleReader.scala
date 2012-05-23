@@ -36,7 +36,7 @@ import com.smvp4g.mvp.scan.model.ModuleScanModel
 
 class ModuleReader extends Reader[ModuleScanModel] {
   def read(classType: JClassType, context: GeneratorContext) {
-    val module = classType.getAnnotation(classOf[Module]);
+    val module = classType.getAnnotation(classOf[Module])
     if (module != null) {
       val model = new ModuleScanModel
       model.modulePackageName = classType.getPackage.getName

@@ -27,8 +27,6 @@ import com.smvp4g.mvp.client.core.factory.FactoryModel;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.utils.StringUtils;
 
-import java.util.List;
-
 /**
  * The Class PlaceHistoryMapperImpl.
  *
@@ -46,7 +44,8 @@ public class PlaceHistoryMapperImpl implements PlaceHistoryMapper {
     @Override
     public Place getPlace(String token) {
         for (FactoryModel model : factory.getFactoryModels()) {
-            if (StringUtils.isNotBlank(model.getToken()) && model.getToken().equals(token)) {
+            if (!model.isComponent()
+                    && StringUtils.isNotBlank(model.getToken()) && model.getToken().equals(token)) {
                 AbstractPlace place = factory.getExitsPlace(model.getPlaceClass());
                 if (place == null) {
                     place = factory.createPlace(model);

@@ -21,7 +21,7 @@ package com.smvp4g.mvp.client.core.presenter.annotation;
 
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.place.DefaultPlace;
-import com.smvp4g.mvp.client.core.view.View;
+import com.smvp4g.mvp.client.core.view.AbstractView;
 
 /**
  * The Class Presenter.
@@ -30,8 +30,6 @@ import com.smvp4g.mvp.client.core.view.View;
  * @since 11/17/11, 3:38 PM
  */
 public @interface Presenter {
-
-    Class<? extends View> view();
-
+    Class<? extends AbstractView> view();
     Class<? extends AbstractPlace> place() default DefaultPlace.class;
 }

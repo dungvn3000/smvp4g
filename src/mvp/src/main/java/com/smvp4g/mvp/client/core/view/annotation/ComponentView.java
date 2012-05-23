@@ -28,5 +28,6 @@ import com.smvp4g.mvp.client.core.i18n.Constants;
  * @since 5/22/12, 1:09 AM
  */
 public @interface ComponentView {
+    String parentDomId() default "";
     Class<? extends Constants> constantsClass() default Constants.class;
 }

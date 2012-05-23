@@ -20,7 +20,7 @@
 package com.smvp4g.mvp.client.core.presenter;
 
 import com.google.gwt.event.shared.EventBus;
-import com.smvp4g.mvp.client.core.view.View;
+import com.smvp4g.mvp.client.core.view.AbstractComponentView;
 
 /**
  * The Class ComponentPresenter.
@@ -28,7 +28,7 @@ import com.smvp4g.mvp.client.core.view.View;
  * @author Nguyen Duc Dung
  * @since 5/21/12, 11:32 PM
  */
-public abstract class AbstractComponentPresenter<V extends View> extends BasicPresenter<V> {
+public abstract class AbstractComponentPresenter<V extends AbstractComponentView> extends BasicPresenter<V> {
 
     public final void start(EventBus eventBus) {
         this.eventBus = eventBus;

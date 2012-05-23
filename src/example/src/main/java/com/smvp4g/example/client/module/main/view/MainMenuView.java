@@ -28,8 +28,8 @@ import com.smvp4g.example.client.module.test.place.Test1Place;
 import com.smvp4g.example.client.module.test.place.Test2Place;
 import com.smvp4g.mvp.client.core.eventbus.annotation.HistoryHandler;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
-import com.smvp4g.mvp.client.core.view.AbstractView;
-import com.smvp4g.mvp.client.core.view.annotation.View;
+import com.smvp4g.mvp.client.core.view.AbstractComponentView;
+import com.smvp4g.mvp.client.core.view.annotation.ComponentView;
 import com.smvp4g.mvp.client.widget.MenuLink;
 
 /**
@@ -38,8 +38,8 @@ import com.smvp4g.mvp.client.widget.MenuLink;
  * @author Nguyen Duc Dung
  * @since 10/30/11, 1:44 PM
  */
-@View(parentDomId = DomIdConstant.LEFT_PANEL)
-public class MainMenuView extends AbstractView {
+@ComponentView(parentDomId = DomIdConstant.LEFT_PANEL)
+public class MainMenuView extends AbstractComponentView {
 
     private static final String MENU_CSS_STYLE = "mainmenu";
 

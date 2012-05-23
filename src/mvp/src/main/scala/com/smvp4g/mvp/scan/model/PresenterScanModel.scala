@@ -35,4 +35,5 @@ class PresenterScanModel {
   @BeanProperty var placeClassName: String = _
   @BeanProperty var moduleClassName: String = _
   @BeanProperty var token: String = _
+  @BeanProperty var isComponent: Boolean = _
 }

@@ -20,7 +20,6 @@
 package com.smvp4g.mvp.client.core.view;
 
 import com.smvp4g.mvp.client.core.i18n.Constants;
-import com.smvp4g.mvp.client.core.utils.StringUtils;
 
 /**
  * The Class ComponentView.
@@ -28,15 +27,6 @@ import com.smvp4g.mvp.client.core.utils.StringUtils;
  * @author Nguyen Duc Dung
  * @since 5/21/12, 11:14 PM
  */
-public abstract class ComponentView<C extends Constants> extends AbstractView<C> {
+public abstract class AbstractComponentView<C extends Constants> extends BasicView<C> {
 
-    @Override
-    public boolean show(boolean replace) {
-        return true;
-    }
-
-    @Override
-    public String getDomId() {
-        return StringUtils.EMPTY;
-    }
 }

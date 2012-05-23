@@ -37,6 +37,7 @@ public class FactoryModel {
     private Class<? extends AbstractPlace> placeClass;
     private Class<? extends Module> moduleClass;
     private String token;
+    private boolean isComponent;
 
     public Class<? extends Presenter> getPresenterClass() {
         return presenterClass;
@@ -76,5 +77,13 @@ public class FactoryModel {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public boolean isComponent() {
+        return isComponent;
+    }
+
+    public void setComponent(boolean component) {
+        isComponent = component;
     }
 }

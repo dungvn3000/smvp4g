@@ -21,11 +21,11 @@ package com.smvp4g.example.client.module.main.view;
 
 import com.google.gwt.user.client.ui.HTML;
 import com.smvp4g.example.client.constant.DomIdConstant;
-import com.smvp4g.mvp.client.core.view.AbstractView;
-import com.smvp4g.mvp.client.core.view.annotation.View;
+import com.smvp4g.mvp.client.core.view.AbstractComponentView;
+import com.smvp4g.mvp.client.core.view.annotation.ComponentView;
 
-@View(parentDomId = DomIdConstant.BOTTOM_PANEL)
-public class CopyRightView extends AbstractView {
+@ComponentView(parentDomId = DomIdConstant.BOTTOM_PANEL)
+public class CopyRightView extends AbstractComponentView {
     @Override
     protected void initializeView() {
         HTML html = new HTML("<p style='text-align:center'>" +

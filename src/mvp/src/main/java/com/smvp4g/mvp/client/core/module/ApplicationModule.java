@@ -33,9 +33,9 @@ import com.smvp4g.mvp.client.core.factory.ClientFactory;
 import com.smvp4g.mvp.client.core.factory.FactoryModel;
 import com.smvp4g.mvp.client.core.mapper.ActivityMapperImpl;
 import com.smvp4g.mvp.client.core.mapper.PlaceHistoryMapperImpl;
-import com.smvp4g.mvp.client.core.place.DefaultPlace;
-import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
+import com.smvp4g.mvp.client.core.presenter.AbstractComponentPresenter;
 import com.smvp4g.mvp.client.core.presenter.Presenter;
+import com.smvp4g.mvp.client.core.presenter.annotation.ComponentPresenter;
 import com.smvp4g.mvp.client.core.security.ViewSecurity;
 import com.smvp4g.mvp.client.core.security.ViewSecurityConfigurator;
 import com.smvp4g.mvp.client.core.utils.LoginUtils;
@@ -83,29 +83,35 @@ public class ApplicationModule implements Module {
 
     private Place getDefaultPlace() {
         for (FactoryModel model : ClientFactory.INSTANCE.getFactoryModels()) {
-            com.smvp4g.mvp.client.core.place.Place place = ClassUtils.getAnnotation(model.
-                    getPlaceClass(), com.smvp4g.mvp.client.core.place.Place.class);
-            if (place != null && place.defaultPlace()) {
-                ViewSecurity viewSecurity = ClassUtils.getAnnotation(model.getViewClass(), ViewSecurity.class);
-                if (viewSecurity != null) {
-                    ViewSecurityConfigurator configurator = ClassUtils.instantiate(viewSecurity.configuratorClass());
-                    if ((LoginUtils.checkPermission(configurator.getRoles(), LoginUtils.getRole()) && !viewSecurity.showOnlyGuest())
-                            || (viewSecurity.showOnlyGuest() && LoginUtils.getRole() == null)) {
+            if (!model.isComponent()) {
+                com.smvp4g.mvp.client.core.place.Place place = ClassUtils.getAnnotation(model.
+                        getPlaceClass(), com.smvp4g.mvp.client.core.place.Place.class);
+                if (place != null && place.defaultPlace()) {
+                    ViewSecurity viewSecurity = ClassUtils.getAnnotation(model.getViewClass(), ViewSecurity.class);
+                    if (viewSecurity != null) {
+                        ViewSecurityConfigurator configurator = ClassUtils.instantiate(viewSecurity.configuratorClass());
+                        if ((LoginUtils.checkPermission(configurator.getRoles(), LoginUtils.getRole()) && !viewSecurity.showOnlyGuest())
+                                || (viewSecurity.showOnlyGuest() && LoginUtils.getRole() == null)) {
+                            return ClassUtils.instantiate(model.getPlaceClass());
+                        }
+                    } else {
                         return ClassUtils.instantiate(model.getPlaceClass());
                     }
-                } else {
-                    return ClassUtils.instantiate(model.getPlaceClass());
                 }
             }
         }
         return Place.NOWHERE;
     }
 
-    public void createDefaultPresenter() {
+    private void createDefaultPresenter() {
         for (FactoryModel model : ClientFactory.INSTANCE.getFactoryModels()) {
-            if (model.getPlaceClass() == DefaultPlace.class) {
-                Presenter presenter = ClientFactory.INSTANCE.createPresenter(model);
-                ((AbstractPresenter)presenter).start(null, eventBus);
+            if (model.isComponent()) {
+                ComponentPresenter componentPresenter = ClassUtils.
+                        getAnnotation(model.getPresenterClass(), ComponentPresenter.class);
+                if (componentPresenter.runOnStart()) {
+                    Presenter presenter = ClientFactory.INSTANCE.createPresenter(model);
+                    ((AbstractComponentPresenter) presenter).start(eventBus);
+                }
             }
         }
     }

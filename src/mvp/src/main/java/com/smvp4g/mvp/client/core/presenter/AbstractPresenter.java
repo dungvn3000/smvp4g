@@ -24,7 +24,7 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
-import com.smvp4g.mvp.client.core.view.View;
+import com.smvp4g.mvp.client.core.view.AbstractView;
 
 /**
  * The Class MainPresenter.
@@ -32,7 +32,7 @@ import com.smvp4g.mvp.client.core.view.View;
  * @author Nguyen Duc Dung
  * @since 5/22/12, 12:17 AM
  */
-public abstract class AbstractPresenter<V extends View> extends BasicPresenter<V> implements Activity {
+public abstract class AbstractPresenter<V extends AbstractView> extends BasicPresenter<V> implements Activity {
 
     protected AbstractPlace place;
 

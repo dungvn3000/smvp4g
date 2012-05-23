@@ -37,7 +37,8 @@ class PresenterAnalyzer(presenterReader: PresenterReader, moduleReader: ModuleRe
     val modules = moduleReader.data
     presenters.foreach(presenter => {
       modules.foreach(module => {
-        if (presenter.presenterClassName.contains(module.modulePackageName)) {
+        if (!presenter.isComponent
+          && presenter.presenterClassName.contains(module.modulePackageName)) {
           presenter.moduleClassName = module.className
         }
       })

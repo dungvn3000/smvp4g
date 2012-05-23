@@ -41,7 +41,8 @@ class TokenAnalyzer(presenterReader: PresenterReader, moduleReader: ModuleReader
     val modules = moduleReader.data
 
     presenters.foreach(presenter => {
-      if (!presenter.placeClassName.equals(classOf[DefaultPlace].getName)) {
+      if (!presenter.isComponent
+        && !presenter.placeClassName.equals(classOf[DefaultPlace].getName)) {
         //Don't set history token for Default Place.
         val place = ClassUtils.
           getAnnotation(presenter.placeClassName, classOf[Place], context)
@@ -56,7 +57,8 @@ class TokenAnalyzer(presenterReader: PresenterReader, moduleReader: ModuleReader
         }
       }
       modules.foreach(module => {
-        if (presenter.presenterClassName.contains(module.modulePackageName)) {
+        if (!presenter.isComponent
+          && presenter.presenterClassName.contains(module.modulePackageName)) {
           if (presenter.token != null) {
             presenter.token = module.token + "/" + presenter.token
           } else {

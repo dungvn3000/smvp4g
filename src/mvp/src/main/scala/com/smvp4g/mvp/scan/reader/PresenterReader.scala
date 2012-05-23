@@ -22,7 +22,7 @@ package com.smvp4g.mvp.scan.reader
 import com.google.gwt.core.ext.GeneratorContext
 import com.google.gwt.core.ext.typeinfo.JClassType
 import com.smvp4g.generator.scan.reader.Reader
-import com.smvp4g.mvp.client.core.presenter.annotation.Presenter
+import com.smvp4g.mvp.client.core.presenter.annotation.{ComponentPresenter, Presenter}
 import com.smvp4g.mvp.scan.model.PresenterScanModel
 
 /**
@@ -36,12 +36,19 @@ import com.smvp4g.mvp.scan.model.PresenterScanModel
 class PresenterReader extends Reader[PresenterScanModel] {
   def read(classType: JClassType, context: GeneratorContext) {
     val presenterAnnotation = classType.getAnnotation(classOf[Presenter])
+    val componentAnnotation = classType.getAnnotation(classOf[ComponentPresenter])
     if (presenterAnnotation != null) {
       val model = new PresenterScanModel
-      model.presenterClassName = (classType.getQualifiedSourceName)
-      model.viewClassName = (presenterAnnotation.view().getName)
-      model.placeClassName = (presenterAnnotation.place().getName)
+      model.presenterClassName = classType.getQualifiedSourceName
+      model.viewClassName = presenterAnnotation.view.getName
+      model.placeClassName = presenterAnnotation.place.getName
+      _data += model
+    } else if (componentAnnotation != null) {
+      val model = new PresenterScanModel
+      model.presenterClassName = classType.getQualifiedSourceName
+      model.viewClassName = componentAnnotation.view.getName
+      model.isComponent = true
       _data += model
     }
-}
+  }
 }
