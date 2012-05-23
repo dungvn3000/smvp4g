@@ -55,7 +55,10 @@ abstract class AbstractGenerator[M <: AbstractTemplateData] extends Generator {
       }
       return packageName + "." + className
     } catch {
-      case e: Exception => logger.log(TreeLogger.Type.ERROR, e.getMessage)
+      case e: Exception => {
+        e.printStackTrace
+        logger.log(TreeLogger.Type.ERROR, e.getMessage)
+      }
     }
     null
   }

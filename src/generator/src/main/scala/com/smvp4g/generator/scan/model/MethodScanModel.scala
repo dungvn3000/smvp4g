@@ -19,6 +19,7 @@
 
 package com.smvp4g.generator.scan.model
 
+import _root_.java.util.ArrayList
 import reflect.BeanProperty
 
 /**
@@ -36,5 +37,5 @@ class MethodScanModel {
   @BeanProperty var returnType: String = _
   @BeanProperty var returnValue: String = _
   @BeanProperty var isVoidMethod: Boolean = _
-  @BeanProperty var annotationScanModels: java.util.List[AnnotationScanModel] = _
+  @BeanProperty var annotationScanModels: java.util.List[AnnotationScanModel] = new ArrayList[AnnotationScanModel]
 }

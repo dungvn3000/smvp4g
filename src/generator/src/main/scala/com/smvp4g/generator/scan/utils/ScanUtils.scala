@@ -46,7 +46,7 @@ object ScanUtils {
           methodScanModel.setReturnType(method.getReturnType.getName)
           methodScanModel.setReturnValue(buildReturnValueString(ClassUtils.
             invokeMethod(method, annotation)))
-          annotationScanModel.getMethods().add(methodScanModel)
+          annotationScanModel.methods.add(methodScanModel)
         }
       })
       models += annotationScanModel

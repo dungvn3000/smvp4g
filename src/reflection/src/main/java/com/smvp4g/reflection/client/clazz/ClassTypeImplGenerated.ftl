@@ -41,7 +41,7 @@ public class ${data.getGenerateClassName()} implements ClassType {
     public <T extends Annotation> T getAnnotation(Class<T> clazz) {
         [#list data.getAnnotationScanModels() as annotation]
         if (clazz == ${annotation.getAnnotationClassName()}.class) {
-            return (T) new ${annotation.getAnnotationClassName}() {
+            return (T) new ${annotation.getAnnotationClassName()}() {
                 [#list annotation.getMethods() as method]
                 @Override
                 public ${method.getReturnType()} ${method.getName()}() {

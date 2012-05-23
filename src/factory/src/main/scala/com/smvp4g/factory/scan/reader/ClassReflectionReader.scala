@@ -40,15 +40,17 @@ class ClassReflectionReader extends Reader[ClassScanModel] {
     val reflection = classType.getAnnotation(classOf[Reflection])
     if (reflection != null) {
       classType.getSubtypes.foreach(subType => {
-        val model = new ClassScanModel
-        model.setClassName(subType.getQualifiedSourceName)
-        model.setSimpleClassName(subType.getSimpleSourceName)
-        val aspectable = ClassUtils.getJClassType(classOf[Aspectable].getName, context)
-        if (subType.isAssignableTo(aspectable)) {
-          model.isAspectable = true
+        if (!subType.isAbstract) {
+          val model = new ClassScanModel
+          model.setClassName(subType.getQualifiedSourceName)
+          model.setSimpleClassName(subType.getSimpleSourceName)
+          val aspectable = ClassUtils.getJClassType(classOf[Aspectable].getName, context)
+          if (subType.isAssignableTo(aspectable)) {
+            model.isAspectable = true
+          }
+          model.isClassLiteral = reflection.isClassLiteral
+          _data += model
         }
-        model.isClassLiteral = reflection.isClassLiteral
-        _data += model
       })
     }
   }

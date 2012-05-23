@@ -19,6 +19,7 @@
 
 package com.smvp4g.generator.scan.model
 
+import _root_.java.util.ArrayList
 import reflect.BeanProperty
 
 /**
@@ -32,5 +33,5 @@ import reflect.BeanProperty
 class FieldScanModel {
   @BeanProperty var name: String = _
   @BeanProperty var typeClassName: String = _
-  @BeanProperty var annotationScanModels: java.util.List[AnnotationScanModel] = _
+  @BeanProperty var annotationScanModels: java.util.List[AnnotationScanModel] = new ArrayList[AnnotationScanModel]
 }
