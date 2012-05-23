@@ -25,6 +25,7 @@ import com.google.gwt.place.shared.Place;
 import com.smvp4g.factory.client.utils.ClassUtils;
 import com.smvp4g.mvp.client.core.factory.ClientFactory;
 import com.smvp4g.mvp.client.core.factory.FactoryModel;
+import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
 import com.smvp4g.mvp.client.core.presenter.Presenter;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class ActivityMapperImpl implements ActivityMapper {
                 if (presenter == null) {
                     presenter = factory.createPresenter(model);
                 }
-//                return presenter;
+                return (AbstractPresenter)presenter;
             }
         }
         return null;

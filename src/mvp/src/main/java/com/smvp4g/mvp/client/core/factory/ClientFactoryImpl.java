@@ -36,6 +36,7 @@ import com.smvp4g.mvp.client.core.mapper.PlaceHistoryMapperImpl;
 import com.smvp4g.mvp.client.core.module.Module;
 import com.smvp4g.mvp.client.core.place.AbstractPlace;
 import com.smvp4g.mvp.client.core.place.DefaultPlace;
+import com.smvp4g.mvp.client.core.presenter.AbstractPresenter;
 import com.smvp4g.mvp.client.core.presenter.Presenter;
 import com.smvp4g.mvp.client.core.security.ViewSecurity;
 import com.smvp4g.mvp.client.core.security.ViewSecurityConfigurator;
@@ -104,8 +105,8 @@ public class ClientFactoryImpl implements ClientFactory {
 
     protected <V extends View> void configurePresenter(Presenter<V> presenter, V view, AbstractPlace place) {
         presenter.setView(view);
-//        presenter.setPlace(place);
-//        presenter.setPlaceController(placeController);
+        ((AbstractPresenter)presenter).setPlace(place);
+        ((AbstractPresenter)presenter).setPlaceController(placeController);
         presenter.bind();
         presenters.add(presenter);
     }
@@ -125,9 +126,9 @@ public class ClientFactoryImpl implements ClientFactory {
     @Override
     public <P extends AbstractPlace> P getExitsPlace(Class<P> placeClass) {
         for (Presenter<? extends View> presenter : presenters) {
-//            if (ClassUtils.getRealClass(presenter.getPlace()) == placeClass) {
-//                return (P) presenter.getPlace();
-//            }
+            if (ClassUtils.getRealClass(((AbstractPresenter)presenter).getPlace()) == placeClass) {
+                return (P) ((AbstractPresenter)presenter).getPlace();
+            }
         }
         return null;
     }
@@ -137,7 +138,7 @@ public class ClientFactoryImpl implements ClientFactory {
         for (FactoryModel model : factoryModels) {
             if (model.getPlaceClass() == DefaultPlace.class) {
                 Presenter presenter = createPresenter(model);
-//                presenter.start(null, eventBus);
+                ((AbstractPresenter)presenter).start(null, eventBus);
             }
         }
     }
