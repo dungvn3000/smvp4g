@@ -24,6 +24,8 @@ import com.smvp4g.aop.scan.reader.AspectMethodReader
 import com.smvp4g.generator.AbstractGenerator
 import collection.mutable.HashMap
 import com.smvp4g.generator.scan.ClassScanner
+import collection.JavaConverters._
+
 
 /**
  * The Class ClassWrapperGenerator.
@@ -48,7 +50,7 @@ class ClassWrapperGenerator extends AbstractGenerator[ClassWrapperTemplateData] 
     scanner.scan(classType, context)
     val dataTemplate = new ClassWrapperTemplateData(className, packageName)
     dataTemplate.realClassName = classType.getQualifiedSourceName
-    dataTemplate.methodScanModels = aspectMethodReader.data
+    dataTemplate.methodScanModels = aspectMethodReader.data.asJava
     dataTemplateMap.put("data", dataTemplate)
     dataTemplateMap.toMap
   }

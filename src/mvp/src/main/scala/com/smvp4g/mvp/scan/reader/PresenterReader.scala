@@ -43,5 +43,5 @@ class PresenterReader extends Reader[PresenterScanModel] {
       model.placeClassName = (presenterAnnotation.place().getName)
       _data += model
     }
-  }
+}
 }

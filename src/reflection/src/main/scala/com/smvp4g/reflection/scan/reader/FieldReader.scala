@@ -24,7 +24,7 @@ import com.google.gwt.core.ext.typeinfo.JClassType
 import com.smvp4g.generator.scan.model.FieldScanModel
 import com.smvp4g.generator.scan.reader.Reader
 import com.smvp4g.generator.scan.utils.ScanUtils
-
+import collection.JavaConverters._
 /**
  * The Class FieldReader.
  *
@@ -45,7 +45,7 @@ class FieldReader extends Reader[FieldScanModel] {
         } else {
           model.setTypeClassName(field.getType.getQualifiedSourceName)
         }
-        model.setAnnotationScanModels(ScanUtils.getAnnotations(field))
+        model.setAnnotationScanModels(ScanUtils.getAnnotations(field).asJava)
         _data += model
       }
     })

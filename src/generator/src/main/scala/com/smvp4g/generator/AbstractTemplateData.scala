@@ -19,6 +19,8 @@
 
 package com.smvp4g.generator
 
+import reflect.BeanProperty
+
 /**
  * The Class AbstractTemplateData.
  *
@@ -27,6 +29,7 @@ package com.smvp4g.generator
  *
  */
 
-abstract class AbstractTemplateData(generateClassName: String, generatePackageName: String) {
-
+abstract class AbstractTemplateData(_generateClassName: String, _generatePackageName: String) {
+  @BeanProperty var generateClassName: String = _generateClassName
+  @BeanProperty var generatePackageName: String = _generatePackageName
 }

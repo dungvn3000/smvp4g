@@ -20,11 +20,12 @@
 package com.smvp4g.generator
 
 import _root_.java.io.StringWriter
+import _root_.java.util.HashMap
 import com.google.gwt.core.ext.typeinfo.JClassType
 import com.google.gwt.core.ext.{GeneratorContext, TreeLogger, Generator}
 import freemarker.template.{Configuration, Template}
 import freemarker.cache.URLTemplateLoader
-
+import collection.JavaConverters._
 
 /**
  * The Class AbstractGenerator.
@@ -48,7 +49,7 @@ abstract class AbstractGenerator[M <: AbstractTemplateData] extends Generator {
       val sourceWriter = context.tryCreate(logger, packageName, className)
       if (sourceWriter != null) {
         val templateWriter = new StringWriter()
-        createTemplate.process(scan, templateWriter)
+        createTemplate.process(scan.asJava, templateWriter)
         sourceWriter.print(templateWriter.toString)
         context.commit(logger, sourceWriter)
       }

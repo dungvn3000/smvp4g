@@ -21,6 +21,7 @@ package com.smvp4g.aop.generator.wrapper
 
 import com.smvp4g.generator.AbstractTemplateData
 import com.smvp4g.generator.scan.model.MethodScanModel
+import reflect.BeanProperty
 
 /**
  * The Class ClassWrapperTemplateData.
@@ -32,6 +33,6 @@ import com.smvp4g.generator.scan.model.MethodScanModel
 
 class ClassWrapperTemplateData(generateClassName: String, generatePackageName: String) extends
 AbstractTemplateData(generateClassName, generatePackageName) {
-  var realClassName: String = _
-  var methodScanModels: List[MethodScanModel] = _
+  @BeanProperty var realClassName: String = _
+  @BeanProperty var methodScanModels: java.util.List[MethodScanModel] = _
 }

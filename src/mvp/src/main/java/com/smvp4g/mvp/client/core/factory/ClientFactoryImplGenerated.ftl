@@ -1,7 +1,7 @@
 [#ftl]
 [#-- @ftlvariable name="data" type="com.smvp4g.mvp.generator.factory.ClientFactoryTemplateData" --]
 /*
- * Copyright (C) 2009 - 2012 SMVP.NET
+ * Copyright (C) 2009 - 2012 SMVP4G.COM
  *
  * This is free software; you can redistribute it and/or modify it
  * under the terms of the GNU Lesser General Public License as
@@ -19,7 +19,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package ${data.generatePackageName};
+package ${data.getGeneratePackageName()};
 
 /**
 * The Class ClientFactoryImplGenerated.
@@ -27,15 +27,15 @@ package ${data.generatePackageName};
 * @author Nguyen Duc Dung
 * @since 11/17/11, 5:16 PM
 */
-public class ${data.generateClassName} extends ClientFactoryImpl {
+public class ${data.getGenerateClassName()} extends ClientFactoryImpl {
     @Override
     public void configure() {
         [#list data.getPresenterScanModels() as presenter]
             FactoryModel model${presenter_index} = new FactoryModel();
-            model${presenter_index}.setPresenterClass(${presenter.presenterClassName}.class);
-            model${presenter_index}.setViewClass(${presenter.viewClassName}.class);
-            model${presenter_index}.setPlaceClass(${presenter.placeClassName}.class);
-            model${presenter_index}.setModuleClass(${presenter.moduleClassName}.class);
+            model${presenter_index}.setPresenterClass(${presenter.getPresenterClassName()}.class);
+            model${presenter_index}.setViewClass(${presenter.getViewClassName()}.class);
+            model${presenter_index}.setPlaceClass(${presenter.getPlaceClassName()}.class);
+            model${presenter_index}.setModuleClass(${presenter.getModuleClassName()}.class);
             model${presenter_index}.setToken("${presenter.getToken()}");
             factoryModels.add(model${presenter_index});
         [/#list]

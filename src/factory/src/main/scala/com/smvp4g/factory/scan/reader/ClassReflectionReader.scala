@@ -45,9 +45,9 @@ class ClassReflectionReader extends Reader[ClassScanModel] {
         model.setSimpleClassName(subType.getSimpleSourceName)
         val aspectable = ClassUtils.getJClassType(classOf[Aspectable].getName, context)
         if (subType.isAssignableTo(aspectable)) {
-          model.setAspectable(true)
+          model.isAspectable = true
         }
-        model.setClassLiteral(reflection.isClassLiteral)
+        model.isClassLiteral = reflection.isClassLiteral
         _data += model
       })
     }

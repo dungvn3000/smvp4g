@@ -17,26 +17,24 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.reflection.scan.reader
+package com.smvp4g.generator.scan.model
 
-import com.google.gwt.core.ext.GeneratorContext
-import com.google.gwt.core.ext.typeinfo.JClassType
-import com.smvp4g.generator.scan.model.AnnotationScanModel
-import com.smvp4g.generator.scan.reader.Reader
-import com.smvp4g.generator.scan.utils.ScanUtils
-
-import collection.JavaConverters._
+import reflect.BeanProperty
 
 /**
- * The Class AnnotationReader.
+ * The Class MethodScanModel.
  *
  * @author Nguyen Duc Dung
- * @since 5/22/12, 4:15 PM
+ * @since 5/23/12, 12:21 AM
  *
  */
 
-class AnnotationReader extends Reader[AnnotationScanModel] {
-  def read(classType: JClassType, context: GeneratorContext) {
-    _data ++= ScanUtils.getAnnotations(classType)
-  }
+class MethodScanModel {
+  @BeanProperty var name: String = _
+  @BeanProperty var pramsLength: Int = _
+  @BeanProperty var params: String = _
+  @BeanProperty var returnType: String = _
+  @BeanProperty var returnValue: String = _
+  @BeanProperty var isVoidMethod: Boolean = _
+  @BeanProperty var annotationScanModels: java.util.List[AnnotationScanModel] = _
 }

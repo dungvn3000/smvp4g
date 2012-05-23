@@ -19,6 +19,8 @@
 
 package com.smvp4g.mvp.scan.model
 
+import reflect.BeanProperty
+
 /**
  * The Class PresenterScanModel.
  *
@@ -28,9 +30,9 @@ package com.smvp4g.mvp.scan.model
  */
 
 class PresenterScanModel {
-  var presenterClassName: String = _
-  var viewClassName: String = _
-  var placeClassName: String = _
-  var moduleClassName: String = _
-  var token: String = _
+  @BeanProperty var presenterClassName: String = _
+  @BeanProperty var viewClassName: String = _
+  @BeanProperty var placeClassName: String = _
+  @BeanProperty var moduleClassName: String = _
+  @BeanProperty var token: String = _
 }

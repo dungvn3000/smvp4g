@@ -25,7 +25,7 @@ import com.smvp4g.mvp.client.core.factory.ClientFactoryImpl
 import com.smvp4g.mvp.scan.analyzer.{PresenterAnalyzer, TokenAnalyzer}
 import com.smvp4g.mvp.scan.reader.{ModuleReader, PresenterReader}
 import collection.mutable.HashMap
-
+import collection.JavaConverters._
 /**
  * The Class ClientFactoryGenerator.
  *
@@ -60,7 +60,7 @@ class ClientFactoryGenerator extends AbstractGenerator[ClientFactoryTemplateData
     scanner.analyzeResult(context)
     val dataTemplateMap = new HashMap[String, ClientFactoryTemplateData]
     val data = new ClientFactoryTemplateData(className, packageName)
-    data.presenterScanModels = presenterReader.data
+    data.presenterScanModels = presenterReader.data.asJava
     dataTemplateMap.put("data", data)
     dataTemplateMap.toMap
   }

@@ -20,11 +20,11 @@
 package com.smvp4g.aop.generator.utils
 
 import com.smvp4g.aop.client.utils.AopUtils
-import com.smvp4g.aop.generator.wrapper.ClassWrapperGenerator
 import com.smvp4g.aop.scan.reader.AopUtilsReader
 import com.smvp4g.generator.AbstractGenerator
 import collection.mutable.HashMap
 import com.smvp4g.generator.scan.ClassScanner
+import collection.JavaConverters._
 
 /**
  * The Class AopUtilsGenerator.
@@ -46,7 +46,7 @@ class AopUtilsGenerator extends AbstractGenerator[AopUtilsTemplateData] {
     scanner.readers += reader
     scanner.scan(classType, context)
     val data = new AopUtilsTemplateData(className, packageName)
-    data.classWrapperModels = reader.data
+    data.classWrapperModels = reader.data.asJava
     data.classWrapperPrefix = "ClassWrapperGenerated"
     dataTemplateMap.put("data", data)
     dataTemplateMap.toMap

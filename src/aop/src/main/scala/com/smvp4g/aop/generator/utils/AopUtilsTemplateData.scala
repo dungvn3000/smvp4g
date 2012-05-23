@@ -21,6 +21,7 @@ package com.smvp4g.aop.generator.utils
 
 import com.smvp4g.aop.scan.model.ClassWrapperModel
 import com.smvp4g.generator.AbstractTemplateData
+import reflect.BeanProperty
 
 /**
  * The Class AopUtilsTemplateData.
@@ -32,6 +33,6 @@ import com.smvp4g.generator.AbstractTemplateData
 
 class AopUtilsTemplateData(generateClassName: String, generatePackageName: String) extends
 AbstractTemplateData(generateClassName, generatePackageName) {
-  var classWrapperPrefix: String = _
-  var classWrapperModels: List[ClassWrapperModel] = _
+  @BeanProperty var classWrapperPrefix: String = _
+  @BeanProperty var classWrapperModels: java.util.List[ClassWrapperModel] = _
 }

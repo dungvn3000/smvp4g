@@ -26,7 +26,7 @@ import com.smvp4g.generator.scan.reader.Reader
 import com.smvp4g.generator.scan.utils.ScanUtils
 import com.google.gwt.core.ext.typeinfo.JPrimitiveType
 import org.apache.commons.lang.StringUtils
-
+import collection.JavaConverters._
 /**
  * The Class MethodReader.
  *
@@ -45,12 +45,12 @@ class MethodReader extends Reader[MethodScanModel] {
           val returnType = method.getReturnType.isPrimitive
           model.setReturnType(returnType.getQualifiedBoxedSourceName)
           if (returnType == JPrimitiveType.VOID) {
-            model.setVoidMethod(true)
+            model.isVoidMethod = true
           }
         } else {
           model.setReturnType(method.getReturnType.getQualifiedSourceName)
         }
-        model.setAnnotationScanModels(ScanUtils.getAnnotations(method))
+        model.setAnnotationScanModels(ScanUtils.getAnnotations(method).asJava)
         model.setPramsLength(method.getParameters.length)
         var params = StringUtils.EMPTY
         var i = 0

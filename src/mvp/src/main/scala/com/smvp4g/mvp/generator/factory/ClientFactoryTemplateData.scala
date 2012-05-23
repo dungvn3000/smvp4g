@@ -21,6 +21,7 @@ package com.smvp4g.mvp.generator.factory
 
 import com.smvp4g.generator.AbstractTemplateData
 import com.smvp4g.mvp.scan.model.PresenterScanModel
+import reflect.BeanProperty
 
 /**
  * The Class ClientFactoryTemplateData.
@@ -32,5 +33,5 @@ import com.smvp4g.mvp.scan.model.PresenterScanModel
 
 class ClientFactoryTemplateData(generateClassName: String, generatePackageName: String) extends
 AbstractTemplateData(generateClassName, generatePackageName) {
-  var presenterScanModels: List[PresenterScanModel] = _
+  @BeanProperty var presenterScanModels: java.util.List[PresenterScanModel] = _
 }
