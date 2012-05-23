@@ -35,6 +35,7 @@ import collection.JavaConverters._
  */
 
 class AopUtilsGenerator extends AbstractGenerator[AopUtilsTemplateData] {
+
   protected def templateFileName = "AopUtilsImplGenerated.ftl"
 
   protected def resourceClass = classOf[AopUtils]

@@ -19,7 +19,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package ${data.generatePackageName};
+package ${data.getGeneratePackageName()};
 
 import com.smvp4g.factory.client.creator.Creator;
 import com.smvp4g.reflection.client.clazz.ClassType;
@@ -31,17 +31,17 @@ import com.google.gwt.core.client.GWT;
  * @author Nguyen Duc Dung
  * @since 12/13/11, 11:12 AM
  */
-public class ${data.generateClassName} extends ClassCreator {
+public class ${data.getGenerateClassName()} extends ClassCreator {
 
     @Override
     public <T> T create(Class<?> clazz) {
         Object obj = null;
-        [#list data.classScanModels as class]
-        if (clazz == ${class.className}.class) {
-            [#if class.classLiteral]
-                obj = GWT.create(${class.className}.class);
+        [#list data.getClassScanModels() as class]
+        if (clazz == ${class.getClassName()}.class) {
+            [#if class.getIsClassLiteral()]
+                obj = GWT.create(${class.getClassName()}.class);
             [#else]
-                obj = new ${class.className}();
+                obj = new ${class.getClassName()}();
             [/#if]
         }
         [/#list]
@@ -50,8 +50,8 @@ public class ${data.generateClassName} extends ClassCreator {
 
     @Override
     public boolean isFor(Class<?> classType) {
-        [#list data.classScanModels as class]
-        if (classType == ${class.className}.class) {
+        [#list data.getClassScanModels() as class]
+        if (classType == ${class.getClassName()}.class) {
             return true;
         }
         [/#list]

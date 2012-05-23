@@ -19,7 +19,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package ${data.generatePackageName};
+package ${data.getGeneratePackageName()};
 
 import com.smvp4g.factory.client.creator.Creator;
 import com.smvp4g.reflection.client.marker.*;
@@ -31,21 +31,21 @@ import com.google.gwt.core.client.GWT;
  * @author Nguyen Duc Dung
  * @since 12/13/11, 10:12 AM
  */
-public class ${data.generateClassName} extends ClassTypeCreator {
+public class ${data.getGenerateClassName()} extends ClassTypeCreator {
 
     @Override
     public <T> T create(Class<?> clazz) {
         T obj = null;
-        [#list data.classScanModels as class]
-        if (clazz == ${class.className}.class) {
-            obj = GWT.create(${class.simpleClassName}.class);
+        [#list data.getClassScanModels() as class]
+        if (clazz == ${class.getClassName()}.class) {
+            obj = GWT.create(${class.getSimpleClassName()}.class);
         }
         [/#list]
         return obj;
     }
 
-    [#list data.classScanModels as class]
-    @ReflectionTarget(target = ${class.className}.class)
-    public static class ${class.simpleClassName} implements Reflectable {}
+    [#list data.getClassScanModels() as class]
+    @ReflectionTarget(target = ${class.getClassName()}.class)
+    public static class ${class.getSimpleClassName()} implements Reflectable {}
     [/#list]
 }

@@ -24,6 +24,7 @@ import com.smvp4g.factory.scan.reader.ClassReflectionReader
 import com.smvp4g.generator.AbstractGenerator
 import com.smvp4g.generator.scan.ClassScanner
 import collection.mutable.HashMap
+import collection.JavaConverters._
 
 /**
  * The Class ClassTypeCreatorGenerator.
@@ -51,7 +52,7 @@ class ClassTypeCreatorGenerator extends AbstractGenerator[ClassTypeTemplateData]
 
     val dataTemplateMap = new HashMap[String, ClassTypeTemplateData]
     val data = new ClassTypeTemplateData(className, packageName)
-    data.classScanModels = classReflectionReader.data
+    data.classScanModels = classReflectionReader.data.asJava
     dataTemplateMap.put("data", data)
     dataTemplateMap.toMap
   }

@@ -21,6 +21,7 @@ package com.smvp4g.reflection.generator.reflection
 
 import com.smvp4g.generator.AbstractTemplateData
 import com.smvp4g.generator.scan.model.{MethodScanModel, FieldScanModel, AnnotationScanModel}
+import reflect.BeanProperty
 
 /**
  * The Class ClassTypeTemplateData.
@@ -33,12 +34,12 @@ import com.smvp4g.generator.scan.model.{MethodScanModel, FieldScanModel, Annotat
 class ClassTypeTemplateData(generateClassName: String, generatePackageName: String) extends
 AbstractTemplateData(generateClassName, generatePackageName) {
 
-  var className: String = _
+  @BeanProperty var className: String = _
 
-  var annotationScanModels: List[AnnotationScanModel] = _
+  @BeanProperty var annotationScanModels: java.util.List[AnnotationScanModel] = _
 
-  var fieldScanModels: List[FieldScanModel] = _
+  @BeanProperty var fieldScanModels: java.util.List[FieldScanModel] = _
 
-  var methodScanModels: List[MethodScanModel] = _
+  @BeanProperty var methodScanModels: java.util.List[MethodScanModel] = _
 
 }

@@ -24,6 +24,7 @@ import com.smvp4g.factory.client.aop.AopCreator
 import com.smvp4g.generator.AbstractGenerator
 import collection.mutable.HashMap
 import com.smvp4g.generator.scan.ClassScanner
+import collection.JavaConverters._
 
 /**
  * The Class AopCreatorGenerated.
@@ -48,8 +49,8 @@ class AopCreatorGenerated extends AbstractGenerator[AopCreatorTemplateData] {
     scanner.scan(classType, context)
     val data = new HashMap[String, AopCreatorTemplateData]
     val templateData = new AopCreatorTemplateData(className, packageName)
-    templateData.classScanModels = aspectableClassReader.data
-    templateData.interceptorClassModels = interceptorReader.data
+    templateData.classScanModels = aspectableClassReader.data.asJava
+    templateData.interceptorClassModels = interceptorReader.data.asJava
     data.put("data", templateData)
     data.toMap
   }

@@ -19,7 +19,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package ${data.generatePackageName};
+package ${data.getGeneratePackageName()};
 
 import com.smvp4g.factory.client.creator.Creator;
 import com.google.gwt.core.client.GWT;
@@ -31,18 +31,18 @@ import com.smvp4g.aop.client.interceptor.*;
  * @author Nguyen Duc Dung
  * @since 12/13/11, 9:55 AM
  */
-public class ${data.generateClassName} extends AopCreator {
+public class ${data.getGenerateClassName()} extends AopCreator {
 
-    public ${data.generateClassName}() {
+    public ${data.getGenerateClassName()}() {
         createIntercrepter();
     }
 
     @Override
     public <T> T create(Class<?> clazz) {
         T obj = null;
-        [#list data.classScanModels as class]
-            if (clazz == ${class.className}.class) {
-                obj = GWT.create(${class.className}.class);
+        [#list data.getClassScanModels() as class]
+            if (clazz == ${class.getClassName()}.class) {
+                obj = GWT.create(${class.getClassName()}.class);
                 injectInterceptor((HasInterceptor)obj);
             }
         [/#list]
@@ -51,8 +51,8 @@ public class ${data.generateClassName} extends AopCreator {
 
     @Override
     public boolean isFor(Class<?> classType) {
-        [#list data.classScanModels as class]
-        if (classType == ${class.className}.class) {
+        [#list data.getClassScanModels() as class]
+        if (classType == ${class.getClassName()}.class) {
             return true;
         }
         [/#list]
@@ -60,8 +60,8 @@ public class ${data.generateClassName} extends AopCreator {
     }
 
     public void createIntercrepter() {
-        [#list data.interceptorClassModels as intercreptor]
-            interceptors.add(new ${intercreptor.className}());
+        [#list data.getInterceptorClassModels() as intercreptor]
+            interceptors.add(new ${intercreptor.getClassName()}());
         [/#list]
     }
 }

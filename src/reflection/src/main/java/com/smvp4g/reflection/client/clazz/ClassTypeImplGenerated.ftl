@@ -18,7 +18,7 @@
  * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
-package ${data.generatePackageName};
+package ${data.getGeneratePackageName()};
 
 import com.smvp4g.reflection.client.clazz.*;
 import com.smvp4g.reflection.client.annotation.*;
@@ -35,23 +35,23 @@ import java.util.List;
  * @author Nguyen Duc Dung
  * @since 12/3/11, 9:07 AM
  */
-public class ${data.generateClassName} implements ClassType {
+public class ${data.getGenerateClassName()} implements ClassType {
 
     @Override
     public <T extends Annotation> T getAnnotation(Class<T> clazz) {
-        [#list data.annotationScanModels as annotation]
-        if (clazz == ${annotation.annotationClassName}.class) {
-            return (T) new ${annotation.annotationClassName}() {
-                [#list annotation.methods as method]
+        [#list data.getAnnotationScanModels() as annotation]
+        if (clazz == ${annotation.getAnnotationClassName()}.class) {
+            return (T) new ${annotation.getAnnotationClassName}() {
+                [#list annotation.getMethods() as method]
                 @Override
-                public ${method.returnType} ${method.name}() {
-                    return ${method.returnValue};
+                public ${method.getReturnType()} ${method.getName()}() {
+                    return ${method.getReturnValue()};
                 }
                 [/#list]
 
                 @Override
                 public Class<? extends Annotation> annotationType() {
-                    return ${annotation.annotationClassName}.class;
+                    return ${annotation.getAnnotationClassName()}.class;
                 }
             };
         }
@@ -62,36 +62,36 @@ public class ${data.generateClassName} implements ClassType {
     @Override
     public List<FieldType> getFields() {
         List<FieldType> fields = new ArrayList<FieldType>();
-        [#list data.fieldScanModels as field]
+        [#list data.getFieldScanModels() as field]
         FieldTypeImpl field${field_index} = new FieldTypeImpl();
-        field${field_index}.setName("${field.name}" );
-        field${field_index}.setType(${field.typeClassName}.class);
-        [#list field.annotationScanModels as annotation]
+        field${field_index}.setName("${field.getName()}" );
+        field${field_index}.setType(${field.getTypeClassName()}.class);
+        [#list field.getAnnotationScanModels() as annotation]
         field${field_index}.addAnnotation(
-                new ${annotation.annotationClassName}() {
-                [#list annotation.methods as method]
+                new ${annotation.getAnnotationClassName()}() {
+                [#list annotation.getMethods() as method]
                     @Override
-                    public ${method.returnType} ${method.name}() {
-                        return ${method.returnValue};
+                    public ${method.getReturnType()} ${method.getName()}() {
+                        return ${method.getReturnValue()};
                     }
                 [/#list]
 
                 @Override
                 public Class<? extends Annotation> annotationType() {
-                    return ${annotation.annotationClassName}.class;
+                    return ${annotation.getAnnotationClassName()}.class;
                 }
          });
         [/#list]
         field${field_index}.setGetterExecutor(new Executor() {
             @Override
             public Object execute(Object object, Object... params) {
-                return ((${data.className}) object).${field.name};
+                return ((${data.getClassName()}) object).${field.getName()};
             }
         });
         field${field_index}.setSetterExecutor(new Executor() {
             @Override
             public Object execute(Object object, Object... params) {
-                ((${data.className}) object).${field.name} = (${field.typeClassName})params[0];
+                ((${data.getClassName()}) object).${field.getName()} = (${field.getTypeClassName()})params[0];
                 return null;
             }
         });
@@ -113,33 +113,33 @@ public class ${data.generateClassName} implements ClassType {
     @Override
     public List<MethodType> getMethods() {
         List<MethodType> methods = new ArrayList<MethodType>();
-        [#list data.methodScanModels as method]
+        [#list data.getMethodScanModels() as method]
         MethodTypeImpl method${method_index} = new MethodTypeImpl();
-        method${method_index}.setName("${method.name}" );
-        method${method_index}.setReturnType(${method.returnType}.class);
-        [#list method.annotationScanModels as annotation]
+        method${method_index}.setName("${method.getName()}" );
+        method${method_index}.setReturnType(${method.getReturnType()}.class);
+        [#list method.getAnnotationScanModels() as annotation]
         method${method_index}.addAnnotation(
-                new ${annotation.annotationClassName}() {
-                [#list annotation.methods as method]
+                new ${annotation.getAnnotationClassName()}() {
+                [#list annotation.getMethods() as method]
                 @Override
-                public ${method.returnType} ${method.name}() {
-                    return ${method.returnValue};
+                public ${method.getReturnType()} ${method.getName()}() {
+                    return ${method.getReturnValue()};
                 }
                 [/#list]
 
                 @Override
                 public Class<? extends Annotation> annotationType() {
-                    return ${annotation.annotationClassName}.class;
+                    return ${annotation.getAnnotationClassName()}.class;
                 }
         });
         [/#list]
         method${method_index}.setGetterExecutor(new Executor() {
             @Override
             public Object execute(Object object, Object... params) {
-                [#if !method.isVoidMethod()]
-                    return ((${data.className}) object).${method.name}(${method.params});
+                [#if !method.getIsVoidMethod()]
+                    return ((${data.getClassName()}) object).${method.getName()}(${method.getParams()});
                 [#else]
-                    ((${data.className}) object).${method.name}(${method.params});
+                    ((${data.getClassName()}) object).${method.getName()}(${method.getParams()});
                     return null;
                 [/#if]
             }

@@ -19,7 +19,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package ${data.generatePackageName};
+package ${data.getGeneratePackageName()};
 
 import com.smvp4g.aop.client.wrapper.ClassWrapper;
 import com.smvp4g.aop.client.interceptor.MethodInterceptor;
@@ -32,15 +32,15 @@ import java.util.ArrayList;
  * @author Nguyen Duc Dung
  * @since 12/8/11, 2:43 PM
  */
-public class ${data.generateClassName} extends ${data.realClassName} implements ClassWrapper {
+public class ${data.getGenerateClassName()} extends ${data.getRealClassName()} implements ClassWrapper {
 
     protected List<MethodInterceptor> interceptors = new ArrayList<MethodInterceptor>();
 
-    [#list data.methodScanModels as method]
+    [#list data.getMethodScanModels() as method]
     @Override
-    public void ${method.name}() {
-        invokeInterceptor("${method.name}()");
-        super.${method.name}();
+    public void ${method.getName()}() {
+        invokeInterceptor("${method.getName()}()");
+        super.${method.getName()}();
     }
     [/#list]
 

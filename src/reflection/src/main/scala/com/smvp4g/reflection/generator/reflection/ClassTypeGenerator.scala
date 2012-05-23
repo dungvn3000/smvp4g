@@ -28,7 +28,7 @@ import com.smvp4g.reflection.client.clazz.ClassType
 import com.smvp4g.reflection.client.marker.ReflectionTarget
 import collection.mutable.HashMap
 import com.smvp4g.reflection.scan.reader.{MethodReader, FieldReader, AnnotationReader}
-
+import collection.JavaConverters._
 /**
  * The Class ClassTypeGenerator.
  *
@@ -60,9 +60,9 @@ class ClassTypeGenerator extends AbstractGenerator[ClassTypeTemplateData] {
 
       val classModel = new ClassTypeTemplateData(className, packageName)
       classModel.className = targetClassType.getSimpleSourceName
-      classModel.annotationScanModels = annotationReader.data
-      classModel.fieldScanModels = fieldReader.data
-      classModel.methodScanModels = methodReader.data
+      classModel.annotationScanModels = annotationReader.data.asJava
+      classModel.fieldScanModels = fieldReader.data.asJava
+      classModel.methodScanModels = methodReader.data.asJava
 
       dataTemplateMap.put("data", classModel)
       return dataTemplateMap.toMap

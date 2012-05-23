@@ -21,6 +21,7 @@ package com.smvp4g.factory.generator.aop
 
 import com.smvp4g.generator.AbstractTemplateData
 import com.smvp4g.generator.scan.model.ClassScanModel
+import reflect.BeanProperty
 
 /**
  * The Class AopCreatorTemplateData.
@@ -33,8 +34,8 @@ import com.smvp4g.generator.scan.model.ClassScanModel
 class AopCreatorTemplateData(generateClassName: String, generatePackageName: String) extends
 AbstractTemplateData(generateClassName, generatePackageName) {
 
-  var classScanModels: List[ClassScanModel] = _
+  @BeanProperty var classScanModels: java.util.List[ClassScanModel] = _
 
-  var interceptorClassModels: List[ClassScanModel] = _
+  @BeanProperty var interceptorClassModels: java.util.List[ClassScanModel] = _
 
 }

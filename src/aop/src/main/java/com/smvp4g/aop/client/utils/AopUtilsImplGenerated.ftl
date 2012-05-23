@@ -19,7 +19,7 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package ${data.generatePackageName};
+package ${data.getGeneratePackageName()};
 
 /**
  * The Class AopUtilsImplGenerated.
@@ -27,12 +27,12 @@ package ${data.generatePackageName};
  * @author Nguyen Duc Dung
  * @since 12/8/11, 5:45 PM
  */
-public class ${data.generateClassName} extends AopUtilsImpl {
+public class ${data.getGenerateClassName()} extends AopUtilsImpl {
     @Override
     public Class<?> getRealClass(Class<?> clazz) {
-        [#list data.classWrapperModels as class]
-            if (clazz.getName().equals("${class.realClassName}${data.classWrapperPrefix}")) {
-                return ${class.realClassName}.class;
+        [#list data.getClassWrapperModels() as class]
+            if (clazz.getName().equals("${class.getRealClassName()}${data.getClassWrapperPrefix()}")) {
+                return ${class.getRealClassName()}.class;
             }
         [/#list]
         return clazz;

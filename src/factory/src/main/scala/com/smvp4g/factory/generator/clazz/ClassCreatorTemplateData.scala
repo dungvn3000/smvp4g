@@ -21,6 +21,7 @@ package com.smvp4g.factory.generator.clazz
 
 import com.smvp4g.generator.AbstractTemplateData
 import com.smvp4g.generator.scan.model.ClassScanModel
+import reflect.BeanProperty
 
 /**
  * The Class ClassCreatorTemplateData.
@@ -32,5 +33,5 @@ import com.smvp4g.generator.scan.model.ClassScanModel
 
 class ClassCreatorTemplateData(generateClassName: String, generatePackageName: String) extends
 AbstractTemplateData(generateClassName, generatePackageName) {
-  var classScanModels: List[ClassScanModel] = _
+  @BeanProperty var classScanModels: java.util.List[ClassScanModel] = _
 }
