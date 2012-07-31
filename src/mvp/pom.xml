@@ -18,38 +18,38 @@
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>factory</artifactId>
-            <version>${smvp4gVersion}</version>
+            <version>${smvp4g.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.extjs</groupId>
             <artifactId>gxt</artifactId>
-            <version>${gxtVersion}</version>
+            <version>${gxt.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.google.code.gwt-log</groupId>
             <artifactId>gwt-log</artifactId>
-            <version>${gwtlogVersion}</version>
+            <version>${gwtlog.version}</version>
         </dependency>
 
         <dependency>
           <groupId>org.freemarker</groupId>
           <artifactId>freemarker</artifactId>
-          <version>${freemarkerVersion}</version>
+          <version>${freemarker.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>${testngVersion}</version>
+            <version>${testng.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava-gwt</artifactId>
-            <version>${guavaVersion}</version>
+            <version>${guava.version}</version>
         </dependency>
 
     </dependencies>

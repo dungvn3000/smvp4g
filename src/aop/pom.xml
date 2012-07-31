@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>generator</artifactId>
-            <version>${smvp4gVersion}</version>
+            <version>${smvp4g.version}</version>
         </dependency>
     </dependencies>
 

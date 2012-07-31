@@ -31,14 +31,14 @@
     <!--  convenience to define GWT version in one place -->
     <properties>
         <scala.version>2.9.2</scala.version>
-        <gwtVersion>2.3.0</gwtVersion>
-        <guiceVersion>3.0</guiceVersion>
-        <gxtVersion>2.2.5</gxtVersion>
-        <gwtlogVersion>3.1.8</gwtlogVersion>
-        <freemarkerVersion>2.3.19</freemarkerVersion>
-        <guavaVersion>11.0.1</guavaVersion>
-        <testngVersion>6.1.1</testngVersion>
-        <smvp4gVersion>0.2.0</smvp4gVersion>
+        <gwt.version>2.4.0</gwt.version>
+        <guice.version>3.0</guice.version>
+        <gxt.version>2.2.5</gxt.version>
+        <gwtlog.version>3.1.8</gwtlog.version>
+        <freemarker.version>2.3.19</freemarker.version>
+        <guava.version>11.0.1</guava.version>
+        <testng.version>6.1.1</testng.version>
+        <smvp4g.version>0.2.0</smvp4g.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -47,14 +47,14 @@
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-            <version>${gwtVersion}</version>
+            <version>${gwt.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
-            <version>${gwtVersion}</version>
+            <version>${gwt.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -148,7 +148,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>${gwtVersion}</version>
+                <version>${gwt.version}</version>
             </plugin>
 
         </plugins>

@@ -17,7 +17,7 @@
         <dependency>
           <groupId>org.freemarker</groupId>
           <artifactId>freemarker</artifactId>
-          <version>${freemarkerVersion}</version>
+          <version>${freemarker.version}</version>
         </dependency>
     </dependencies>
 

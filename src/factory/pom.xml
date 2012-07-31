@@ -17,22 +17,22 @@
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>generator</artifactId>
-            <version>${smvp4gVersion}</version>
+            <version>${smvp4g.version}</version>
         </dependency>
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>reflection</artifactId>
-            <version>${smvp4gVersion}</version>
+            <version>${smvp4g.version}</version>
         </dependency>
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>aop</artifactId>
-            <version>${smvp4gVersion}</version>
+            <version>${smvp4g.version}</version>
         </dependency>
         <dependency>
             <groupId>com.smvp4g</groupId>
             <artifactId>ioc</artifactId>
-            <version>${smvp4gVersion}</version>
+            <version>${smvp4g.version}</version>
         </dependency>
     </dependencies>
 
