@@ -22,10 +22,18 @@
         </dependency>
 
         <dependency>
-            <groupId>com.extjs</groupId>
+            <groupId>com.sencha.gxt</groupId>
             <artifactId>gxt</artifactId>
             <version>${gxt.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.gwtquery</groupId>
+            <artifactId>gwtquery</artifactId>
+            <version>${gwt.query}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>com.google.code.gwt-log</groupId>
@@ -34,9 +42,9 @@
         </dependency>
 
         <dependency>
-          <groupId>org.freemarker</groupId>
-          <artifactId>freemarker</artifactId>
-          <version>${freemarker.version}</version>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>${freemarker.version}</version>
         </dependency>
 
         <dependency>

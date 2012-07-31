@@ -9,7 +9,7 @@
     <inherits name="com.google.gwt.activity.Activity"/>
 
     <!--Add ext gwt support-->
-    <inherits name="com.extjs.gxt.ui.GXT"/>
+    <inherits name="com.sencha.gxt.ui.GXT"/>
 
     <!-- For development, a default of `DEBUG` is recommended -->
     <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG"/>

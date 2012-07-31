@@ -30,10 +30,11 @@
 
     <!--  convenience to define GWT version in one place -->
     <properties>
+        <gwt.query>1.1.0</gwt.query>
         <scala.version>2.9.2</scala.version>
         <gwt.version>2.4.0</gwt.version>
         <guice.version>3.0</guice.version>
-        <gxt.version>2.2.5</gxt.version>
+        <gxt.version>3.0.0b</gxt.version>
         <gwtlog.version>3.1.8</gwtlog.version>
         <freemarker.version>2.3.19</freemarker.version>
         <guava.version>11.0.1</guava.version>
@@ -155,6 +156,11 @@
     </build>
 
     <repositories>
+        <repository>
+            <id>sencha-commercial-release</id>
+            <name>Sencha commercial releases</name>
+            <url>https://maven.sencha.com/repo/commercial-release/</url>
+        </repository>
         <repository>
             <id>smvp4g</id>
             <url>http://smvp4g-repository.googlecode.com/svn/trunk</url>
