@@ -17,29 +17,20 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.view;
+package com.smvp4g.example.client.component.test.security;
 
-import com.google.gwt.user.client.ui.Label;
-import com.smvp4g.example.client.component.test.TestComponentView;
-import com.smvp4g.example.client.constant.DomIdConstant;
-import com.smvp4g.ioc.client.inject.Inject;
-import com.smvp4g.mvp.client.core.view.AbstractView;
-import com.smvp4g.mvp.client.core.view.annotation.View;
+import com.smvp4g.mvp.client.core.security.HasRole;
+import com.smvp4g.mvp.client.core.security.ViewSecurityConfigurator;
 
 /**
- * The Class TestView.
+ * The Class TestViewSercurity.
  *
  * @author Nguyen Duc Dung
- * @since 11/21/11, 5:28 PM
+ * @since 5/24/12, 1:07 PM
  */
-@View(parentDomId = DomIdConstant.CONTENT_PANEL)
-public class TestView extends AbstractView {
-
-    @Inject
-    private TestComponentView testComponentView;
-
+public class TestViewSecurity implements ViewSecurityConfigurator {
     @Override
-    protected void initializeView() {
-        setWidget(new Label("Main Test View"));
+    public HasRole[] getRoles() {
+        return new HasRole[0];
     }
 }

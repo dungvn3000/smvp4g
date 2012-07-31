@@ -21,6 +21,7 @@ package com.smvp4g.mvp.client.core.factory;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.PlaceController;
+import com.smvp4g.factory.client.creator.Creator;
 import com.smvp4g.factory.client.utils.ClassUtils;
 import com.smvp4g.mvp.client.core.factory.configure.EventHandlerConfigure;
 import com.smvp4g.mvp.client.core.factory.configure.HistoryHandlerConfigure;
@@ -51,6 +52,7 @@ public class ClientFactoryImpl implements ClientFactory {
     private EventHandlerConfigure eventHandlerConfigure;
     private HistoryHandlerConfigure historyHandlerConfigure;
 
+    private List<Creator> creators = new ArrayList<Creator>();
 
     @SuppressWarnings("unchecked")
     @Override
@@ -76,23 +78,34 @@ public class ClientFactoryImpl implements ClientFactory {
         return null;
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public <M extends Module> M getExitsModule(Class<M> moduleClass) {
+        for (Module module : modules) {
+            if (module.getClass() == ClassUtils.getRealClass(moduleClass)) {
+                return (M) module;
+            }
+        }
+        return null;
+    }
+
     @Override
     public Presenter createPresenter(FactoryModel model) {
         Presenter presenter = instantiate(model.getPresenterClass());
         if (presenter != null) {
             View view = createView(model);
-            AbstractPlace place = createPlace(model);
-            if (getExitsModule(model.getModuleClass()) == null) {
-                createModule(model);
-            }
             presenter.setView(view);
-            if (presenter instanceof AbstractPresenter) {
+            if (!model.isComponent()) {
+                AbstractPlace place = createPlace(model);
+                if (getExitsModule(model.getModuleClass()) == null) {
+                    createModule(model);
+                }
                 ((AbstractPresenter) presenter).setPlace(place);
                 ((AbstractPresenter) presenter).setPlaceController(placeController);
             }
             presenter.bind();
-            presenters.add(presenter);
             eventHandlerConfigure.configure(presenter);
+            presenters.add(presenter);
         }
         return presenter;
     }
@@ -123,17 +136,6 @@ public class ClientFactoryImpl implements ClientFactory {
             modules.add(module);
         }
         return module;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public <M extends Module> M getExitsModule(Class<M> moduleClass) {
-        for (Module module : modules) {
-            if (module.getClass() == ClassUtils.getRealClass(moduleClass)) {
-                return (M) module;
-            }
-        }
-        return null;
     }
 
 

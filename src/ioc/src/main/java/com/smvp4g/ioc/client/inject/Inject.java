@@ -17,29 +17,13 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.view;
-
-import com.google.gwt.user.client.ui.Label;
-import com.smvp4g.example.client.component.test.TestComponentView;
-import com.smvp4g.example.client.constant.DomIdConstant;
-import com.smvp4g.ioc.client.inject.Inject;
-import com.smvp4g.mvp.client.core.view.AbstractView;
-import com.smvp4g.mvp.client.core.view.annotation.View;
+package com.smvp4g.ioc.client.inject;
 
 /**
- * The Class TestView.
+ * The Class Inject.
  *
  * @author Nguyen Duc Dung
- * @since 11/21/11, 5:28 PM
+ * @since 5/24/12, 1:31 PM
  */
-@View(parentDomId = DomIdConstant.CONTENT_PANEL)
-public class TestView extends AbstractView {
-
-    @Inject
-    private TestComponentView testComponentView;
-
-    @Override
-    protected void initializeView() {
-        setWidget(new Label("Main Test View"));
-    }
+public @interface Inject {
 }

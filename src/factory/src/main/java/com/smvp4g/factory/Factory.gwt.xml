@@ -4,6 +4,7 @@
     <inherits name='com.google.gwt.user.User'/>
 
     <inherits name="com.smvp4g.reflection.Reflection"/>
+    <inherits name="com.smvp4g.ioc.Ioc"/>
     <inherits name="com.smvp4g.aop.Aop"/>
     <inherits name="com.smvp4g.generator.Generator" />
     

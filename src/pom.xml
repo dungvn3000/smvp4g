@@ -17,6 +17,7 @@
         <module>factory</module>
         <module>mvp</module>
         <module>example</module>
+        <module>ioc</module>
     </modules>
 
     <developers>

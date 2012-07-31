@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.smvp4g</groupId>
-    <artifactId>factory</artifactId>
+    <artifactId>ioc</artifactId>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -19,21 +19,7 @@
             <artifactId>generator</artifactId>
             <version>${smvp4gVersion}</version>
         </dependency>
-        <dependency>
-            <groupId>com.smvp4g</groupId>
-            <artifactId>reflection</artifactId>
-            <version>${smvp4gVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.smvp4g</groupId>
-            <artifactId>aop</artifactId>
-            <version>${smvp4gVersion}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.smvp4g</groupId>
-            <artifactId>ioc</artifactId>
-            <version>${smvp4gVersion}</version>
-        </dependency>
     </dependencies>
+
 
 </project>

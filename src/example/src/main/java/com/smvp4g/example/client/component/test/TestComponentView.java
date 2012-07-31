@@ -17,29 +17,32 @@
  * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package com.smvp4g.example.client.module.main.view;
+package com.smvp4g.example.client.component.test;
 
 import com.google.gwt.user.client.ui.Label;
-import com.smvp4g.example.client.component.test.TestComponentView;
-import com.smvp4g.example.client.constant.DomIdConstant;
-import com.smvp4g.ioc.client.inject.Inject;
-import com.smvp4g.mvp.client.core.view.AbstractView;
-import com.smvp4g.mvp.client.core.view.annotation.View;
+import com.smvp4g.example.client.component.test.i18n.TestViewConstants;
+import com.smvp4g.example.client.component.test.security.TestViewSecurity;
+import com.smvp4g.mvp.client.core.i18n.I18nField;
+import com.smvp4g.mvp.client.core.security.ViewSecurity;
+import com.smvp4g.mvp.client.core.view.AbstractComponentView;
+import com.smvp4g.mvp.client.core.view.annotation.ComponentView;
 
 /**
- * The Class TestView.
+ * The Class TestComponentView.
  *
  * @author Nguyen Duc Dung
- * @since 11/21/11, 5:28 PM
+ * @since 5/24/12, 1:03 PM
  */
-@View(parentDomId = DomIdConstant.CONTENT_PANEL)
-public class TestView extends AbstractView {
 
-    @Inject
-    private TestComponentView testComponentView;
+@ViewSecurity(configuratorClass = TestViewSecurity.class)
+@ComponentView(constantsClass = TestViewConstants.class)
+public class TestComponentView extends AbstractComponentView<TestViewConstants> {
+
+    @I18nField
+    Label lblHello = new Label();
 
     @Override
     protected void initializeView() {
-        setWidget(new Label("Main Test View"));
+        setWidget(lblHello);
     }
 }
