@@ -11,6 +11,10 @@
     <!--Add ext gwt support-->
     <inherits name="com.sencha.gxt.ui.GXT"/>
 
+    <inherits name="org.spiffyui.spiffyui" />
+
+    <inherits name='com.google.gwt.query.Query'/>
+
     <!-- For development, a default of `DEBUG` is recommended -->
     <inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG"/>
 
